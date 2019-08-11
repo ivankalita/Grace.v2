@@ -1,0 +1,17 @@
+/* @media (max-width: 1200px) {
+    .navbar {
+        display: none !important;
+    }
+} */
+
+@media (min-width: 1201px) {
+    .nav-link {
+        font-size: 16px !important;
+    }
+}
+
+@media (min-width: 1400px) {
+    .nav-link {
+        font-size: 24px !important;
+    }
+}

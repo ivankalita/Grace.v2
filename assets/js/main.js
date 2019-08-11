@@ -8,8 +8,8 @@ jQuery(function($){
             var navbar_height = $('.navbar').outerHeight();
             var header_banner_height = $('.header-banner').outerHeight();
             var header_extra_height = header_height - navbar_height - header_banner_height;
-            $('.header-extra').css('min-height', header_extra_height);
-            $('.header-extra-next').css('min-height', header_extra_height);
+            $('.header-extra').css('height', header_extra_height);
+            $('.header-extra-next').css('height', header_extra_height);
         }
         heightDetect();
         $(window).resize(function() {
@@ -18,8 +18,9 @@ jQuery(function($){
         //******************************************************* */
         $('body').addClass('animated fadeIn');
 
-        $(".sandwich, .menu_item").click(function() {
-            $(".sandwich").toggleClass("active");
-          });
+        $('#hamburger-icon').click(function(e) {
+            $('#hamburger-icon').toggleClass('active');
+            e.preventDefault();
+        });
     });    
 });

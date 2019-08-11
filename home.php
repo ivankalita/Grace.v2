@@ -2,6 +2,9 @@
     /*Template Name: Главная */
     get_header();
     ?>
+
+
+
     <section id="leader" class="container-fluid my-5 leader">
         <div class="row justify-content-center">
             <h1><?php the_field('leader_title'); ?></h1>

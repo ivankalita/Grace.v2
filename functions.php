@@ -8,11 +8,12 @@ add_action('admin_init', 'register_nedwsettings'); // Добавление ре�
 add_theme_support( 'post-thumbnails' ); // Добавить постам миниатюру
 add_action('wp_ajax_loadmore', 'true_load_posts');
 add_action('wp_ajax_nopriv_loadmore', 'true_load_posts');
+add_filter( 'nav_menu_css_class', 'add_my_class_to_nav_menu', 10, 2 ); // Добавление custom class к тегу li меню
 
 function load_styles_scritps_fonts() {
     wp_enqueue_style('style', get_stylesheet_uri());
 	wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/main.css');
-
+	wp_enqueue_style('sandwich', get_template_directory_uri() . '/assets/css/sandwich.css');
     wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/css/iconmonstr-iconic-font.css');
     wp_enqueue_style('iconmonstr-iconic-font.min', get_template_directory_uri() . '/assets/css/iconic/css/iconmonstr-iconic-font.min.css');
     wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/fonts/iconmonstr-iconic-font.min.eot');
@@ -141,5 +142,17 @@ function true_load_posts(){
 	die();
 }
 
+function add_my_class_to_nav_menu( $classes, $item ){
+	/* $classes содержит
+	Array(
+		[1] => menu-item
+		[2] => menu-item-type-post_type
+		[3] => menu-item-object-page
+		[4] => menu-item-284
+	)
+	*/
+	$classes[] = 'my__class';
 
+	return $classes;
+}
 ?>

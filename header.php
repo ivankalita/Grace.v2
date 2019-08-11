@@ -11,21 +11,25 @@
 <body>
     <?php if(is_front_page()) {?>
     <header class="vh-100 parallax-window" data-parallax="scroll" data-image-src="<?php the_field('header_image'); ?>">
-        <nav class="navbar navbar-expand-xl navbar-dark">
-            <a class="navbar-brand" href="<?php echo home_url(); ?>">
-                <img width="120" src="<?php echo get_option('logo'); ?>" alt="Логотип студии восточных танцев 'Грация'">
-            </a>
-            <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <nav class="container-fluid">
+            <div class="row">
+                <div class="col-auto">
+                    <a href="<?php echo home_url(); ?>">
+                        <img width="120" src="<?php echo get_option('logo'); ?>" alt="Логотип студии восточных танцев 'Грация'">
+                    </a>
+                </div>
+                <div class="col">
+                    
+                <a id="hamburger-icon" href="#" title="Menu" class="d-block d-xl-none">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                    <span class="line line-3"></span>
+                </a>
                 <?php 
                     wp_nav_menu( [
                         'theme_location'  => 'top',
                         'container'       => false, 
-                        'menu_class'      => 'navbar-nav ml-auto mt-2 mt-lg-0', 
+                        'menu_class'      => 'navbar h-100 justify-content-end d-none d-xl-flex', 
                         'echo'            => true,
                         'before'          => '',
                         'after'           => '',
@@ -36,11 +40,12 @@
                         'walker'          => '',
                     ] );
                 ?>
-            </div>
+                </div>
+            </div>    
         </nav>
-
-        <div class="container-fluid header-banner">
-            <div class="d-flex justify-content-end mr-4">
+      
+        <div class="container-fluid header-banner d-none d-xl-block">
+            <div class="row justify-content-end mr-4">
                 <?php if(get_post_meta($post -> ID, 'header_banner', true)) {?>
                     <h1 class="text-right"><?php echo get_post_meta($post -> ID, 'header_banner', true); ?></h1>
                 <?php }?>
@@ -50,7 +55,7 @@
 
         <div class="container-fluid pt-5 header-extra">
             <div class="row header-extra-next">
-                <div class="col align-self-end p-5">
+                <div class="col align-self-end p-5 d-none d-xl-block">
                     <a href="#leader" class="btn-next">
                         ДАЛЕЕ<i class="im im-angle-down align-bottom icon-next"></i>
                     </a>
@@ -62,7 +67,7 @@
                                 <a href="#request" class="btn-write"><?php echo get_post_meta($post -> ID, 'btn_write', true); ?></a>
                             <?php }?>
                         </div>
-                        <div class="row social justify-content-end align-items-end h-75 pb-5 pr-5">
+                        <div class="row social justify-content-end align-items-end h-75 pb-5 pr-5 d-none d-xl-block">
                         <?php
 
                             // vars	
@@ -82,6 +87,7 @@
                 </div>
             </div>
         </div>
+
     </header>
 
     <?php }?>

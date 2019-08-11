@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import url("iconic/css/iconmonstr-iconic-font.min.css");
+@import url("media.css");
 
 body {
     
@@ -13,9 +14,6 @@ body {
 }
 
 header {
-    /* width: inherit; */
-    /* min-height: 768px; */
-    /* background-image: url("<?php the_field('header_img'); ?>"); */
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
@@ -36,11 +34,18 @@ a {
 nav {
     height: 118px;
 }
-.nav-item {
-    margin: 0 1.5em;
+.menu-item {
+  display: inline-block;
+
 }
 .nav-link {
-    color: #ffffff !important;
+  display: inline;
+  color: #ffffff;
+  font-size: 1rem;
+}
+.navbar {
+  margin: 0;
+
 }
 
 /************ Sandwich ************/
