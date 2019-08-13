@@ -32,7 +32,10 @@ function load_styles_scritps_fonts() {
 	wp_enqueue_script('bootstrap');
 	wp_register_script('parallax', get_template_directory_uri() . '/assets/js/parallax.min.js', array('jquery'));
 	wp_enqueue_script('parallax');
+	wp_register_script('jquery.waypoints.min', get_template_directory_uri() . '/assets/js/jquery.waypoints.min.js', array('jquery'));
+	wp_enqueue_script('jquery.waypoints.min');
 	wp_register_script('waypoint', get_template_directory_uri() . '/assets/js/waypoint.js', array('jquery'));
+	wp_enqueue_script('waypoint');
 	wp_register_script('ionicons', '//unpkg.com/ionicons@4.5.10-0/dist/ionicons.js', false);
 	wp_enqueue_script('ionicons');
 	wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'));

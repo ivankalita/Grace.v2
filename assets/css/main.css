@@ -24,6 +24,10 @@ header {
 a {
     text-decoration: none !important;
 }
+.href-logo {
+  display: flex;
+  align-items: center;
+}
 
 .section-descr {
     color: #424242;
@@ -32,8 +36,21 @@ a {
 */
 
 nav {
-    height: 118px;
+    height: 100px;
+    z-index: 500;
 }
+.sticky {
+  position: fixed;
+  /* top: 0; */
+  background-color: #000000 !important;
+  visibility: hidden;
+  z-index: 500;
+}
+.scrolling {
+  visibility: visible;
+  animation-duration: 1s !important;
+}
+
 .menu-item {
   display: inline-block;
 
@@ -45,7 +62,44 @@ nav {
 }
 .navbar {
   margin: 0;
-
+}
+.preheader {
+  z-index: 300;
+}
+.mobile {
+  display: none;
+  padding: 0;
+  z-index: 200;
+  background-color: #000000;
+  padding-top: 120px;
+  position: absolute !important;
+}
+.mobile ul {
+  height: 200px;
+  /* display: grid; */
+  justify-content: center !important;
+  text-align: center;
+  
+  display: grid !important;
+  
+  
+}
+.desktop {
+  display: block !important;
+}
+.social-list {
+  list-style-type: none;
+}
+.social-list > li {
+  font-size: 24px;
+}
+.social-list::before {
+  position: absolute;
+  top: 170px;
+  bottom: -200px;
+  width: 1px;
+  content: '';
+  background-color: #ffffff;
 }
 
 /************ Sandwich ************/
@@ -118,7 +172,9 @@ button::-moz-focus-inner {
 }
 /* ****************************** */
 
-
+/* .block-write {
+  text-align: end;
+} */
 
 .btn-write {
     height: fit-content;
@@ -127,6 +183,7 @@ button::-moz-focus-inner {
     font-weight: bold;
     border: 3px double #ffffff;
     color: #ffffff;
+    display: inline-grid;
 }
 .btn-write:hover {
   background-color: #ffffff;
