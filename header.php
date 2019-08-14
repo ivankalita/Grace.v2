@@ -18,13 +18,7 @@
             </a>
         </div>
             
-        <div class="d-block d-xl-none header-menu-toggle">
-            <a id="hamburger-icon">
-                <span class="line line-1"></span>
-                <span class="line line-2"></span>
-                <span class="line line-3"></span>
-            </a>
-        </div>
+        <a class="header-menu-toggle" href="#0"><span>Menu</span></a>
 
         <div class="header-nav-wrap">
         <?php 

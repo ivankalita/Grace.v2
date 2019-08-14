@@ -5,7 +5,7 @@ jQuery(function($){
         // will be used for IE10 detection (Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0))
         var doc = document.documentElement;
         doc.setAttribute('data-useragent', navigator.userAgent);
-        
+
         // *********** Блок перерисовки header **************** //
         function heightDetect() {
             var header_height = $('header').outerHeight();
@@ -64,21 +64,39 @@ jQuery(function($){
         $(window).on('load resize',windowSize);
 
         
+        /* Mobile Menu
+        * ---------------------------------------------------- */ 
+        var ssMobileMenu = function() {
 
-        $('#hamburger-icon').click(function(e) {
-            $('#hamburger-icon').toggleClass('active');
-            if ($('#hamburger-icon').hasClass('active')) {
-                
-                $(".nav-block").toggleClass('col col-12').css('display', 'grid').removeClass('animated fadeOutUp').addClass('animated fadeInDown');
-                // setTimeout(()=> {
-                //     $('.preheader').css('background-color', '#000000');
-                // }, 600)
-            } else {
-                $('.preheader').css('background-color', 'transparent');
-                $('.nav-block').removeClass('animated fadeInDown').addClass('animated fadeOutUp').toggleClass('col-12 col');
-                
-            }
-            e.preventDefault();
-        })
+            var toggleButton = $('.header-menu-toggle'),
+                nav = $('.header-nav-wrap');
+
+            toggleButton.on('click', function(event) {
+                event.preventDefault();
+
+                toggleButton.toggleClass('is-clicked');
+                nav.slideToggle();
+            });
+
+            if (toggleButton.is(':visible')) nav.addClass('mobile');
+
+            $WIN.on('resize', function() {
+                if (toggleButton.is(':visible')) nav.addClass('mobile');
+                else nav.removeClass('mobile');
+            });
+
+            nav.find('a').on("click", function() {
+
+                if (nav.hasClass('mobile')) {
+                    toggleButton.toggleClass('is-clicked');
+                    nav.slideToggle(); 
+                }
+            });
+        };
+
+        (function ssInit() {
+            ssMobileMenu();
+        })();
+
     })
 })
