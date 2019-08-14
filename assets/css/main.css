@@ -24,18 +24,160 @@ header {
 a {
     text-decoration: none !important;
 }
-.header-logo, .header-menu-toggle {
-  z-index: 300;
-}
-.href-logo {
-  display: flex;
-  align-items: center;
-}
 .section-descr {
     color: #424242;
 }
 /* Navigation
 */
+
+/* ===================================================================
+ * # header styles - (_site-layout.scss)
+ *
+ * ------------------------------------------------------------------- */
+
+ .s-header {
+  width: 100%;
+  height: 72px;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  z-index: 500;
+}
+
+.s-header.offset {
+  -webkit-transform: translate3d(0, -100%, 0);
+  -ms-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.s-header.scrolling {
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.s-header.sticky {
+  position: fixed;
+  top: 0;
+  background-color: #000000 !important;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 600;
+}
+
+.s-header.sticky .header-logo a {
+  margin: 0;
+}
+
+.s-header.sticky .header-nav-wrap {
+  top: 0;
+}
+
+.s-header.sticky.scrolling {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* -------------------------------------------------------------------
+* ## header logo - (_site-layout.css) 
+* ------------------------------------------------------------------- */
+
+.header-logo {
+  display: inline-block;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  left: 50px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 501;
+}
+
+.header-logo a {
+  display: block;
+  margin: 9px 0 0 0;
+  padding: 0;
+  outline: 0;
+  border: none;
+  width: 80px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ------------------------------------------------------------------- 
+ * ## mobile menu toggle - (_site-layout.css) 
+ * ------------------------------------------------------------------- */
+
+ .header-menu-toggle {
+  display: none;
+  position: absolute;
+  right: 29px;
+  top: 18px;
+  height: 42px;
+  width: 42px;
+  line-height: 42px;
+  font-family: "montserrat-regular", sans-serif;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: .2rem;
+  color: rgba(255, 255, 255, 0.5);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.header-menu-toggle:hover, .header-menu-toggle:focus {
+  color: #FFFFFF;
+}
+
+/* ------------------------------------------------------------------- 
+ * ## navigation - (_site-layout.scss) 
+ * ------------------------------------------------------------------- */
+
+ .header-nav-wrap {
+  position: absolute;
+  top: 9px;
+  right: 50px;
+}
+
+.header-nav {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  height: 72px;
+}
+
+.header-nav li {
+  display: inline-block;
+  padding-left: 0;
+  margin-right: 2rem;
+}
+
+.header-nav li a {
+  display: block;
+  line-height: 72px;
+  color: #FFFFFF;
+}
+
+.header-nav li.current a {
+  color: #af2b2b;
+}
+
+/* -------------------------------------------------------------------
+ * make sure the menu is visible on larger screens
+ * ------------------------------------------------------------------- */
+
+ @media only screen and (min-width: 801px) {
+  .header-nav-wrap {
+      display: block !important;
+  }
+}
+/******************/
+
 
 nav {
   width: 100%;
@@ -45,68 +187,13 @@ nav {
   top: 0;
   z-index: 100;
 }
-.sticky {
-  position: fixed;
-  /* top: 0; */
-  background-color: #000000 !important;
-  visibility: hidden;
-  z-index: 100;
-}
-.scrolling {
-  visibility: visible;
-  animation-duration: 1s !important;
-}
 
-.menu-item {
-  display: inline-block;
-
-}
 .nav-link {
   display: inline;
   color: #ffffff;
   font-size: 1rem;
 }
-.navbar {
-  margin: 0;
-}
-.preheader {
-  z-index: 300;
-}
-.mobile {
-  display: none;
-  padding: 0;
-  z-index: 200;
-  background-color: #000000;
-  padding-top: 120px;
-  position: absolute !important;
-}
-.mobile ul {
-  height: 200px;
-  /* display: grid; */
-  justify-content: center !important;
-  text-align: center;
-  
-  display: grid !important;
-  
-  
-}
-.desktop {
-  display: block !important;
-}
-.social-list {
-  list-style-type: none;
-}
-.social-list > li {
-  font-size: 24px;
-}
-.social-list::before {
-  position: absolute;
-  top: 170px;
-  bottom: -200px;
-  width: 1px;
-  content: '';
-  background-color: #ffffff;
-}
+
 
 /************ Sandwich ************/
 
@@ -166,9 +253,7 @@ nav {
   top: 0;
   transform: rotate(180deg);
 }
-
-
-
+/****************************/
 
 button:active, button:focus {
   outline: none !important;
@@ -177,11 +262,6 @@ button::-moz-focus-inner {
   border: 0 !important;
 }
 /* ****************************** */
-
-/* .block-write {
-  text-align: end;
-} */
-
 .btn-write {
     height: fit-content;
     padding: 1em 2em;

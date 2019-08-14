@@ -10,41 +10,39 @@
 <body>
     <?php if(is_front_page()) {?>
     
-    <nav class="container-fluid">
-        <div class="row h-100 preheader">
+    <nav class="s-header">
 
-            <div class="col-auto h-100 header-logo">
-                <a class="href-logo h-100" href="<?php echo home_url(); ?>">
-                    <img width="120" src="<?php echo get_option('logo'); ?>" alt="Логотип студии восточных танцев 'Грация'">
-                </a>
-            </div>
+        <div class="header-logo">
+            <a class="site-logo" href="<?php echo home_url(); ?>">
+                <img width="120" src="<?php echo get_option('logo'); ?>" alt="Логотип студии восточных танцев 'Грация'">
+            </a>
+        </div>
             
-            <div class="col d-block d-xl-none header-menu-toggle">
-                    <a id="hamburger-icon">
-                        <span class="line line-1"></span>
-                        <span class="line line-2"></span>
-                        <span class="line line-3"></span>
-                    </a>
-            </div>
+        <div class="d-block d-xl-none header-menu-toggle">
+            <a id="hamburger-icon">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+            </a>
+        </div>
 
-            <div class="col nav-block">
-            <?php 
-                wp_nav_menu( [
-                    'theme_location'  => 'top',
-                    'container'       => false, 
-                    'menu_class'      => 'navbar h-100 justify-content-end', 
-                    'echo'            => true,
-                    'before'          => '',
-                    'after'           => '',
-                    'link_before'     => '',
-                    'link_after'      => '',
-                    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                    'depth'           => 0,
-                    'walker'          => '',
-                ] );
-            ?>
-            </div>
-        </div>    
+        <div class="header-nav-wrap">
+        <?php 
+            wp_nav_menu( [
+                'theme_location'  => 'top',
+                'container'       => false, 
+                'menu_class'      => 'header-nav', 
+                'echo'            => true,
+                'before'          => '',
+                'after'           => '',
+                'link_before'     => '',
+                'link_after'      => '',
+                'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                'depth'           => 0,
+                'walker'          => '',
+            ] );
+        ?>
+        </div> 
     </nav>
     
     
