@@ -9,42 +9,46 @@
 </head>
 <body>
     <?php if(is_front_page()) {?>
-    <header class="vh-100 parallax-window" data-parallax="scroll" data-image-src="<?php the_field('header_image'); ?>">
-        <nav class="container-fluid">
-            <div class="row h-100 preheader">
-                <div class="col-auto h-100">
-                    <a class="href-logo h-100" href="<?php echo home_url(); ?>">
-                        <img width="120" src="<?php echo get_option('logo'); ?>" alt="Логотип студии восточных танцев 'Грация'">
+    
+    <nav class="container-fluid">
+        <div class="row h-100 preheader">
+
+            <div class="col-auto h-100 header-logo">
+                <a class="href-logo h-100" href="<?php echo home_url(); ?>">
+                    <img width="120" src="<?php echo get_option('logo'); ?>" alt="Логотип студии восточных танцев 'Грация'">
+                </a>
+            </div>
+            
+            <div class="col d-block d-xl-none header-menu-toggle">
+                    <a id="hamburger-icon">
+                        <span class="line line-1"></span>
+                        <span class="line line-2"></span>
+                        <span class="line line-3"></span>
                     </a>
-                </div>
-                <div class="col d-block d-xl-none">
-                        <a id="hamburger-icon">
-                            <span class="line line-1"></span>
-                            <span class="line line-2"></span>
-                            <span class="line line-3"></span>
-                        </a>
-                </div>
-                
-                <div class="col nav-block">
-                <?php 
-                    wp_nav_menu( [
-                        'theme_location'  => 'top',
-                        'container'       => false, 
-                        'menu_class'      => 'navbar h-100 justify-content-end', 
-                        'echo'            => true,
-                        'before'          => '',
-                        'after'           => '',
-                        'link_before'     => '',
-                        'link_after'      => '',
-                        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                        'depth'           => 0,
-                        'walker'          => '',
-                    ] );
-                ?>
-                </div>
-            </div>    
-        </nav>
-      
+            </div>
+
+            <div class="col nav-block">
+            <?php 
+                wp_nav_menu( [
+                    'theme_location'  => 'top',
+                    'container'       => false, 
+                    'menu_class'      => 'navbar h-100 justify-content-end', 
+                    'echo'            => true,
+                    'before'          => '',
+                    'after'           => '',
+                    'link_before'     => '',
+                    'link_after'      => '',
+                    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                    'depth'           => 0,
+                    'walker'          => '',
+                ] );
+            ?>
+            </div>
+        </div>    
+    </nav>
+    
+    
+    <header class="vh-100 parallax-window" data-parallax="scroll" data-image-src="<?php the_field('header_image'); ?>">
         <div class="container-fluid header-banner d-none d-xl-block">
             <div class="row justify-content-end mx-4">
                 <?php if(get_post_meta($post -> ID, 'header_banner', true)) {?>
@@ -84,4 +88,4 @@
 
     </header>
 
-    <?php }?>
+<?php }?>
