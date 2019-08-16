@@ -40,44 +40,38 @@
     </nav>
     
     
-    <header class="vh-100 parallax-window" data-parallax="scroll" data-image-src="<?php the_field('header_image'); ?>">
-        <div class="container-fluid header-banner d-none d-xl-block">
-            <div class="row justify-content-end mx-4">
-                <?php if(get_post_meta($post -> ID, 'header_banner', true)) {?>
-                    <h1 class="text-right"><?php echo get_post_meta($post -> ID, 'header_banner', true); ?></h1>
-                <?php }?>
-            </div>
-        </div>
-       
-        <div class="container-fluid header-extra pt-3">
-            <div class="row h-25 align-content-center">
-                <div class="col block-write mr-4 text-xl-right text-left">
-                    <?php if(get_post_meta($post -> ID, 'btn_write', true)) {?>
-                        <a href="#request" class="btn-write"><?php echo get_post_meta($post -> ID, 'btn_write', true); ?></a>
+    <header class="s-home parallax-window vh-100" data-parallax="scroll" data-image-src="<?php the_field('header_image'); ?>">
+        <div class="home-content">
+            <div class="home-content__main">
+                <div class="home-content_banner d-none d-xl-block">
+                    <?php if(get_post_meta($post -> ID, 'header_banner', true)) {?>
+                        <h1 class="text-right"><?php echo get_post_meta($post -> ID, 'header_banner', true); ?></h1>
                     <?php }?>
                 </div>
-                
-            </div>
-            <div class="row header-extra-next h-75 ">
-                <div class="col align-self-end p-5">
+            
+                <div class="home-content__buttons">
+                    <?php if(get_post_meta($post -> ID, 'btn_write', true)) {?>
+                        <a href="#request" class="btn-write btn--stroke"><?php echo get_post_meta($post -> ID, 'btn_write', true); ?></a>
+                    <?php }?>
+                </div>
+                        
+                <div class="home-content__scroll">
                     <a href="#leader" class="btn-next">
                         ДАЛЕЕ<i class="im im-angle-down align-bottom icon-next"></i>
                     </a>
                 </div>
-                <div class="col align-self-center justify-content-end d-none d-xl-flex text-center p-5">
-                    <?php
-                        $socials = get_field('header_social');
-                        if( $socials ): ?>
-                        <ul class="social-list">
-                            <?php foreach( $socials as $social ): ?>
-                                <li><?php echo $social; ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php endif; ?>
-                </div>
             </div>
         </div>
-
+            <?php
+                $socials = get_field('header_social');
+                if( $socials ): ?>
+                <ul class="home-social d-none d-xl-block">
+                    <?php foreach( $socials as $social ): ?>
+                        <li><?php echo $social; ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+        
     </header>
 
 <?php }?>

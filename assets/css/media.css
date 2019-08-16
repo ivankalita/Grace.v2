@@ -1,3 +1,13 @@
+/* -------------------------------------------------------------------
+ * make sure the menu is visible on larger screens
+ * ------------------------------------------------------------------- */
+
+ @media (min-width: 1200px) {
+    .header-nav-wrap {
+        display: block !important;
+    }
+  }
+
 @media (min-width: 1201px) {
     .nav-link {
         font-size: 16px !important;
@@ -9,3 +19,46 @@
         font-size: 24px !important;
     }
 }
+
+/* ------------------------------------------------------------------- 
+ * responsive:
+ * header
+ * ------------------------------------------------------------------- */
+
+ @media (max-width: 1200px) {
+    .header-logo {
+        left: 40px;
+    }
+    .header-nav-wrap {
+        display: none;
+        height: auto;
+        width: 100%;
+        right: auto;
+        top: 0;
+        left: 0;
+        background-color: #000000;
+        padding: 120px 40px 21px;
+    }
+    .header-nav-wrap .header-nav {
+        display: block;
+        height: auto;
+    }
+    .header-nav-wrap .header-nav li {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px dotted rgba(255, 255, 255, 0.07);
+    }
+    .header-nav-wrap .header-nav li:first-child {
+        border-top: 1px dotted rgba(255, 255, 255, 0.07);
+    }
+    .header-nav-wrap .header-nav li a {
+        padding: 18px 0;
+        line-height: 18px;
+    }
+    .header-menu-toggle {
+        display: block !important;
+    }
+  }

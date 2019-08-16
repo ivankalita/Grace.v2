@@ -5,7 +5,7 @@
 
 
 
-    <section id="leader" class="container-fluid my-5 leader">
+    <section id="leader" class="container-fluid leader target-section">
         <div class="row justify-content-center">
             <h1><?php the_field('leader_title'); ?></h1>
         </div>
@@ -33,7 +33,7 @@
     </section>
 
 
-    <section id="groups" class="container-fluid mt-5 groups">
+    <section id="groups" class="container-fluid mt-5 groups target-section">
             <div class="row justify-content-center">
                 <h1 class="text-center"><?php the_field('group_title'); ?></h1>
             </div>
@@ -42,7 +42,48 @@
             </div>
     </section>
 
-    <section id="events" class="container mt-5 events">
+    <div class="carousel container-fluid mt-5">
+        <div class="carousel-block container pt-5 pb-3">
+            <?php $carousel = get_field('carousel_setting'); ?>
+            <div class="row carousel-items h-100">
+                <div class="col-6">
+                    <img  class="img-fluid" src="<?php echo $carousel["carousel_image1"]; ?>">
+                </div>
+                <div class="col-6 text-left my-auto">
+                    <?php echo $carousel["carousel_text1"]; ?>
+                </div>
+            </div>
+            <div class="row carousel-items h-100">
+                <div class="col">
+                    <img class="img-fluid" src="<?php echo $carousel["carousel_image2"]; ?>">
+                </div>
+                <div class="col my-auto">
+                    <?php echo $carousel["carousel_text2"]; ?>
+                </div>
+            </div>
+            <div class="row carousel-items h-100">
+                <div class="col">
+                    <img class="img-fluid" src="<?php echo $carousel["carousel_image3"]; ?>">
+                </div>
+                <div class="col my-auto">
+                    <?php echo $carousel["carousel_text3"]; ?>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col dots-block text-center">
+                    <ion-icon class="dots-items active" name="radio-button-on"></ion-icon>
+                    <ion-icon class="dots-items" name="radio-button-on"></ion-icon>
+                    <ion-icon class="dots-items" name="radio-button-on"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+   
+            
+
+
+    <section id="events" class="container mt-5 events target-section">
         <div class="row justify-content-center">
             <h1 class="text-center"><?php the_field('events_title'); ?></h1>
         </div>
@@ -125,7 +166,7 @@
         </div>
     </section>
 
-    <section id="gallery" class="container-fluid mt-5 gallery">
+    <section id="gallery" class="container-fluid mt-5 gallery target-section">
         <div class="container">
             <div class="row justify-content-center">
                 <h1 class="text-center"><?php the_field('gallery_title'); ?></h1>
@@ -164,7 +205,7 @@
     </section>
 
 
-    <section id="schedule" class="schedule vh-100 pt-5 mt-5 parallax-window" data-parallax="scroll" data-image-src="<?php the_field('schedule_image'); ?>">
+    <section id="schedule" class="schedule vh-100 pt-5 mt-5 target-section parallax-window" data-parallax="scroll" data-image-src="<?php the_field('schedule_image'); ?>">
             <div class="container schedule-custom-height-one">
                 <div class="row justify-content-center">
                     <h1 class="text-center schedule-section-title"><?php the_field('schedule_title'); ?></h1>
@@ -239,7 +280,7 @@
             </div>
     </section>
 
-    <section class="container-fluid contacts">
+    <section id="contacts" class="container-fluid contacts target-section">
         <div class="row pt-5">
             <div class="col" id="request" >
                 <div class="row justify-content-center">
