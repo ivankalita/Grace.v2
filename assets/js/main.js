@@ -122,18 +122,61 @@ jQuery(function($){
             slides[slideIndex - 1].style.display = 'flex';
             dots[slideIndex - 1].classList.add('active');
         }
-        function currentSlide(n) {
-            if (n > slideIndex - 1) {
-                // slides[slideIndex - 1].classList.add('animated', 'fadeOutLeft');
-                slides[slideIndex].classList.add('animated', 'fadeInRight');
+        // function currentSlide(n) {
+        //     showSlides(slideIndex = n);
+        //     console.log(slideIndex);
+        // }
+        function fromLeftToRight(prev, currnet) {
+            slides[prev - 1].classList.add('animated', 'slideOutLeft');
+            setTimeout(()=> {
+                slides[prev - 1].style.display = 'none';
+            }, 1000);
+            setTimeout(()=> {
+                slides[currnet - 1].classList.add('animated', 'slideInRight');
+                slides[currnet - 1].style.display = 'flex';
+            }, 1000);
+
+            setTimeout(()=> {
+                slides[prev - 1].classList.remove('animated', 'slideOutLeft');
+            }, 1000);
+            setTimeout(()=> {
+               slides[currnet - 1].classList.remove('animated', 'slideInRight');
+            }, 2000);
+
+            slideIndex = currnet;
+            uploadStatusSlider(currnet);
+        }
+        function fromRightToLeft(prev, currnet) {
+            slides[prev - 1].classList.add('animated', 'slideOutRight');
+            setTimeout(()=> {
+                slides[prev - 1].style.display = 'none';
+            }, 1000);
+            setTimeout(()=> {
+                slides[currnet - 1].classList.add('animated', 'slideInLeft');
+                slides[currnet - 1].style.display = 'flex';
+            }, 1000);  
+
+            setTimeout(()=> {
+                slides[prev - 1].classList.remove('animated', 'slideOutRight');
+            }, 1000);
+            setTimeout(()=> {
+            slides[currnet - 1].classList.remove('animated', 'slideInLeft');
+            }, 2000); 
+
+            slideIndex = currnet;
+            uploadStatusSlider(currnet);
+        }
+        function uploadStatusSlider(n) {
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
             }
-            showSlides(slideIndex = n);
-            console.log(slideIndex);
+            dots[n - 1].classList.add('active');
         }
         dotsArea.onclick = function(e) {
             for (let i = 0; i < dots.length + 1; i++) {
                 if (e.target.classList.contains('dots-items') && e.target == dots[i - 1]) {
-                    currentSlide(i);
+                    if (i > slideIndex - 1) fromLeftToRight(slideIndex, i)
+                    else fromRightToLeft(slideIndex, i);
                 }
             }
         }
