@@ -46,19 +46,24 @@
         <div class="carousel-block container pt-5 pb-3">
             <?php $carousel = get_field('carousel_setting'); ?>
             <div class="row carousel-items h-100">
-                <div class="col-6">
+                <div class="col-6 pr-5">
                     <img  class="img-fluid" src="<?php echo $carousel["carousel_image1"]; ?>">
                 </div>
                 <div class="col-6 text-left my-auto">
-                    <?php echo $carousel["carousel_text1"]; ?>
+                    <div class="row">
+                        <h1><?php echo $carousel["carousel_title1"]; ?></h1>
+                    </div>
+                    <div class="row mt-3">
+                        <?php echo $carousel["carousel_text1"]; ?>
+                    </div>                    
                 </div>
             </div>
             <div class="row carousel-items h-100">
+                <div class="col text-right my-auto">
+                    <?php echo $carousel["carousel_text2"]; ?>
+                </div>
                 <div class="col">
                     <img class="img-fluid" src="<?php echo $carousel["carousel_image2"]; ?>">
-                </div>
-                <div class="col my-auto">
-                    <?php echo $carousel["carousel_text2"]; ?>
                 </div>
             </div>
             <div class="row carousel-items h-100">
@@ -104,6 +109,8 @@
                     $posts = get_posts($args);
 
                     foreach($posts as $post) { setup_postdata($post);
+                        
+
                 ?>
                     <li>
                         <div class="timeline-image">
@@ -111,11 +118,23 @@
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                            <h4><?php the_time('j F Y'); ?></h4>
-                            <h4 class="subheading"><?php the_title() ?></h4>
+                                <h4>
+                                    <?php the_time('j F Y'); ?>
+                                </h4>
+                                <h4 class="subheading">
+                                    <?php the_title(); the_ID(); ?>
+                                </h4>
                             </div>
                             <div class="timeline-body">
-                               <?php get_post_gallery( $post, $html ); ?>
+                            <?php $str= get_the_content();
+                                preg_match_all('/src="([^"]+)"/i', $str, $matches);
+                                $img_urls = $matches[1]; ?>
+                                <?php if($img_urls) { ?>
+                                <ul class="gallery">
+                                <? foreach ($img_urls as $img_url) {?>
+                                <li><a href="<?php echo $img_url; ?>" rel="prettyPhoto[cat-<?php echo $post->ID; ?>]" title="<?php the_title(); ?>"><img src="<?php echo $img_url; ?>" alt="" /></a></li>
+                                <?php }} ?>
+                                </ul>
                             </div>
                         </div>
                     </li>
@@ -166,41 +185,19 @@
         </div>
     </section>
 
+    
+
+
     <section id="gallery" class="container-fluid mt-5 gallery target-section">
         <div class="container">
             <div class="row justify-content-center">
                 <h1 class="text-center"><?php the_field('gallery_title'); ?></h1>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mb-5">
                 <h3 class="text-center section-descr"><?php the_field('gallery_description'); ?></h3>
             </div>
-        </div>
-            <div class="container-fluid mt-5">
-                <div class="row mt-2">
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                    <div class="col-2"></div>
-                </div>
-            </div>            
+            <?php echo do_shortcode('[foogallery id="231"]'); ?>
+        </div>            
             
     </section>
 

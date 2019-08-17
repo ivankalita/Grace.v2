@@ -130,18 +130,18 @@ jQuery(function($){
             slides[prev - 1].classList.add('animated', 'slideOutLeft');
             setTimeout(()=> {
                 slides[prev - 1].style.display = 'none';
-            }, 1000);
+            }, 500);
             setTimeout(()=> {
                 slides[currnet - 1].classList.add('animated', 'slideInRight');
                 slides[currnet - 1].style.display = 'flex';
-            }, 1000);
+            }, 500);
 
             setTimeout(()=> {
                 slides[prev - 1].classList.remove('animated', 'slideOutLeft');
-            }, 1000);
+            }, 500);
             setTimeout(()=> {
                slides[currnet - 1].classList.remove('animated', 'slideInRight');
-            }, 2000);
+            }, 1000);
 
             slideIndex = currnet;
             uploadStatusSlider(currnet);
@@ -150,18 +150,18 @@ jQuery(function($){
             slides[prev - 1].classList.add('animated', 'slideOutRight');
             setTimeout(()=> {
                 slides[prev - 1].style.display = 'none';
-            }, 1000);
+            }, 500);
             setTimeout(()=> {
                 slides[currnet - 1].classList.add('animated', 'slideInLeft');
                 slides[currnet - 1].style.display = 'flex';
-            }, 1000);  
+            }, 500);  
 
             setTimeout(()=> {
                 slides[prev - 1].classList.remove('animated', 'slideOutRight');
-            }, 1000);
+            }, 500);
             setTimeout(()=> {
             slides[currnet - 1].classList.remove('animated', 'slideInLeft');
-            }, 2000); 
+            }, 1000); 
 
             slideIndex = currnet;
             uploadStatusSlider(currnet);

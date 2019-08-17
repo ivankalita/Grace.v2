@@ -463,7 +463,7 @@ button::-moz-focus-inner {
   overflow: hidden;
 }
 .carousel-items {
-
+  animation-duration: .5s !important;
 }
 .dots-items {
   cursor: pointer;
