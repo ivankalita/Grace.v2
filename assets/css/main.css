@@ -422,6 +422,32 @@ button::-moz-focus-inner {
     margin: 0.5em;
 }
 
+.return-up {
+  display: inline-block;
+  position: fixed;
+  bottom: 100px;
+  right: 0;
+  background-color: #000000c9;
+  z-index: 300;
+  height: 44px;
+  padding: 10px;
+  display: none;
+  transition: all .5s ease;
+}
+.return-up:hover {
+  background-color: #000000;
+}
+.icon-up {
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+.icon-up:hover {
+  color: #AF2B2B;
+}
+
+
 /* Leader
 */
 .leader {
@@ -454,6 +480,9 @@ button::-moz-focus-inner {
 .groups {
   padding: 0 !important;
 }
+.groups-description p {
+  font-size: 1.3rem;
+}
 .carousel {
   background-color: #F1F1F1;
 }
@@ -478,7 +507,7 @@ button::-moz-focus-inner {
 }
 
 /* Timeline - Events
-*/
+************************/
 .timeline {
     position: relative;
     padding: 0;
@@ -670,8 +699,11 @@ button::-moz-focus-inner {
     }
   }
 
+.gallery-item {
+  /* display: none; */
+}
 /* Schedule
-*/
+**************/
 .schedule {
     /* width: inherit; */
     height: auto;
@@ -687,6 +719,10 @@ button::-moz-focus-inner {
 }
 .schedule-section-descr, .schedule-change {
     color: #ffffff;
+}
+.day {
+  color: #AF2B2B;
+  /* font-weight: 600; */
 }
 
 table {
@@ -713,13 +749,15 @@ tr.dash {
 
 section.contacts {
     background-color: #F1F1F1;
-    max-height: 580px;
 }
 fieldset {
   width: 40% !important;
 }
 .icon-count {
-  font-size: 14px;
+  font-size: 14px !important;
+}
+.icon-refresh {
+  font-size: 20px;
 }
 input[type="text"],
 input[type="email"],
@@ -741,7 +779,10 @@ input[type="submit"]:hover {
   width: 40%;
   padding: 10px 0;
 }
-
+.social-contacts {
+  font-size: 4rem;
+  color: #000000;
+}
 
 /* Footer
 */

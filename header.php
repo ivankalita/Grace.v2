@@ -40,7 +40,7 @@
     </nav>
     
     
-    <header class="s-home parallax-window vh-100" data-parallax="scroll" data-image-src="<?php the_field('header_image'); ?>">
+    <header id="header" class="s-home parallax-window vh-100" data-parallax="scroll" data-image-src="<?php the_field('header_image'); ?>">
         <div class="home-content">
             <div class="home-content__main">
                 <div class="home-content_banner d-none d-xl-block">
@@ -56,7 +56,7 @@
                 </div>
                         
                 <div class="home-content__scroll">
-                    <a href="#leader" class="btn-next">
+                    <a href="#leader" class="btn-next data-scroll">
                         ДАЛЕЕ<i class="im im-angle-down align-bottom icon-next"></i>
                     </a>
                 </div>

@@ -1,5 +1,18 @@
 jQuery(function($){
+    
     $(document).ready(function() {
+
+        // *********** Добавление к якорям class = data-scroll **************** //
+        var anchor = $('a.nav-link');
+        anchor.addClass('data-scroll');
+        //******************************************************* */
+        // *********** Smooth Scrolling **************** //
+        var scroll = new SmoothScroll('.data-scroll', {
+            speed: 800,
+            offset: 100,
+            easing: 'easeInOutCubic',
+        });
+        //************************************************/
 
         // Add the User Agent to the <html>
         // will be used for IE10 detection (Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0))
@@ -24,10 +37,13 @@ jQuery(function($){
         $('#leader').waypoint(function(direction){
             if (direction == 'down') {
                 $('nav').addClass('sticky scrolling animated fadeInDown');
+                $('.return-up').css('display', 'inline-block').addClass('animated fadeInRight');
             } else {
                 $('nav').removeClass('fadeInDown').addClass('fadeOutUp');
+                $('.return-up').removeClass('fadeInRight').addClass('fadeOutRight');
                 setTimeout(()=> {
-                    $('nav').removeClass('sticky scrolling animated fadeOutUp')
+                    $('nav').removeClass('sticky scrolling animated fadeOutUp');
+                    $('.return-up').removeClass('animated fadeOutRight').css('display', 'none');
                 }, 500)
         }}, {offset: '180px'})
         //******************************************************* */
@@ -60,7 +76,10 @@ jQuery(function($){
             });
             
         };
+        ssWaypoints();
         //******************************************************* */
+
+
 
         $(window).on('load resize', function () {
 
@@ -97,6 +116,7 @@ jQuery(function($){
                 }
             });
         };
+        ssMobileMenu();
 
         /* Carousel Groups
         * ---------------------------------------------------- */ 
@@ -122,10 +142,6 @@ jQuery(function($){
             slides[slideIndex - 1].style.display = 'flex';
             dots[slideIndex - 1].classList.add('active');
         }
-        // function currentSlide(n) {
-        //     showSlides(slideIndex = n);
-        //     console.log(slideIndex);
-        // }
         function fromLeftToRight(prev, currnet) {
             slides[prev - 1].classList.add('animated', 'slideOutLeft');
             setTimeout(()=> {
@@ -181,10 +197,18 @@ jQuery(function($){
             }
         }
         showSlides(slideIndex);
-        (function ssInit() {
-            ssWaypoints();
-            ssMobileMenu();
-        })();
+        /****************************************************** */
+
+        /* LightGallery
+        * ---------------------------------------------------- */ 
+		$('.timeline-image').click(function(){
+            console.log('loadmore')
+            $('#lightgallery').lightGallery();
+            setTimeout(function() {
+                $('#trigger_click2').trigger('click');
+            }, 500);
+        })
+        /****************************************************** */
 
     })
 })

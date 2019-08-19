@@ -6,23 +6,30 @@ add_filter('nav_menu_link_attributes', 'add_class_to_all_menu_anchors', 10 ); //
 add_action('admin_menu', 'register_menu_page_settings'); //Добавление в админ-панель своей вкладки
 add_action('admin_init', 'register_nedwsettings'); // Добавление редактируемых полей в своей вкладке
 add_theme_support( 'post-thumbnails' ); // Добавить постам миниатюру
-add_action('wp_ajax_loadmore', 'true_load_posts');
-add_action('wp_ajax_nopriv_loadmore', 'true_load_posts');
+add_action('wp_ajax_loadmore', 'true_load_posts'); // Выполнение JS-скрипта на загрузку постов для зарегистрированных
+add_action('wp_ajax_nopriv_loadmore', 'true_load_posts'); // и незарегистрированных пользователей
 add_filter( 'nav_menu_css_class', 'add_my_class_to_nav_menu', 10, 2 ); // Добавление custom class к тегу li меню
 
 function load_styles_scritps_fonts() {
     wp_enqueue_style('style', get_stylesheet_uri());
 	wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/main.css');
 	wp_enqueue_style('sandwich', get_template_directory_uri() . '/assets/css/sandwich.css');
+	wp_enqueue_style('lightgallery', get_template_directory_uri() . '/assets/css/lightgallery.css');
     wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/css/iconmonstr-iconic-font.css');
     wp_enqueue_style('iconmonstr-iconic-font.min', get_template_directory_uri() . '/assets/css/iconic/css/iconmonstr-iconic-font.min.css');
     wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/fonts/iconmonstr-iconic-font.min.eot');
     wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/fonts/iconmonstr-iconic-font.min.ttf');
     wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/fonts/iconmonstr-iconic-font.min.woff');
-    wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/fonts/iconmonstr-iconic-font.min.woff2');
+	wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/fonts/iconmonstr-iconic-font.min.woff2');
+	wp_enqueue_style('lg', get_template_directory_uri() . '/assets/fonts/lg.eot');
+	wp_enqueue_style('lg', get_template_directory_uri() . '/assets/fonts/lg.svg');
+	wp_enqueue_style('lg', get_template_directory_uri() . '/assets/fonts/lg.ttf');
+	wp_enqueue_style('lg', get_template_directory_uri() . '/assets/fonts/lg.woff');
     wp_enqueue_style('bootstrap', '//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
 	wp_enqueue_style('fontawesome', '//use.fontawesome.com/releases/v5.0.13/css/all.css');
 	wp_enqueue_style('animate', '//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css');
+	
+	
 	//////
 	// wp_register_script('jquery', '//code.jquery.com/jquery-3.3.1.slim.min.js', false);
 	wp_enqueue_script('jquery');
@@ -39,8 +46,11 @@ function load_styles_scritps_fonts() {
 	wp_register_script('ionicons', '//unpkg.com/ionicons@4.5.10-0/dist/ionicons.js', false);
 	wp_enqueue_script('ionicons');
 	wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'));
+	wp_enqueue_script('loadpost', get_template_directory_uri() . '/assets/js/loadpost.js', array('jquery'));
 	wp_enqueue_script('loadmore', get_template_directory_uri() . '/assets/js/loadmore.js', array('jquery'));
-
+	wp_enqueue_script('lightgallery-all.min', get_template_directory_uri() . '/assets/js/lightgallery-all.min.js', array('jquery'));
+	wp_enqueue_script('lg-fullscreen.min', get_template_directory_uri() . '/assets/js/lg-fullscreen.min.js', array('jquery'));
+	wp_enqueue_script('smooth-scroll.polyfills.min', get_template_directory_uri() . '/assets/js/smooth-scroll.polyfills.min.js');
 }
 
 function theme_register_nav_menu() { // аналогичная ситуация с добавлением actionа на регистрацию меню
