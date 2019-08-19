@@ -201,13 +201,15 @@ jQuery(function($){
 
         /* LightGallery
         * ---------------------------------------------------- */ 
-		$('.timeline-image').click(function(){
-            console.log('loadmore')
-            $('#lightgallery').lightGallery();
-            setTimeout(function() {
-                $('#trigger_click2').trigger('click');
-            }, 500);
-        })
+
+        $('.lightgallery').lightGallery();
+		// $('.timeline-image').click(function(){
+        //     console.log('loadmore')
+        //     $('#lightgallery').lightGallery();
+        //     setTimeout(function() {
+        //         $('#trigger_click2').trigger('click');
+        //     }, 500);
+        // })
         /****************************************************** */
 
     })

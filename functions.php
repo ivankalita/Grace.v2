@@ -135,24 +135,27 @@ function true_load_posts(){
 		while( have_posts() ): the_post(); ?>
  
 		<li>
-		<div class="timeline-image">
-			<img class="rounded-circle img-fluid" src="<?php the_post_thumbnail_url( $size ); ?>" alt="">
-		</div>
-		<div class="timeline-panel">
-			<div class="timeline-heading">
-			<h4><?php the_time('j F Y'); ?></h4>
-			<h4 class="subheading"><?php the_title() ?></h4>
+			<div class="timeline-image">
+				<img class="rounded-circle img-fluid" src="<?php the_post_thumbnail_url( $size ); ?>" alt="">
 			</div>
-			<div class="timeline-body">
-				<?php the_content(); ?>
+			<div class="timeline-panel">
+				<div class="timeline-heading">
+					<h4>
+						<?php the_time('j F Y'); ?>
+					</h4>
+					<h4 class="subheading">
+						<?php the_title(); ?>
+					</h4>
+				</div>
+				<div class="timeline-body">
+					
+				</div>
 			</div>
-		</div>
-	</li>
+		</li>
  
-	<?php	endwhile;
- 
-	endif;
-	die();
+	<?php endwhile;
+		  endif;
+		  die();
 }
 
 function add_my_class_to_nav_menu( $classes, $item ){

@@ -38,7 +38,7 @@ get_header();
     </section>
 
 
-    <section id="groups" class="container-fluid mt-5 groups target-section vh-100">
+    <section id="groups" class="container-fluid mt-5 groups target-section">
         <div class="row justify-content-center">
             <h1 class="text-center"><?php the_field('group_title'); ?></h1>
         </div>
@@ -89,7 +89,7 @@ get_header();
         </div>
             
     </section>
-     
+
 
     <section id="events" class="container mt-5 events target-section">
         <div class="row justify-content-center">
@@ -105,7 +105,7 @@ get_header();
                     $args = array(
                         'numberposts' => 0,
                         'post_type' => 'post',
-                        'category_name' => 'события',
+                       
                         'suppress_filters' => true,
                     );
 
@@ -128,23 +128,32 @@ get_header();
                                     <?php the_title(); the_ID(); ?>
                                 </h4>
                             </div>
-                            <div class="timeline-body">
-                            <?php $str= get_the_content();
-                                preg_match_all('/src="([^"]+)"/i', $str, $matches);
-                                $img_urls = $matches[1]; ?>
-                                <?php if($img_urls) { ?>
-                                <div class="gallery row" id="lightgallery">
+                            <div class="row timeline-body">
+
+                                <?php
+
+                                    $str= get_the_content();
+                                    preg_match_all('/src="([^"]+)"/i', $str, $matches);
+                                    $img_urls = $matches[1];
+
+                                    if($img_urls) { ?>
+
+                               <div class="lightgallery">
                                 <? foreach ($img_urls as $img_url) {?>
-                                    <div class="col gallery-item">
-                                        <a id="trigger_click2" href="<?php echo $img_url; ?>">
-                                            <img class="img-fluid" src="<?php echo $img_url; ?>">
+                                    
+                                        <a href="<?php echo $img_url; ?>" title="<?php the_title(); ?>">
+                                            <img class="img-fluid" src="<?php echo $img_url; ?>" alt="" />
                                         </a>
-                                    </div>
+                                    
                                 <?php }} ?>
-                                </div>
+                               </div> 
+
+
+
                             </div>
                         </div>
                     </li>
+                   
                     <?php }; wp_reset_postdata();?>
                     
                     <!-- <li class="timeline-lastchild">
@@ -164,17 +173,17 @@ get_header();
                         </script>
                     
                         
-                    
+                     
                     <?php endif; wp_reset_postdata(); ?>
+                   
                     
-                    
-                    
+                    </ul>   
                     <!-- <li>
                         <div class="timeline-image">
                                 <i class="im im-angle-down"></i>
                         </div>
                     </li> -->
-                </ul>
+               
                 <div class="d-flex justify-content-center">
                 <div class="timeline-image-lastchild">
                     ДАЛЕЕ
