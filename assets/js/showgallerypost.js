@@ -7,7 +7,7 @@ jQuery(function($){
         index_item.on('click', function() {
             $(this).parent().addClass('index-item');
 
-            $(this).find('.timeline-body').addClass('lightgallery');
+            $('.index-item').find('.timeline-body').addClass('lightgallery');
             var index = $('.index-item').index();
             console.log($(this));
 
@@ -25,6 +25,9 @@ jQuery(function($){
                         $('.index-item').find('.timeline-body').append(data);
                         console.log('success');
                         $('.lightgallery').lightGallery();
+                        // setTimeout(function() {
+                            $('.lightgallery').children().first().trigger('click');
+                        // }, 500);
                     } else console.log('Not fined class lightgallery');
                     
                     
