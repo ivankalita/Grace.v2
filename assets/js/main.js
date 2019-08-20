@@ -156,7 +156,7 @@ jQuery(function($){
                 slides[prev - 1].classList.remove('animated', 'slideOutLeft');
             }, 500);
             setTimeout(()=> {
-               slides[currnet - 1].classList.remove('animated', 'slideInRight');
+                slides[currnet - 1].classList.remove('animated', 'slideInRight');
             }, 1000);
 
             slideIndex = currnet;
@@ -199,8 +199,7 @@ jQuery(function($){
         showSlides(slideIndex);
         /****************************************************** */
 
-        /* LightGallery
-        * ---------------------------------------------------- */ 
+
 
 
 

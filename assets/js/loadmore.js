@@ -17,7 +17,7 @@ jQuery(function($){
 				type:'POST', // тип запроса
 				success:function(data){
 					if( data ) {
-						var last_child = ''
+						var last_child = '';
 						$('.timeline li:last').after(data); // вставляем новые посты
 						$('.timeline-image-lastchild').removeClass('fadeOut').addClass('fadeIn');
 						$('.spinner-grow').css('display', 'none');

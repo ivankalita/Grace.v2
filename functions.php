@@ -58,7 +58,7 @@ function load_styles_scritps_fonts() {
 	wp_enqueue_script('lightgallery-all.min', get_template_directory_uri() . '/assets/js/lightgallery-all.min.js', array('jquery'));
 	wp_enqueue_script('lg-fullscreen.min', get_template_directory_uri() . '/assets/js/lg-fullscreen.min.js', array('jquery'));
 	wp_enqueue_script('smooth-scroll.polyfills.min', get_template_directory_uri() . '/assets/js/smooth-scroll.polyfills.min.js');
-	wp_enqueue_script( 'showgallerypost', get_template_directory_uri() . '/showgallerypost.js', array('jquery') );
+	wp_enqueue_script( 'showgallerypost', get_template_directory_uri() . '/assets/js/showgallerypost.js', array('jquery') );
 }
 
 function theme_register_nav_menu() { // аналогичная ситуация с добавлением actionа на регистрацию меню
@@ -168,13 +168,12 @@ function true_load_posts(){
 
 function true_show_images() {
 
-	$index = $_POST['index']
-	$array_post = array();
+	$index = $_POST['index']; // принимаем индекс элемента массива, который отработал клик
 
 	$posts = get_posts( array(
 		'numberposts' => 0,
 		'orderby'     => 'date',
-		'order'		  => 'DESC'
+		'order'		  => 'DESC',
 		'post_type'   => 'post',
 		'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
 	));
@@ -189,16 +188,11 @@ function true_show_images() {
 
 	if($img_urls) {
 		foreach ($img_urls as $img_url) { ?>
-
-			<a href="<?php echo $img_url; ?>" title="<?php the_title(); ?>">
+			<a class="col" href="<?php echo $img_url; ?>" title="<?php the_title(); ?>">
 				<img class="img-fluid" src="<?php echo $img_url; ?>" alt="" />
 			</a>
-			
+
 	<?php }}
-
-
-
-
 
 	wp_die();
 }

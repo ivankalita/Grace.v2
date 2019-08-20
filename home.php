@@ -129,41 +129,19 @@ get_header();
                                 </h4>
                             </div>
                             <div class="row timeline-body">
-
-                                <?php
-
-                                    $str= get_the_content();
-                                    preg_match_all('/src="([^"]+)"/i', $str, $matches);
-                                    $img_urls = $matches[1];
-
-                                    if($img_urls) { ?>
-
-                               <div class="timeline-gallery">
-                                <? foreach ($img_urls as $img_url) {?>
-                                    
-                                        <a href="<?php echo $img_url; ?>" title="<?php the_title(); ?>">
-                                            <img class="img-fluid" src="<?php echo $img_url; ?>" alt="" />
-                                        </a>
-                                    
-                                <?php }} ?>
-                               </div> 
-
-
-
+                                <!-- Сюда вставляются изображения для будующей галереи -->
                             </div>
                         </div>
                     </li>
-                   
-                    <?php }; wp_reset_postdata();?>
-                    
-                    <!-- <li class="timeline-lastchild">
-                    </li> -->
-                    
-                    <?php
-                     $published_posts = wp_count_posts()->publish;
-                     $posts_per_page = get_option('posts_per_page');
-                     $wp_query->max_num_pages = ceil($published_posts / $posts_per_page);
-                     
+
+                    <?php };
+
+                    wp_reset_postdata();
+
+                    $published_posts = wp_count_posts()->publish;
+                    $posts_per_page = get_option('posts_per_page');
+                    $wp_query->max_num_pages = ceil($published_posts / $posts_per_page);
+
                     if (  $wp_query->max_num_pages > 1 ) : ?>
                     	<script>
                         var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
@@ -171,29 +149,16 @@ get_header();
                         var current_page = <?php echo (get_query_var('paged')) ? get_query_var('paged') : 1; ?>;
                         var max_pages = '<?php echo $wp_query->max_num_pages; ?>';
                         </script>
-                    
-                        
-                     
                     <?php endif; wp_reset_postdata(); ?>
-                   
-                    
-                    </ul>   
-                    <!-- <li>
-                        <div class="timeline-image">
-                                <i class="im im-angle-down"></i>
-                        </div>
-                    </li> -->
-               
-                
-
+                </ul> 
             </div>
-            <div class="d-flex justify-content-center">
-                <div class="timeline-image-lastchild">ДАЛЕЕ</div>
-            </div>
-            <div class="d-flex justify-content-center">
-                <div class="spinner-grow" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="timeline-image-lastchild">ДАЛЕЕ</div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="spinner-grow" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
         </div>
     </section>
