@@ -138,7 +138,7 @@ get_header();
 
                                     if($img_urls) { ?>
 
-                               <div class="lightgallery">
+                               <div class="timeline-gallery">
                                 <? foreach ($img_urls as $img_url) {?>
                                     
                                         <a href="<?php echo $img_url; ?>" title="<?php the_title(); ?>">
@@ -184,19 +184,16 @@ get_header();
                         </div>
                     </li> -->
                
-                <div class="d-flex justify-content-center">
-                <div class="timeline-image-lastchild">
-                    ДАЛЕЕ
+                
+
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="timeline-image-lastchild">ДАЛЕЕ</div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="spinner-grow" role="status">
+                    <span class="sr-only">Loading...</span>
                 </div>
-                    </div>
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-grow" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-                <!-- <div class="timeline-image-lastchild text-center">
-                    ДАЛЕЕ<i class="im im-angle-down" style="color: #AF2B2B; display:inline"></i>
-                </div> -->
             </div>
         </div>
     </section>

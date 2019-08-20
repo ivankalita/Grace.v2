@@ -202,7 +202,9 @@ jQuery(function($){
         /* LightGallery
         * ---------------------------------------------------- */ 
 
-        $('.lightgallery').lightGallery();
+
+
+
 		// $('.timeline-image').click(function(){
         //     console.log('loadmore')
         //     $('#lightgallery').lightGallery();

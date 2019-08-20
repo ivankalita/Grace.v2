@@ -2,13 +2,20 @@
 
 add_action('wp_enqueue_scripts', 'load_styles_scritps_fonts');
 add_action('after_setup_theme', 'theme_register_nav_menu');
-add_filter('nav_menu_link_attributes', 'add_class_to_all_menu_anchors', 10 ); // хук на добавление класса к тегу <a> ссылки в меню
 add_action('admin_menu', 'register_menu_page_settings'); //Добавление в админ-панель своей вкладки
 add_action('admin_init', 'register_nedwsettings'); // Добавление редактируемых полей в своей вкладке
-add_theme_support( 'post-thumbnails' ); // Добавить постам миниатюру
 add_action('wp_ajax_loadmore', 'true_load_posts'); // Выполнение JS-скрипта на загрузку постов для зарегистрированных
 add_action('wp_ajax_nopriv_loadmore', 'true_load_posts'); // и незарегистрированных пользователей
+add_action('wp_ajax_showgallerypost', 'true_show_images'); // Выполнение JS-скрипта для показа галереи картинок конкретного поста
+add_action('wp_ajax_nopriv_showgallerypost', 'true_show_images');
+
+
+add_filter('nav_menu_link_attributes', 'add_class_to_all_menu_anchors', 10 ); // хук на добавление класса к тегу <a> ссылки в меню
 add_filter( 'nav_menu_css_class', 'add_my_class_to_nav_menu', 10, 2 ); // Добавление custom class к тегу li меню
+
+
+add_theme_support( 'post-thumbnails' ); // Добавить постам миниатюру
+
 
 function load_styles_scritps_fonts() {
     wp_enqueue_style('style', get_stylesheet_uri());
@@ -51,6 +58,7 @@ function load_styles_scritps_fonts() {
 	wp_enqueue_script('lightgallery-all.min', get_template_directory_uri() . '/assets/js/lightgallery-all.min.js', array('jquery'));
 	wp_enqueue_script('lg-fullscreen.min', get_template_directory_uri() . '/assets/js/lg-fullscreen.min.js', array('jquery'));
 	wp_enqueue_script('smooth-scroll.polyfills.min', get_template_directory_uri() . '/assets/js/smooth-scroll.polyfills.min.js');
+	wp_enqueue_script( 'showgallerypost', get_template_directory_uri() . '/showgallerypost.js', array('jquery') );
 }
 
 function theme_register_nav_menu() { // аналогичная ситуация с добавлением actionа на регистрацию меню
@@ -156,6 +164,43 @@ function true_load_posts(){
 	<?php endwhile;
 		  endif;
 		  die();
+}
+
+function true_show_images() {
+
+	$index = $_POST['index']
+	$array_post = array();
+
+	$posts = get_posts( array(
+		'numberposts' => 0,
+		'orderby'     => 'date',
+		'order'		  => 'DESC'
+		'post_type'   => 'post',
+		'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
+	));
+	
+	$post = $posts[$index];
+	$indexToID = $post->ID;
+	$content_post = get_post($indexToID);
+	$content = $content_post->post_content;
+
+	preg_match_all('/src="([^"]+)"/i', $content, $matches);
+	$img_urls = $matches[1];
+
+	if($img_urls) {
+		foreach ($img_urls as $img_url) { ?>
+
+			<a href="<?php echo $img_url; ?>" title="<?php the_title(); ?>">
+				<img class="img-fluid" src="<?php echo $img_url; ?>" alt="" />
+			</a>
+			
+	<?php }}
+
+
+
+
+
+	wp_die();
 }
 
 function add_my_class_to_nav_menu( $classes, $item ){
