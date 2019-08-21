@@ -4,13 +4,23 @@ jQuery(function($){
 
         var index_item = $('.timeline-image');
 
-        index_item.on('click', function() {
-            $(this).parent().addClass('index-item');
+        index_item.on('click', function(e) {
 
-            $('.index-item').find('.timeline-body').addClass('lightgallery');
-            var index = $('.index-item').index();
-            console.log($(this));
+            var index = $(this).parent().index();
+            var body = $('.timeline').children().eq(index).find('.timeline-gallery');
+            var bodyHtml = $(body).html();
+            
+            // $(body).addClass('lightgallery');
+            console.log(+bodyHtml);
+            if (+bodyHtml || isNaN(+bodyHtml)) notsendAjax(index, body);
+            else sendAjax(index, body);     
+        
+            e.preventDefault();
+        })
 
+
+        function sendAjax(index, body) {
+            console.log(index);
 			var data = {
 				'action': 'showgallerypost',
                 'index': index
@@ -21,20 +31,19 @@ jQuery(function($){
 				data: data, // данные
                 type: 'POST', // тип запроса
                 success: function(data) {
-                    if ($('.index-item').find('.timeline-body').is('.lightgallery')) {
-                        $('.index-item').find('.timeline-body').append(data);
-                        console.log('success');
-                        $('.lightgallery').lightGallery();
-                        // setTimeout(function() {
-                            $('.lightgallery').children().first().trigger('click');
-                        // }, 500);
-                    } else console.log('Not fined class lightgallery');
-                    
-                    
-                    
+
+                    $(body).append(data);
+                    console.log('success');
+                    $(body).lightGallery().find('a').first().trigger('click');
+                    console.log('sendAjax');
                 }
             })
+        }
 
-		})
+        function notsendAjax(index,body) {
+            console.log(index);
+            $(body).lightGallery().children().first().trigger('click');
+            console.log('notsendAjax');
+        }
     })
 })

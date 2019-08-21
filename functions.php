@@ -188,13 +188,13 @@ function true_show_images() {
 
 	if($img_urls) {
 		foreach ($img_urls as $img_url) { ?>
-			<a class="col d-none" href="<?php echo $img_url; ?>" title="<?php the_title(); ?>">
-				<img class="img-fluid" src="<?php echo $img_url; ?>" alt="" />
+			<a class="d-none" href="<?php echo $img_url; ?>" title="<?php the_title(); ?>">
+				<img src="<?php echo $img_url; ?>" alt="" />
 			</a>
 
 	<?php }}
 
-	wp_die();
+	die();
 }
 
 function add_my_class_to_nav_menu( $classes, $item ){

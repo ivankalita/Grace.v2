@@ -128,8 +128,14 @@ get_header();
                                     <?php the_title(); the_ID(); ?>
                                 </h4>
                             </div>
-                            <div class="row timeline-body">
-                                <!-- Сюда вставляются изображения для будующей галереи -->
+                            <div class="timeline-body">
+                                <div class="timeline-description">
+                                    <?php   $content = get_the_content();
+                                            $postOutput = preg_replace('/(<)([img])(\w+)([^>]*>)/', "", $content);
+                                            echo $postOutput;
+                                    ?>
+                                </div>
+                                <div class="timeline-gallery"></div>
                             </div>
                         </div>
                     </li>
