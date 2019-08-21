@@ -268,41 +268,40 @@ get_header();
                 </div>
                 <form class="row align-content-center h-100">
                     <div class="container" style="max-width: 60%;">                        
-                        <div class="form-field row">
-                            <input name="contactName" type="text" id="contactName" placeholder="Имя" minlength="2" required="" aria-required="true" class="form-input w-100">
+                        <div class="row">
+                            <input name="contactName" type="text" placeholder="Имя" minlength="2" required="" aria-required="true" class="form-input w-100">
                         </div>
-                        <div class="form-field row mt-3">
-                            <input name="contactSurname" type="text" id="contactSurname" placeholder="Фамилия" minlength="2" required="" aria-required="true" class="form-input w-100">
+                        <div class="row mt-3">
+                            <input name="contactSurname" type="text"placeholder="Фамилия" minlength="2" required="" aria-required="true" class="form-input w-100">
                         </div>
-                        <div class="form-field row mt-3">
+                        <div class="row mt-3">
                             <div class="col-11 px-0 align-self-center">
-                                <input name="contactAge" type="text" id="contactAge" placeholder="Укажите Ваш возраст" minlength="1" required="" aria-required="true" class="form-input w-100">
+                                <input name="contactAge" type="text"placeholder="Укажите Ваш возраст" minlength="1" required="" aria-required="true" class="form-input w-100">
                             </div>
                             <div class="col-1 px-0">
                                 <div class="row">
                                     <div class="col text-right">
-                                        <i class="im im-angle-up icon-count icon-add"></i><br>
-                                        <i class="im im-angle-down icon-count"></i>
+                                        <i class="im im-angle-up icon-count age-add"></i><br>
+                                        <i class="im im-angle-down icon-count age-sub"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-field row mt-3">
+                        <div class="row mt-3">
                             <div class="col-11 px-0">
-                                <input name="contactEmail" type="email" id="contactEmail" placeholder="Почта" minlength="2" required="" aria-required="true" class="form-input w-100">
+                                <input name="contactEmail" type="emai" placeholder="Почта" minlength="2" required="" aria-required="true" class="form-input w-100">
                             </div>
                             <div class="col-1 px-0 text-right">
                                 <ion-icon name="refresh" class="icon-refresh"></ion-icon>
                             </div>
                         </div>
-                        <div class="form-field row mt-3">
+                        <div class="row mt-3">
                             <textarea name="contactMassage" rows="5" cols="30" wrap="soft" placeholder="Дополнительные данные, которые Вы бы хотели указать" class="w-100"></textarea>
                         </div>
-                        <div class="form-field row mt-3 justify-content-center">
+                        <div class="row mt-3 justify-content-center">
                             <div class="col px-0">
-                                <input name="contactEmail" type="submit" id="contactEmail" value="ОТПРАВИТЬ" class="form-input w-100">
+                                <input type="submit" id="send" value="ОТПРАВИТЬ" class="form-input w-100">
                             </div>
-                            
                         </div>
                     </div>
                 </form>

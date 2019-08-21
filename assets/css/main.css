@@ -772,6 +772,7 @@ input[type="submit"] {
   color: #AF2B2B;
   width: 40%;
   padding: 10px 0;
+  transition: .5s all linear;
 }
 input[type="submit"]:hover {
   border: 4px solid #AF2B2B;

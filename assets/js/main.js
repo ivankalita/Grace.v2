@@ -199,8 +199,19 @@ jQuery(function($){
         showSlides(slideIndex);
         /****************************************************** */
 
-
-
+    //* Carousel Groups
+    /*---------------------------------------------------- */ 
+    function randomSession(min, max) {
+        var rand = min - 0.5 + Math.random() * (max - min + 1);
+        rand = Math.round(rand);
+        return rand;
+    }
+    var id = randomSession(1, Date.now());
+    if (Cookies.get('IDUser') == null) {
+        Cookies.set('IDUser', id, { expires: 1 });
+        Cookies.set('flag', false, { expires: 1 });
+    }
+    /****************************************************** */
 
 
 

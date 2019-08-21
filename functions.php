@@ -8,6 +8,8 @@ add_action('wp_ajax_loadmore', 'true_load_posts'); // Выполнение JS-с
 add_action('wp_ajax_nopriv_loadmore', 'true_load_posts'); // и незарегистрированных пользователей
 add_action('wp_ajax_showgallerypost', 'true_show_images'); // Выполнение JS-скрипта для показа галереи картинок конкретного поста
 add_action('wp_ajax_nopriv_showgallerypost', 'true_show_images');
+add_action('wp_ajax_sendmail', 'true_send_request'); // Отправка заявки на почту
+add_action('wp_ajax_nopriv_sendmail', 'true_send_request');
 
 
 add_filter('nav_menu_link_attributes', 'add_class_to_all_menu_anchors', 10 ); // хук на добавление класса к тегу <a> ссылки в меню
@@ -58,7 +60,11 @@ function load_styles_scritps_fonts() {
 	wp_enqueue_script('lightgallery-all.min', get_template_directory_uri() . '/assets/js/lightgallery-all.min.js', array('jquery'));
 	wp_enqueue_script('lg-fullscreen.min', get_template_directory_uri() . '/assets/js/lg-fullscreen.min.js', array('jquery'));
 	wp_enqueue_script('smooth-scroll.polyfills.min', get_template_directory_uri() . '/assets/js/smooth-scroll.polyfills.min.js');
-	wp_enqueue_script( 'showgallerypost', get_template_directory_uri() . '/assets/js/showgallerypost.js', array('jquery') );
+	wp_enqueue_script('showgallerypost', get_template_directory_uri() . '/assets/js/showgallerypost.js', array('jquery') );
+	wp_enqueue_script('masked.min', get_template_directory_uri() . '/assets/js/masked.min.js', array('jquery') );
+	wp_enqueue_script('sendmail', get_template_directory_uri() . '/assets/js/sendmail.js', array('jquery') );
+	wp_enqueue_script('sha256', get_template_directory_uri() . '/assets/js/sha256.js', array('jquery') );
+	wp_enqueue_script('jquery-cookie', get_template_directory_uri() . '/assets/js/jquery-cookie.js', array('jquery') );
 }
 
 function theme_register_nav_menu() { // аналогичная ситуация с добавлением actionа на регистрацию меню
@@ -196,6 +202,31 @@ function true_show_images() {
 
 	die();
 }
+
+function true_send_request() {
+	$name = $_POST['name'];
+    $surname = $_POST['surname'];
+    $age = $_POST['age'];
+    $mail = $_POST['mail'];
+    //
+    $name = htmlspecialchars($name);
+    $surname = htmlspecialchars($surname);
+    $age = htmlspecialchars($age);
+    $mail = htmlspecialchars($contact);
+    //
+    $name = urldecode($name);
+    $surname = urldecode($surname);
+    $age = urldecode($age);
+    $mail = urldecode($contact);
+    //
+    $name = trim($name);
+    $surname = trim($surname);
+    $age = trim($age);
+    $mail = trim($contact);
+//
+    echo mail("ivan_kalita90@mail.ru", "Заявка в студию танцев - 'Грация'", "Имя: ".$name.". Фамилия: ".$surname.". Возраст: ".$age.". Контакт: ".$mail,"From: logvinova.aliska@gmail.com \r\n");
+}
+
 
 function add_my_class_to_nav_menu( $classes, $item ){
 	/* $classes содержит
