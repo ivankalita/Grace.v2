@@ -1,14 +1,50 @@
 
 jQuery(function($){
     $(document).ready(function() {
+
+        /**
+         * Подготовительная часть
+         */
+        $('.age-add').on('click', function(e) {
+            e.preventDefault();
+            let age = $('[name="contactAge"]').val();
+            console.log(age);
+            if (age >= 3 && age < 160) $('[name="contactAge"]').val(++age);
+            else $('[name="contactAge"]').val(3);
+        })
+        $('.age-sub').on('click', function(e) {
+            e.preventDefault();
+            let age = $('[name="contactAge"]').val();
+            if (age > 3 && age < 160) $('[name="contactAge"]').val(--age);
+            else $('[name="contactAge"]').val(3);
+        })
+        $('.icon-refresh').on('click', function(e) {
+            e.preventDefault();
+            let temp = $('.temp-contact');
+            if ($(temp).attr('name') == 'contactEmail') {
+                $(temp).attr({
+                    'name': 'contactPhone',
+                    'type': 'text',
+                    'placeholder': 'Телефон',
+                    });
+                
+            } else $(temp).attr({
+                        'name': 'contactEmail',
+                        'type': 'email',
+                        'placeholder': 'Почта',
+                        })
+            
+        })
+        /************************* */
+
         $('#send').on("click", function(e) {
             e.preventDefault();
-            
             var name = $('[name="contactName"]').val();
             var surname = $('[name="contactSurname"]').val();
             var age = $('[name="contactAge"]').val();
             // var phone = $('input[type="contactPhone"]').val()
             var email = $('[name="contactEmail"]').val()
+        
 
             // триггеры для выполнения Ajax
             var trig_name = false;

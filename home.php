@@ -289,7 +289,7 @@ get_header();
                         </div>
                         <div class="row mt-3">
                             <div class="col-11 px-0">
-                                <input name="contactEmail" type="emai" placeholder="Почта" minlength="2" required="" aria-required="true" class="form-input w-100">
+                                <input name="contactEmail" type="email" placeholder="Почта" minlength="2" required="" aria-required="true" class="form-input w-100 temp-contact">
                             </div>
                             <div class="col-1 px-0 text-right">
                                 <ion-icon name="refresh" class="icon-refresh"></ion-icon>
