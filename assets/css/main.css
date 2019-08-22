@@ -764,14 +764,16 @@ fieldset {
 }
 input[type="text"],
 input[type="email"],
+input[type="tel"],
 textarea {
     width: 40%;
     background-color: transparent !important;
-    border-bottom: 1px solid #6D6D6D !important;
+    border-bottom: 1px solid #6D6D6D;
     outline: none !important;
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
+input[type="tel"]:focus,
 textarea:focus {
     border-bottom: 1px solid #000000 !important;
 
@@ -782,6 +784,7 @@ input[type="submit"] {
   width: 40%;
   padding: 10px 0;
   transition: .2s all linear;
+  outline: none;
 }
 input[type="submit"]:hover {
   color: #ffffff;
@@ -792,6 +795,11 @@ input[type="submit"]:hover {
 .social-contacts {
   font-size: 4rem;
   color: #000000;
+}
+.waitsend {
+  position: absolute;
+  top: 20%;
+  left: 46%;
 }
 
 input[type="text"]:focus::-moz-placeholder { color: #000000; }
@@ -806,11 +814,21 @@ input[type="email"]:focus:-ms-input-placeholder { color: #000000; }
 input[type="email"]:focus::-ms-input-placeholder { color: #000000; }
 input[type="email"]:focus::placeholder { color: #000000; }
 
+input[type="tel"]:focus::-moz-placeholder { color: #000000; }
+input[type="tel"]:focus::-webkit-input-placeholder { color: #000000; }
+input[type="tel"]:focus:-ms-input-placeholder { color: #000000; }
+input[type="tel"]:focus::-ms-input-placeholder { color: #000000; }
+input[type="tel"]:focus::placeholder { color: #000000; }
+
 textarea:focus::-moz-placeholder { color: #000000; }
 textarea:focus::-webkit-input-placeholder { color: #000000; }
 textarea:focus:-ms-input-placeholder { color: #000000; }
 textarea:focus::-ms-input-placeholder { color: #000000; }
 textarea:focus::placeholder { color: #000000; } 
+
+.error {
+  border-color: #AF2B2B !important;
+}
 
 /* Footer
 */

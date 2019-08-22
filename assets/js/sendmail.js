@@ -24,15 +24,19 @@ jQuery(function($){
             if ($(temp).attr('name') == 'contactEmail') {
                 $(temp).attr({
                     'name': 'contactPhone',
-                    'type': 'text',
+                    'type': 'tel',
                     'placeholder': 'Телефон',
                     });
-                
+                   
+                $('input[type="tel"]').mask("8(999) 999-99-99");
+                   
             } else $(temp).attr({
                         'name': 'contactEmail',
                         'type': 'email',
                         'placeholder': 'Почта',
                         })
+                    $.mask.definitions['~']='[@]';
+                    $('input[type="email"]').mask("a9@a.a");
             
         })
         /************************* */
@@ -42,15 +46,16 @@ jQuery(function($){
             var name = $('[name="contactName"]').val();
             var surname = $('[name="contactSurname"]').val();
             var age = $('[name="contactAge"]').val();
-            // var phone = $('input[type="contactPhone"]').val()
-            var email = $('[name="contactEmail"]').val()
+            var phone = $('input[type="contactPhone"]').val()
+            var email = $('[name="contactEmail"]').val();
+            var extraMsg = $('[name="contactMassage"]').val()
         
 
             // триггеры для выполнения Ajax
             var trig_name = false;
             var trig_surname = false;
             var trig_age = false;
-            // var trig_phone = false;
+            var trig_phone = false;
             var trig_email = false;
 
             //регулярка для почты
@@ -82,46 +87,65 @@ jQuery(function($){
             }
             
             // валидация поля Имя
-            if (name && !(name.indexOf(" ") + 1) && validName && validCenzName) trig_name = true;
-            else $('[name="contactName"]').css('border-color', '#AF2B2B');
+            if (name && !(name.indexOf(" ") + 1) && validName && validCenzName) {
+                trig_name = true;
+                $('[name="contactName"]').removeClass('error');
+            }
+            else $('[name="contactName"]').addClass('error');
 
             // валидация поля Фамилия
-            if (surname && !(surname.indexOf(" ") + 1) && validSurname && validCenzSurname) trig_surname = true;
-            else $('[name="contactSurname"]').css('border-color', '#AF2B2B');
+            if (surname && !(surname.indexOf(" ") + 1) && validSurname && validCenzSurname) {
+                trig_surname = true;
+                $('[name="contactSurname"]').removeClass('error');
+            }
+            else $('[name="contactSurname"]').addClass('error');
 
             // валидация поля Возраст
-            if (age && (age > 3 && age < 160))  trig_age = true;
-            else $('[name="contactAge"]').css('border-color', '#AF2B2B');
+            if (age && (age > 3 && age < 160))  {
+                trig_age = true;
+                $('[name="contactAge"]').removeClass('error');
+            }
+            else $('[name="contactAge"]').addClass('error');
 
             // валидация поля Телефон
-            // if (phone != undefined && phone) trig_phone = true;
-            // else $('[name="contactPhone"]').css('border-color', '#AF2B2B');
+            if (phone != undefined && phone) {
+                trig_phone = true;
+                $('[name="contactPhone"]').removeClass('error');
+            }
+            else $('[name="contactPhone"]').addClass('error');
 
             // валидация поля Почта
-            console.log(email);
-            if (email != undefined && email && validEmail) trig_email = true;
-            else $('[name="contactEmail"]').css('border-color', '#AF2B2B');
+            if (email != undefined && email && validEmail) {
+                trig_email = true;
+                $('[name="contactEmail"]').removeClass('error');
+            }
+            else $('[name="contactEmail"]').addClass('error');
 
             // проверка всех тригерров
             console.log(trig_name, trig_surname, trig_age, trig_email, Cookies.get('flag'));
-            if ((trig_name && trig_surname && trig_age && trig_email) && Cookies.get('flag') == 'false') {
+            if (trig_name && trig_surname && trig_age && (trig_email || trig_phone) && Cookies.get('flag') == 'false') {
                 Cookies.set('flag', true);
-                sendAjaxForm(name, surname, age, email);
+                $('#send').attr('value', '');
+                $('.waitsend').css('display', 'block');
+                sendAjaxForm(name, surname, age, email, phone, extraMsg);
             } else {
-            if ((trig_name && trig_surname && trig_age && trig_email) && Cookies.get('flag') == 'true') {
+            if (trig_name && trig_surname && trig_age && (trig_email || trig_phone) && Cookies.get('flag') == 'true') {
                 $('#Request').modal('show');
             }
         }
         });
     });
 
-    function sendAjaxForm(name, surname, age, mail) {
+
+    function sendAjaxForm(name, surname, age, mail, phone, extraMsg) {
         var data = {
             'action': 'sendmail',
             'name': name,
             'surname': surname,
             'age': age,
-            'mail': mail
+            'mail': mail,
+            'phone': phone,
+            'extra': extraMsg
         };
 
         $.ajax({
@@ -130,9 +154,13 @@ jQuery(function($){
             type: 'POST', // тип запроса
             success: function() {
                 console.log('MAIL SEND SUCCESS!!!');
+                $('.waitsend').css('display', 'none');
+                $('#send').attr('value', 'ЗАЯВКА УСПЕШНО ОТПРАВЛЕНА').off('click');
             },
             error: function(jqXHR) {
                 console.log('MAIL NOT SEND ERROR!!! - ', jqXHR);
+                $('.waitsend').css('display', 'none');
+                $('#send').attr('value', 'ОШИБКА, ПОВТОРИТЕ ПОЗЖЕ');
             }
         })
     }

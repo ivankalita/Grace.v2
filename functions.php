@@ -207,24 +207,39 @@ function true_send_request() {
 	$name = $_POST['name'];
     $surname = $_POST['surname'];
     $age = $_POST['age'];
-    $mail = $_POST['mail'];
+	$mail = $_POST['mail'];
+	$phone = $_POST['phone'];
+	$extraMsg = $_POST['extra'];
     //
     $name = htmlspecialchars($name);
     $surname = htmlspecialchars($surname);
     $age = htmlspecialchars($age);
-    $mail = htmlspecialchars($contact);
+	$mail = htmlspecialchars($mail);
+	$phone = htmlspecialchars($phone);
+	$extraMsg = htmlspecialchars($extraMsg);
     //
     $name = urldecode($name);
     $surname = urldecode($surname);
     $age = urldecode($age);
-    $mail = urldecode($contact);
+	$mail = urldecode($mail);
+	$phone = urldecode($phone);
+	$extraMsg = urldecode($extraMsg);
     //
     $name = trim($name);
     $surname = trim($surname);
     $age = trim($age);
-    $mail = trim($contact);
+	$mail = trim($mail);
+	$phone = urldecode($phone);
+	$extraMsg = urldecode($extraMsg);
 //
-    echo mail("ivan_kalita90@mail.ru", "Заявка в студию танцев - 'Грация'", "Имя: ".$name.". Фамилия: ".$surname.". Возраст: ".$age.". Контакт: ".$mail,"From: logvinova.aliska@gmail.com \r\n");
+	echo mail("ivan_kalita90@mail.ru", "Заявка в студию танцев - 'Грация'",
+				"\nИмя: ".$name.
+				"\nФамилия: ".$surname.
+				"\nВозраст: ".$age.
+				"\nКонтакты:\nТелефон: ".$phone.
+				"\nПочта: ".$mail.
+				"\nСообщение: ".$extraMsg,
+				"From: <wordpress@orelgrace.ru> \r\n");
 }
 
 
