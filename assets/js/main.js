@@ -199,7 +199,7 @@ jQuery(function($){
         showSlides(slideIndex);
         /****************************************************** */
 
-    //* Carousel Groups
+    //* Set Cookies
     /*---------------------------------------------------- */ 
     function randomSession(min, max) {
         var rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -212,17 +212,6 @@ jQuery(function($){
         Cookies.set('flag', false, { expires: 1 });
     }
     /****************************************************** */
-
-
-
-		// $('.timeline-image').click(function(){
-        //     console.log('loadmore')
-        //     $('#lightgallery').lightGallery();
-        //     setTimeout(function() {
-        //         $('#trigger_click2').trigger('click');
-        //     }, 500);
-        // })
-        /****************************************************** */
 
     })
 })

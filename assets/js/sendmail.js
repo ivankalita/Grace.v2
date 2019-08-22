@@ -28,15 +28,15 @@ jQuery(function($){
                     'placeholder': 'Телефон',
                     });
                    
-                $('input[type="tel"]').mask("8(999) 999-99-99");
+                // $('input[type="tel"]').mask("8(999) 999-99-99");
                    
             } else $(temp).attr({
                         'name': 'contactEmail',
                         'type': 'email',
                         'placeholder': 'Почта',
                         })
-                    $.mask.definitions['~']='[@]';
-                    $('input[type="email"]').mask("a9@a.a");
+                    // $.mask.definitions['~']='[@]';
+                    // $('input[type="email"]').mask("a9@a.a");
             
         })
         /************************* */

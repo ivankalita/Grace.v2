@@ -12,11 +12,11 @@ get_header();
 
     <section id="leader" class="container-fluid leader target-section">
         <div class="row justify-content-center">
-            <h1><?php the_field('leader_title'); ?></h1>
+            <h1 class="leader-title"><?php the_field('leader_title'); ?></h1>
         </div>
-        <div class="container mt-5">
+        <div class="container mt-2 mt-md-5">
             <div class="row align-items-center">
-                <div class="col photo-leader">
+                <div class="col-12 col-md-6 photo-leader">
                 <img class="img-leader" src="<?php the_field('leader_photo'); ?>">
                     <div class="photo-leader-detail">
                         <p class="mb-0">
@@ -26,7 +26,7 @@ get_header();
                         </p>
                     </div>
                 </div>
-                <div class="col ">
+                <div class="col col-12 col-md-6 mt-5 mt-md-0">
                     <p class="text-center leader-description">
                     <?php if(get_post_meta($post -> ID, 'about_me', true)) {?>
                         <?php echo get_post_meta($post -> ID, 'about_me', true); ?>
@@ -40,45 +40,56 @@ get_header();
 
     <section id="groups" class="container-fluid mt-5 groups target-section">
         <div class="row justify-content-center">
-            <h1 class="text-center"><?php the_field('group_title'); ?></h1>
+            <h1 class="text-center group-title"><?php the_field('group_title'); ?></h1>
         </div>
         <div class="row justify-content-center">
-            <h3 class="text-center section-descr"><?php the_field('group_description'); ?></h3>
+            <h3 class="text-center section-descr group-description"><?php the_field('group_description'); ?></h3>
         </div>
 
-        <div class="carousel row mt-5">
-            <div class="carousel-block container pt-5 pb-3">
+        <div class="carousel row mt-2 mt-md-5">
+            <div class="carousel-block container pt-3 pt-md-5 pb-3">
                 <?php $carousel = get_field('carousel_setting'); ?>
                 <div class="row carousel-items h-100">
-                    <div class="col-6 pr-5 my-auto">
+                    <div class="col-12 col-md-6 pr-md-5 my-auto">
                         <img  class="img-fluid" src="<?php echo $carousel["carousel_image1"]; ?>">
                     </div>
-                    <div class="col-6 text-left my-auto">
-                        <div class="row">
-                            <h1><?php echo $carousel["carousel_title1"]; ?></h1>
+                    <div class="col-12 col-md-6 text-center text-md-left my-auto">
+                        <div class="row mt-2">
+                            <h1 class="carousel-title d-inline-flex d-md-block"><?php echo $carousel["carousel_title1"]; ?></h1>
                         </div>
-                        <div class="row mt-3 groups-description">
+                        <div class="row groups-description">
                             <?php echo $carousel["carousel_text1"]; ?>
                         </div>                    
                     </div>
                 </div>
                 <div class="row carousel-items h-100">
-                    <div class="col text-right my-auto groups-description">
-                        <?php echo $carousel["carousel_text2"]; ?>
+                    <div class="col-12 col-md-6 order-2 order-md-1 text-center text-md-right my-auto">
+                        <div class="row mt-2">
+                            <h1 class="carousel-title"><?php echo $carousel["carousel_title2"]; ?></h1>
+                        </div>
+                        <div class="row groups-description">
+                            <?php echo $carousel["carousel_text2"]; ?>
+                        </div>                    
                     </div>
-                    <div class="col my-auto">
-                        <img class="img-fluid" src="<?php echo $carousel["carousel_image2"]; ?>">
+                    <div class="col-12 col-md-6 order-1 order-md-2 pr-md-5 my-auto">
+                        <img  class="img-fluid" src="<?php echo $carousel["carousel_image2"]; ?>">
                     </div>
                 </div>
                 <div class="row carousel-items h-100">
-                    <div class="col my-auto">
-                        <img class="img-fluid" src="<?php echo $carousel["carousel_image3"]; ?>">
+                    <div class="col-12 col-md-6 pr-md-5 my-auto">
+                        <img  class="img-fluid" src="<?php echo $carousel["carousel_image3"]; ?>">
                     </div>
-                    <div class="col my-auto groups-description">
-                        <?php echo $carousel["carousel_text3"]; ?>
+                    <div class="col-12 col-md-6 text-center text-md-left my-auto">
+                        <div class="row mt-2">
+                            <h1 class="carousel-title"><?php echo $carousel["carousel_title3"]; ?></h1>
+                        </div>
+                        <div class="row groups-description">
+                            <?php echo $carousel["carousel_text3"]; ?>
+                        </div>                    
                     </div>
                 </div>
-                <div class="row mt-5">
+
+                <div class="row mt-2 mt-md-5">
                     <div class="col dots-block text-center">
                         <ion-icon class="dots-items active" name="radio-button-on"></ion-icon>
                         <ion-icon class="dots-items" name="radio-button-on"></ion-icon>
@@ -91,7 +102,7 @@ get_header();
     </section>
 
 
-    <section id="events" class="container mt-5 events target-section">
+    <section id="events" class="container-fluid mt-5 events target-section">
         <div class="row justify-content-center">
             <h1 class="text-center"><?php the_field('events_title'); ?></h1>
         </div>

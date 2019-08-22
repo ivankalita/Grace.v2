@@ -235,9 +235,9 @@ function true_send_request() {
 	echo mail("ivan_kalita90@mail.ru", "Заявка в студию танцев - 'Грация'",
 				"\nИмя: ".$name.
 				"\nФамилия: ".$surname.
-				"\nВозраст: ".$age.
+				"\nВозраст: ".$age. " лет".
 				"\nКонтакты:\nТелефон: ".$phone.
-				"\nПочта: ".$mail.
+				", Почта: ".$mail.
 				"\nСообщение: ".$extraMsg,
 				"From: <wordpress@orelgrace.ru> \r\n");
 }
