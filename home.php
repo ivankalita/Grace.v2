@@ -205,8 +205,25 @@ get_header();
                 </div>
             </div>
             <div class="container h-25">
-                <div class="row justify-content-center mt-3">
-                    <h3 class="text-center schedule-change">ВЫБЕРИТЕ ВОЗРАСТНУЮ ГРУППУ</h3>
+                <div class="row mt-3 text-center">
+                    <?php $groups = get_field_object('schedule_select'); ?>
+                    <div class="col-12">
+                        <h3 class="schedule-change" collapse="true">
+                            <?php echo $groups['label']; ?>
+                            <i class="fas fa-caret-down select-triangle"></i>
+                        </h3>
+                    </div>
+                    <div class="col-12">
+                        <div class="row schedule-group text-center">
+                            <?php foreach($groups['choices'] as $group) { ?>
+                            <div class="col-12">
+                                <h3 class="schedule-choice"> 
+                                    <?php echo $group; ?>
+                                </h3>
+                            </div>
+                            <?php }; ?>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="container-fluid h-50" style="color: white; font-size: 48px;">

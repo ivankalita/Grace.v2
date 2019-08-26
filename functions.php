@@ -65,6 +65,8 @@ function load_styles_scritps_fonts() {
 	wp_enqueue_script('sendmail', get_template_directory_uri() . '/assets/js/sendmail.js', array('jquery') );
 	wp_enqueue_script('sha256', get_template_directory_uri() . '/assets/js/sha256.js', array('jquery') );
 	wp_enqueue_script('jquery-cookie', get_template_directory_uri() . '/assets/js/jquery-cookie.js', array('jquery') );
+	wp_register_script('scrollreveal', '//unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js', array('jquery'));
+	wp_enqueue_script('scrollreveal');
 }
 
 function theme_register_nav_menu() { // аналогичная ситуация с добавлением actionа на регистрацию меню

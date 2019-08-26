@@ -652,12 +652,50 @@ button::-moz-focus-inner {
 .schedule-section-title {
     color: #AF2B2B;
 }
-.schedule-section-descr, .schedule-change {
+.schedule-section-descr {
     color: #ffffff;
+}
+.schedule-change {
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: inline-block;
+  transition: all .5s ease-in-out;
+}
+.select-triangle {
+  color: #ffffff;
+  font-size: 30px;
+  padding-left: 10px;
+  transition: all .5s ease-in-out;
+}
+.schedule-group {
+  opacity: 0;
+}
+.show {
+  animation: expand 1s cubic-bezier();
+}
+@keyframes expand {
+  0% {
+    opacity: 0;
+    transform: translateY(-100);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.schedule-choice {
+  color: #ffffff;
+  display: inline-block;
+  transition: all .5s ease-in-out;
+  cursor: pointer;
+}
+.schedule-choice:hover {
+  color: #AF2B2B;
 }
 .day {
   color: #AF2B2B;
-  /* font-weight: 600; */
 }
 
 table {
@@ -688,6 +726,7 @@ section.contacts {
 fieldset {
   width: 40% !important;
 }
+
 .icon-count {
   font-size: 14px !important;
   cursor: pointer;

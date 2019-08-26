@@ -71,7 +71,7 @@ jQuery(function($){
     
                 },
     
-                offset: '100px'
+                offset: '120px'
     
             });
             
@@ -212,6 +212,33 @@ jQuery(function($){
         Cookies.set('flag', false, { expires: 1 });
     }
     /****************************************************** */
-
+    
+    //* Анимация выпадающего списка
+    /*---------------------------------------------------- */ 
+    $('.schedule-change').on('click', function() {
+        console.log($(this).attr('collapse'))
+        if ($(this).attr('collapse') == 'true') {
+            $('.schedule-group').css('opacity',  1);
+            $('.schedule-choice').removeClass('animated fadeOutUp').addClass('animated fadeInDown');
+            $(this).attr('collapse', 'false');
+        } else {
+            $('.schedule-choice').removeClass('animated fadeInDown').addClass('animated fadeOutUp');
+            $(this).attr('collapse', 'true');
+        }
     })
+    $('.schedule-change').hover(function() {
+        $(this).css({'color': 'black',
+                    'background': '#ffffff7d'});
+        $('.select-triangle').css('color', 'black');
+    }, function() {
+        $(this).css({'color': 'white',
+                    'background': 'transparent'});
+        $('.select-triangle').css('color', 'white');
+    })
+
+    $('.schedule-choice').click(function() {
+        
+    })
+    /****************************************************** */
+})
 })
