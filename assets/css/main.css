@@ -668,6 +668,14 @@ button::-moz-focus-inner {
   font-size: 30px;
   padding-left: 10px;
   transition: all .5s ease-in-out;
+  position: relative;
+  top: 4px;
+  padding: 0;
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  -o-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: 50% 50%;
 }
 .schedule-group {
   opacity: 0;

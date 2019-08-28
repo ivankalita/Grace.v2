@@ -4,13 +4,18 @@ add_action('wp_enqueue_scripts', 'load_styles_scritps_fonts');
 add_action('after_setup_theme', 'theme_register_nav_menu');
 add_action('admin_menu', 'register_menu_page_settings'); //Добавление в админ-панель своей вкладки
 add_action('admin_init', 'register_nedwsettings'); // Добавление редактируемых полей в своей вкладке
+
 add_action('wp_ajax_loadmore', 'true_load_posts'); // Выполнение JS-скрипта на загрузку постов для зарегистрированных
 add_action('wp_ajax_nopriv_loadmore', 'true_load_posts'); // и незарегистрированных пользователей
+
 add_action('wp_ajax_showgallerypost', 'true_show_images'); // Выполнение JS-скрипта для показа галереи картинок конкретного поста
 add_action('wp_ajax_nopriv_showgallerypost', 'true_show_images');
+
 add_action('wp_ajax_sendmail', 'true_send_request'); // Отправка заявки на почту
 add_action('wp_ajax_nopriv_sendmail', 'true_send_request');
 
+add_action('wp_ajax_daytime', 'true_get_time'); // Загрузка расписания для возрастной группы
+add_action('wp_ajax_nopriv_daytime', 'true_get_time');
 
 add_filter('nav_menu_link_attributes', 'add_class_to_all_menu_anchors', 10 ); // хук на добавление класса к тегу <a> ссылки в меню
 add_filter( 'nav_menu_css_class', 'add_my_class_to_nav_menu', 10, 2 ); // Добавление custom class к тегу li меню
@@ -55,7 +60,6 @@ function load_styles_scritps_fonts() {
 	wp_register_script('ionicons', '//unpkg.com/ionicons@4.5.10-0/dist/ionicons.js', false);
 	wp_enqueue_script('ionicons');
 	wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'));
-	wp_enqueue_script('loadpost', get_template_directory_uri() . '/assets/js/loadpost.js', array('jquery'));
 	wp_enqueue_script('loadmore', get_template_directory_uri() . '/assets/js/loadmore.js', array('jquery'));
 	wp_enqueue_script('lightgallery-all.min', get_template_directory_uri() . '/assets/js/lightgallery-all.min.js', array('jquery'));
 	wp_enqueue_script('lg-fullscreen.min', get_template_directory_uri() . '/assets/js/lg-fullscreen.min.js', array('jquery'));
@@ -82,31 +86,29 @@ function register_menu_page_settings() {
 	add_menu_page('Настройки Темы', 'Настройки Темы', 6, 'settings_page.php', 'theme_settings');
 }
 
-function theme_settings() {
-?>
-<div class="wrap">
-	<h2>Настройки темы</h2>
+function theme_settings() { ?>
+	<div class="wrap">
+		<h2>Настройки темы</h2>
 
-	<form method="POST" action="options.php" enctype="multipart/form-data">
-		<?php settings_fields('nedw-settings-group'); ?>
-	<table class="form-table">
-		<tr valign="top">
-		<th scope="row">Логотип</th>
-		<td><?php if(get_option('logo')){?><img src="<?php echo get_option('logo'); ?>" alt="Logo"><br><?php } ?><input type="file" name="logo"></td>
-		</tr>
-		<tr valign="top">
-		<th scope="row">Подпись в footer о защите прав пользователя</th>
-		<td><input type="text" name="copy" value="<?php echo get_option('copy'); ?>"></td>
-		</tr>
-	</table>
+		<form method="POST" action="options.php" enctype="multipart/form-data">
+			<?php settings_fields('nedw-settings-group'); ?>
+		<table class="form-table">
+			<tr valign="top">
+			<th scope="row">Логотип</th>
+			<td><?php if(get_option('logo')){?><img src="<?php echo get_option('logo'); ?>" alt="Logo"><br><?php } ?><input type="file" name="logo"></td>
+			</tr>
+			<tr valign="top">
+			<th scope="row">Подпись в footer о защите прав пользователя</th>
+			<td><input type="text" name="copy" value="<?php echo get_option('copy'); ?>"></td>
+			</tr>
+		</table>
 
-	<p class="submit">
-		<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>">
-	</p>
-	</form>
-</div>
-<?php
-}
+		<p class="submit">
+			<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>">
+		</p>
+		</form>
+	</div>
+<?php }
 
 function register_nedwsettings() {
 	register_setting('nedw-settings-group', 'logo', 'validate_setting');
@@ -242,6 +244,46 @@ function true_send_request() {
 				", Почта: ".$mail.
 				"\nСообщение: ".$extraMsg,
 				"From: <wordpress@orelgrace.ru> \r\n");
+
+	die();
+}
+
+function true_get_time() {
+	$value = $_POST['value'];
+	$pageID = get_option('page_on_front');
+	$json = array(
+		'monday' => array(
+			'from'	=> get_field($value, $pageID)['monday']['from'],
+			'to'	=> get_field($value, $pageID)['monday']['to']
+		),
+		'tuesday' => array(
+			'from'	=> get_field($value, $pageID)['tuesday']['from'],
+			'to'	=> get_field($value, $pageID)['tuesday']['to']
+		),
+		'wednesday' => array(
+			'from'	=> get_field($value, $pageID)['wednesday']['from'],
+			'to'	=> get_field($value, $pageID)['wednesday']['to']
+		),
+		'thursday' => array(
+			'from'	=> get_field($value, $pageID)['thursday']['from'],
+			'to'	=> get_field($value, $pageID)['thursday']['to']
+		),
+		'friday' => array(
+			'from'	=> get_field($value, $pageID)['friday']['from'],
+			'to'	=> get_field($value, $pageID)['friday']['to']
+		),
+		'saturday' => array(
+			'from'	=> get_field($value, $pageID)['saturday']['from'],
+			'to'	=> get_field($value, $pageID)['saturday']['to']
+		),
+		'sunday' => array(
+			'from'	=> get_field($value, $pageID)['sunday']['from'],
+			'to'	=> get_field($value, $pageID)['sunday']['to']
+		)
+	);
+
+	echo json_encode($json);
+	die();
 }
 
 

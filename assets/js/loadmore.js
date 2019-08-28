@@ -1,7 +1,6 @@
 
 jQuery(function($){
 	$(document).ready(function() {
-		console.log('loadmore')
 		$('.spinner-grow').css('display', 'none');
 		$('.timeline-image-lastchild').click(function(){
 			$(this).addClass('animated fadeOut'); // изменяем текст кнопки, вы также можете добавить прелоадер

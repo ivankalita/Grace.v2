@@ -116,7 +116,6 @@ get_header();
                     $args = array(
                         'numberposts' => 0,
                         'post_type' => 'post',
-                       
                         'suppress_filters' => true,
                     );
 
@@ -196,95 +195,97 @@ get_header();
 
 
     <section id="schedule" class="schedule h-auto vh-xl-100 pt-5 mt-5 target-section parallax-window" data-parallax="scroll" data-image-src="<?php the_field('schedule_image'); ?>">
-            <div class="container schedule-custom-height-one">
-                <div class="row justify-content-center">
-                    <h1 class="text-center schedule-section-title"><?php the_field('schedule_title'); ?></h1>
-                </div>
-                <div class="row justify-content-center mt-3">
-                    <h3 class="text-center schedule-section-descr"><?php the_field('schedule_description'); ?></h3>
-                </div>
+        <div class="container schedule-custom-height-one">
+            <div class="row justify-content-center">
+                <h1 class="text-center schedule-section-title"><?php the_field('schedule_title'); ?></h1>
             </div>
-            <div class="container h-25">
-                <div class="row mt-3 text-center">
-                    <?php $groups = get_field_object('schedule_select'); ?>
-                    <div class="col-12">
-                        <h3 class="schedule-change" collapse="true">
-                            <?php echo $groups['label']; ?>
-                            <i class="fas fa-caret-down select-triangle"></i>
-                        </h3>
-                    </div>
-                    <div class="col-12">
-                        <div class="row schedule-group text-center">
-                            <?php foreach($groups['choices'] as $group) { ?>
-                            <div class="col-12">
-                                <h3 class="schedule-choice"> 
-                                    <?php echo $group; ?>
-                                </h3>
-                            </div>
-                            <?php }; ?>
-                        </div>
-                    </div>
-                </div>
+            <div class="row justify-content-center mt-3">
+                <h3 class="text-center schedule-section-descr"><?php the_field('schedule_description'); ?></h3>
             </div>
-            <div class="container-fluid h-50" style="color: white; font-size: 48px;">
-                <div class="row justify-content-center h-100 align-items-center">
-                    <div class="col-lg-12 col-xl align-self-center">
-                        <div class="row text-center">
-                            <div class="col-3 col-xl-12 day">ПН</div>
-                            <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center"><?php echo get_field('juveniles')['monday']['from']; ?></div>
-                            <div class="col-1 col-xl-12">-</div>
-                            <div class="col-4 col-xl-12 text-left text-xl-center"><?php echo get_field('juveniles')['monday']['to']; ?></div>
+        </div>
+        <div class="container h-25">
+            <div class="row mt-3 text-center">
+                <?php $groups = get_field_object('schedule_select'); ?>
+                <div class="col-12" style="z-index: 10">
+                    <h3 class="schedule-change" data-collapse="true">
+                        <?php echo $groups['label']; ?>
+                        <i class="fas fa-caret-down select-triangle"></i>
+                    </h3>
+                </div>
+                <div class="col-12">
+                    <div class="row schedule-group text-center">
+                        <?php foreach($groups['choices'] as $key => $group) { ?>
+                        <div class="col-12">
+                            <h3 class="schedule-choice"> 
+                                <?php echo $group; ?>
+                            </h3>
                         </div>
-                    </div>
-                    <div class="col-lg-12 col-xl align-self-center">
-                        <div class="row text-center">
-                            <div class="col-3 col-xl-12 day">ПН</div>
-                            <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center">18:00</div>
-                            <div class="col-1 col-xl-12">-</div>
-                            <div class="col-4 col-xl-12 text-left text-xl-center">19:00</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-xl align-self-center">
-                        <div class="row text-center">
-                            <div class="col-3 col-xl-12 day">ПН</div>
-                            <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center">18:00</div>
-                            <div class="col-1 col-xl-12">-</div>
-                            <div class="col-4 col-xl-12 text-left text-xl-center">19:00</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-xl align-self-center">
-                        <div class="row text-center">
-                            <div class="col-3 col-xl-12 day">ПН</div>
-                            <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center">18:00</div>
-                            <div class="col-1 col-xl-12">-</div>
-                            <div class="col-4 col-xl-12 text-left text-xl-center">19:00</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-xl align-self-center">
-                        <div class="row text-center">
-                            <div class="col-3 col-xl-12 day">ПН</div>
-                            <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center">18:00</div>
-                            <div class="col-1 col-xl-12">-</div>
-                            <div class="col-4 col-xl-12 text-left text-xl-center">19:00</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-xl align-self-center">
-                        <div class="row text-center">
-                            <div class="col-3 col-xl-12 day">ПН</div>
-                            <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center">18:00</div>
-                            <div class="col-1 col-xl-12">-</div>
-                            <div class="col-4 col-xl-12 text-left text-xl-center">19:00</div>
-                        </div>
-                    </div><div class="col-lg-12 col-xl align-self-center">
-                        <div class="row text-center">
-                            <div class="col-3 col-xl-12 day">ПН</div>
-                            <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center">18:00</div>
-                            <div class="col-1 col-xl-12">-</div>
-                            <div class="col-4 col-xl-12 text-left text-xl-center">19:00</div>
-                        </div>
+                        <?php }; ?>  
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="container-fluid h-50" style="color: white; font-size: 48px;">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-lg-12 col-xl align-self-center">
+                    <div class="row text-center monday">
+                        <div class="col-3 col-xl-12 day">ПН</div>
+                        <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
+                        <div class="col-1 col-xl-12">-</div>
+                        <div class="col-4 col-xl-12 text-left text-xl-center to"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl align-self-center">
+                    <div class="row text-center tuesday">
+                        <div class="col-3 col-xl-12 day">ВТ</div>
+                        <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
+                        <div class="col-1 col-xl-12">-</div>
+                        <div class="col-4 col-xl-12 text-left text-xl-center to"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl align-self-center">
+                    <div class="row text-center wednesday">
+                        <div class="col-3 col-xl-12 day">СР</div>
+                        <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
+                        <div class="col-1 col-xl-12">-</div>
+                        <div class="col-4 col-xl-12 text-left text-xl-center to"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl align-self-center">
+                    <div class="row text-center thursday">
+                        <div class="col-3 col-xl-12 day">ЧТ</div>
+                        <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
+                        <div class="col-1 col-xl-12">-</div>
+                        <div class="col-4 col-xl-12 text-left text-xl-center to"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl align-self-center">
+                    <div class="row text-center friday">
+                        <div class="col-3 col-xl-12 day">ПТ</div>
+                        <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
+                        <div class="col-1 col-xl-12">-</div>
+                        <div class="col-4 col-xl-12 text-left text-xl-center to"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl align-self-center">
+                    <div class="row text-center saturday">
+                        <div class="col-3 col-xl-12 day">СБ</div>
+                        <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
+                        <div class="col-1 col-xl-12">-</div>
+                        <div class="col-4 col-xl-12 text-left text-xl-center to"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl align-self-center">
+                    <div class="row text-center sunday">
+                        <div class="col-3 col-xl-12 day">ВС</div>
+                        <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
+                        <div class="col-1 col-xl-12">-</div>
+                        <div class="col-4 col-xl-12 text-left text-xl-center to"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
     </section>
 
 

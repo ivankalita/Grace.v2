@@ -199,46 +199,150 @@ jQuery(function($){
         showSlides(slideIndex);
         /****************************************************** */
 
-    //* Set Cookies
-    /*---------------------------------------------------- */ 
-    function randomSession(min, max) {
-        var rand = min - 0.5 + Math.random() * (max - min + 1);
-        rand = Math.round(rand);
-        return rand;
-    }
-    var id = randomSession(1, Date.now());
-    if (Cookies.get('IDUser') == null) {
-        Cookies.set('IDUser', id, { expires: 1 });
-        Cookies.set('flag', false, { expires: 1 });
-    }
-    /****************************************************** */
-    
-    //* Анимация выпадающего списка
-    /*---------------------------------------------------- */ 
-    $('.schedule-change').on('click', function() {
-        console.log($(this).attr('collapse'))
-        if ($(this).attr('collapse') == 'true') {
-            $('.schedule-group').css('opacity',  1);
-            $('.schedule-choice').removeClass('animated fadeOutUp').addClass('animated fadeInDown');
-            $(this).attr('collapse', 'false');
-        } else {
-            $('.schedule-choice').removeClass('animated fadeInDown').addClass('animated fadeOutUp');
-            $(this).attr('collapse', 'true');
+        //* Set Cookies
+        /*---------------------------------------------------- */ 
+        function randomSession(min, max) {
+            var rand = min - 0.5 + Math.random() * (max - min + 1);
+            rand = Math.round(rand);
+            return rand;
         }
-    })
-    $('.schedule-change').hover(function() {
-        $(this).css({'color': 'black',
-                    'background': '#ffffff7d'});
-        $('.select-triangle').css('color', 'black');
-    }, function() {
-        $(this).css({'color': 'white',
-                    'background': 'transparent'});
-        $('.select-triangle').css('color', 'white');
-    })
-
-    $('.schedule-choice').click(function() {
+        var id = randomSession(1, Date.now());
+        if (Cookies.get('IDUser') == null) {
+            Cookies.set('IDUser', id, { expires: 1 });
+            Cookies.set('flag', false, { expires: 1 });
+        }
+        /****************************************************** */
         
+        
+        $('.schedule').on('click', function(e) {
+            var target = getTarget(e),
+                scheduleChange = $('.schedule-change'),
+                selectTriangle = $('.select-triangle'),
+                scheduleChoice = $('.schedule-choice');
+
+            if ($(target).hasClass('schedule-change') || $(target).hasClass('select-triangle')) dropList(target, selectTriangle);
+            if ($(target).hasClass('schedule-choice')) {
+                selectChoice(target, scheduleChange, scheduleChoice, selectTriangle);
+            }
+        })
+
+        function getTarget(e) {
+            if (!e) {
+                e = window.event;
+            }
+            return e.target || e.srcElement;
+        }
+        //* Анимация выпадающего списка
+        /*---------------------------------------------------- */ 
+        function dropList(target, selectTriangle) {
+            console.log('actionDropList');
+            if ($(target).attr('data-collapse') == 'true') {
+                $('.schedule-group').css('opacity',  1);
+                $('.schedule-choice').removeClass('animated fadeOutUp').addClass('animated fadeInDown');
+                $(target).attr('data-collapse', 'false');
+                $(selectTriangle).css('transform', 'rotate(180deg)');
+            } else {
+                $('.schedule-choice').removeClass('animated fadeInDown').addClass('animated fadeOutUp');
+                $(target).attr('data-collapse', 'true');
+                $(selectTriangle).css('transform', 'rotate(0deg)');
+            }
+        }
+
+        function selectChoice(target, scheduleChange, scheduleChoice) {
+            /* Start async function loadSchedule */
+            var value = $(target).text();
+            console.log(value.trim(), '---', matchingLabels(value.trim()));
+
+            getDayTime(matchingLabels(value.trim()));
+            
+            /*     */
+
+            console.log('selectChoice');
+            
+
+            $(scheduleChange).html(value + '<i class=\"fas fa-caret-down select-triangle\"></i>');
+            $(scheduleChoice).removeClass('animated fadeInDown').addClass('animated fadeOutUp');
+            $(scheduleChange).attr('data-collapse', 'true');
+        }
+        function matchingLabels(value) {
+            var valueLabel = {
+                'juveniles': 'Ювеналы (12-14 лет)',
+                'juniors': 'Юниоры/Молодежь (15-18лет)',
+                'adult_beginner': 'Взрослые начинающие (до 35 лет)',
+                'adult_continue': 'Взрослые-синьоры продолжающие (35-50 лет)',
+                'grandees': 'Грандессы (50+)'
+            }
+
+            for (let item in valueLabel) {
+                if (value == valueLabel[item]) return item;
+            }
+            return false;
+        }
+        function getDayTime(item) {
+            var data = {
+                'action': 'daytime',
+                'value': item
+            };
+            
+
+            console.log(typeof(item));
+            $.ajax({
+				url:  ajaxurl, // обработчик
+				data: data, // данные
+				type: 'POST', // тип запроса
+				success: function(data){
+                    var schedule = JSON.parse(data)
+                    console.log(schedule);
+                    var monday = $('.monday'),
+                        tuesday = $('.tuesday'),
+                        wednesday = $('.wednesday'),
+                        thursday = $('.thursday'),
+                        friday = $('.friday'),
+                        saturday = $('.saturday'),
+                        sunday = $('.sunday');
+
+                    $(monday).find('.from').text(schedule['monday']['from']);
+                    $(monday).find('.to').text(schedule['monday']['to']);
+
+                    $(tuesday).find('.from').text(schedule['tuesday']['from']);
+                    $(tuesday).find('.to').text(schedule['tuesday']['to']);
+
+                    $(wednesday).find('.from').text(schedule['wednesday']['from']);
+                    $(wednesday).find('.to').text(schedule['wednesday']['to']);
+
+                    $(thursday).find('.from').text(schedule['thursday']['from']);
+                    $(thursday).find('.to').text(schedule['thursday']['to']);
+
+                    $(friday).find('.from').text(schedule['friday']['from']);
+                    $(friday).find('.to').text(schedule['friday']['to']);
+
+                    $(saturday).find('.from').text(schedule['saturday']['from']);
+                    $(saturday).find('.to').text(schedule['saturday']['to']);
+
+                    $(sunday).find('.from').text(schedule['sunday']['from']);
+                    $(sunday).find('.to').text(schedule['sunday']['to']);
+                    
+                    
+                },
+                error: function(jqXHR) {
+                    console.log(jqXHR);
+                }
+			})
+        }
+
+
+
+        $('.schedule-change').hover(function() {
+            $(this).css({'color': 'black',
+                        'background': '#ffffff7d'});
+            $('.select-triangle').css('color', 'black');
+        }, function() {
+            $(this).css({'color': 'white',
+                        'background': 'transparent'});
+            $('.select-triangle').css('color', 'white');
+        })
+
+
+        /****************************************************** */
     })
-    /****************************************************** */
-})
 })
