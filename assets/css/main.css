@@ -783,7 +783,7 @@ input[type="submit"]:hover {
   font-size: 4rem;
   color: #000000;
 }
-.waitsend {
+.wait__send {
   position: absolute;
   top: 20%;
   left: 46%;

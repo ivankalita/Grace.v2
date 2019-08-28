@@ -333,7 +333,7 @@ get_header();
                         <div class="row mt-3 justify-content-center">
                             <div class="col px-0">
                                 <input type="submit" id="send" value="ОТПРАВИТЬ" class="form-input w-100">
-                                <div class="spinner-grow waitsend" role="status">
+                                <div class="spinner-grow wait__send" role="status">
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </div>
