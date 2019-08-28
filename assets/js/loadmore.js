@@ -3,6 +3,7 @@ jQuery(function($){
 	$(document).ready(function() {
 		$('.wait__posts').css('display', 'none');
 		$('.wait__schedule').css('display', 'none');
+		$('.schedule-group').parent().css('z-index', -10);
 		$('.timeline-image-lastchild').click(function(){
 			$(this).addClass('animated fadeOut'); // изменяем текст кнопки, вы также можете добавить прелоадер
 			$('.spinner-grow').css('display', 'inline-block');

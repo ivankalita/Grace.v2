@@ -219,10 +219,11 @@ jQuery(function($){
                 scheduleChange = $('.schedule-change'),
                 selectTriangle = $('.select-triangle'),
                 scheduleChoice = $('.schedule-choice');
+                scheduleGroup = $('.schedule-group');
 
-            if ($(target).hasClass('schedule-change') || $(target).hasClass('select-triangle')) dropList(target, selectTriangle);
+            if ($(target).hasClass('schedule-change') || $(target).hasClass('select-triangle')) dropList(target, scheduleChoice, scheduleGroup, selectTriangle);
             if ($(target).hasClass('schedule-choice')) {
-                selectChoice(target, scheduleChange, scheduleChoice, selectTriangle);
+                selectChoice(target, scheduleChange, scheduleChoice, scheduleGroup);
             }
         })
 
@@ -234,20 +235,21 @@ jQuery(function($){
         }
         //* Анимация выпадающего списка
         /*---------------------------------------------------- */ 
-        function dropList(target, selectTriangle) {
+        function dropList(target, scheduleChoice, scheduleGroup, selectTriangle) {
             if ($(target).attr('data-collapse') == 'true') {
-                $('.schedule-group').css('opacity',  1);
-                $('.schedule-choice').removeClass('animated fadeOutUp').addClass('animated fadeInDown');
+                $(scheduleGroup).css('opacity', 1).parent().css('z-index', 1);
+                $(scheduleChoice).removeClass('animated fadeOutUp').addClass('animated fadeInDown');
                 $(target).attr('data-collapse', 'false');
                 $(selectTriangle).css('transform', 'rotate(180deg)');
             } else {
-                $('.schedule-choice').removeClass('animated fadeInDown').addClass('animated fadeOutUp');
+                $(scheduleChoice).removeClass('animated fadeInDown').addClass('animated fadeOutUp');
                 $(target).attr('data-collapse', 'true');
                 $(selectTriangle).css('transform', 'rotate(0deg)');
+                $(scheduleGroup).parent().css('z-index', -10);
             }
         }
 
-        function selectChoice(target, scheduleChange, scheduleChoice) {
+        function selectChoice(target, scheduleChange, scheduleChoice, scheduleGroup) {
             var value = $(target).text();
 
             getDayTime(matchingLabels(value.trim()));
@@ -255,6 +257,7 @@ jQuery(function($){
             $(scheduleChange).html(value + '<i class=\"fas fa-caret-down select-triangle\"></i>');
             $(scheduleChoice).removeClass('animated fadeInDown').addClass('animated fadeOutUp');
             $(scheduleChange).attr('data-collapse', 'true');
+            $(scheduleGroup).parent().css('z-index', -10);
         }
         function matchingLabels(value) {
             var valueLabel = {

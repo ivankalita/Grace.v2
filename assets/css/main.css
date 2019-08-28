@@ -679,6 +679,7 @@ button::-moz-focus-inner {
 }
 .schedule-group {
   opacity: 0;
+  z-index: -10;
 }
 .show {
   animation: expand 1s cubic-bezier();
