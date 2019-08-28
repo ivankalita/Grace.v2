@@ -1,7 +1,8 @@
 
 jQuery(function($){
 	$(document).ready(function() {
-		$('.spinner-grow').css('display', 'none');
+		$('.wait__posts').css('display', 'none');
+		$('.wait__schedule').css('display', 'none');
 		$('.timeline-image-lastchild').click(function(){
 			$(this).addClass('animated fadeOut'); // изменяем текст кнопки, вы также можете добавить прелоадер
 			$('.spinner-grow').css('display', 'inline-block');

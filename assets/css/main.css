@@ -705,7 +705,12 @@ button::-moz-focus-inner {
 .day {
   color: #AF2B2B;
 }
-
+.wait__schedule {
+  display: none;
+  position: relative;
+  left: 50%;
+  color: #AF2B2B;
+}
 table {
     width: 100%;
 }

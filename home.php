@@ -173,7 +173,7 @@ get_header();
             <div class="timeline-image-lastchild">ДАЛЕЕ</div>
         </div>
         <div class="d-flex justify-content-center">
-            <div class="spinner-grow" role="status">
+            <div class="spinner-grow wait__posts" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
@@ -194,7 +194,7 @@ get_header();
     </section>
 
 
-    <section id="schedule" class="schedule h-auto vh-xl-100 pt-5 mt-5 target-section parallax-window" data-parallax="scroll" data-image-src="<?php the_field('schedule_image'); ?>">
+    <section id="schedule" class="schedule vh-100 pt-5 mt-5 target-section parallax-window" data-parallax="scroll" data-image-src="<?php the_field('schedule_image'); ?>">
         <div class="container schedule-custom-height-one">
             <div class="row justify-content-center">
                 <h1 class="text-center schedule-section-title"><?php the_field('schedule_title'); ?></h1>
@@ -285,7 +285,10 @@ get_header();
                 </div>
             </div>
         </div>
-         
+        
+        <div class="spinner-grow wait__schedule" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </section>
 
 
@@ -381,7 +384,7 @@ get_header();
                         </div>
                     </div>  
                 </div>
-                              
+
             </div>
         </div>
     </section>

@@ -235,7 +235,6 @@ jQuery(function($){
         //* Анимация выпадающего списка
         /*---------------------------------------------------- */ 
         function dropList(target, selectTriangle) {
-            console.log('actionDropList');
             if ($(target).attr('data-collapse') == 'true') {
                 $('.schedule-group').css('opacity',  1);
                 $('.schedule-choice').removeClass('animated fadeOutUp').addClass('animated fadeInDown');
@@ -249,16 +248,9 @@ jQuery(function($){
         }
 
         function selectChoice(target, scheduleChange, scheduleChoice) {
-            /* Start async function loadSchedule */
             var value = $(target).text();
-            console.log(value.trim(), '---', matchingLabels(value.trim()));
 
             getDayTime(matchingLabels(value.trim()));
-            
-            /*     */
-
-            console.log('selectChoice');
-            
 
             $(scheduleChange).html(value + '<i class=\"fas fa-caret-down select-triangle\"></i>');
             $(scheduleChoice).removeClass('animated fadeInDown').addClass('animated fadeOutUp');
@@ -284,45 +276,17 @@ jQuery(function($){
                 'value': item
             };
             
-
-            console.log(typeof(item));
             $.ajax({
 				url:  ajaxurl, // обработчик
 				data: data, // данные
-				type: 'POST', // тип запроса
+                type: 'POST', // тип запроса
+                beforeSend: function() {
+                    $('.wait__schedule').css('display', 'inline-block');
+                },
 				success: function(data){
-                    var schedule = JSON.parse(data)
-                    console.log(schedule);
-                    var monday = $('.monday'),
-                        tuesday = $('.tuesday'),
-                        wednesday = $('.wednesday'),
-                        thursday = $('.thursday'),
-                        friday = $('.friday'),
-                        saturday = $('.saturday'),
-                        sunday = $('.sunday');
-
-                    $(monday).find('.from').text(schedule['monday']['from']);
-                    $(monday).find('.to').text(schedule['monday']['to']);
-
-                    $(tuesday).find('.from').text(schedule['tuesday']['from']);
-                    $(tuesday).find('.to').text(schedule['tuesday']['to']);
-
-                    $(wednesday).find('.from').text(schedule['wednesday']['from']);
-                    $(wednesday).find('.to').text(schedule['wednesday']['to']);
-
-                    $(thursday).find('.from').text(schedule['thursday']['from']);
-                    $(thursday).find('.to').text(schedule['thursday']['to']);
-
-                    $(friday).find('.from').text(schedule['friday']['from']);
-                    $(friday).find('.to').text(schedule['friday']['to']);
-
-                    $(saturday).find('.from').text(schedule['saturday']['from']);
-                    $(saturday).find('.to').text(schedule['saturday']['to']);
-
-                    $(sunday).find('.from').text(schedule['sunday']['from']);
-                    $(sunday).find('.to').text(schedule['sunday']['to']);
-                    
-                    
+                    var schedule = JSON.parse(data);
+                    $('.wait__schedule').css('display', 'none');
+                    if (schedule) pasteTimeInSchedule(schedule);
                 },
                 error: function(jqXHR) {
                     console.log(jqXHR);
@@ -330,7 +294,58 @@ jQuery(function($){
 			})
         }
 
+        function pasteTimeInSchedule(schedule) {
+            var monday = $('.monday'),
+            tuesday = $('.tuesday'),
+            wednesday = $('.wednesday'),
+            thursday = $('.thursday'),
+            friday = $('.friday'),
+            saturday = $('.saturday'),
+            sunday = $('.sunday');
 
+            $(monday).find('.from').text(schedule['monday']['from']);
+            $(monday).find('.to').text(schedule['monday']['to']);
+            if (!$(monday).find('.from').text()) {
+                $(monday).find('.from').css('height', '72px');
+                $(monday).find('.to').css('height', '72px');
+            }
+            $(tuesday).find('.from').text(schedule['tuesday']['from']);
+            $(tuesday).find('.to').text(schedule['tuesday']['to']);
+            if (!$(tuesday).find('.from').text()) {
+                $(tuesday).find('.from').css('height', '72px');
+                $(tuesday).find('.to').css('height', '72px');
+            }
+            $(wednesday).find('.from').text(schedule['wednesday']['from']);
+            $(wednesday).find('.to').text(schedule['wednesday']['to']);
+            if (!$(wednesday).find('.from').text()) {
+                $(wednesday).find('.from').css('height', '72px');
+                $(wednesday).find('.to').css('height', '72px');
+            }
+            $(thursday).find('.from').text(schedule['thursday']['from']);
+            $(thursday).find('.to').text(schedule['thursday']['to']);
+            if (!$(thursday).find('.from').text()) {
+                $(thursday).find('.from').css('height', '72px');
+                $(thursday).find('.to').css('height', '72px');
+            }
+            $(friday).find('.from').text(schedule['friday']['from']);
+            $(friday).find('.to').text(schedule['friday']['to']);
+            if (!$(friday).find('.from').text()) {
+                $(friday).find('.from').css('height', '72px');
+                $(friday).find('.to').css('height', '72px');
+            }
+            $(saturday).find('.from').text(schedule['saturday']['from']);
+            $(saturday).find('.to').text(schedule['saturday']['to']);
+            if (!$(saturday).find('.from').text()) {
+                $(saturday).find('.from').css('height', '72px');
+                $(saturday).find('.to').css('height', '72px');
+            }
+            $(sunday).find('.from').text(schedule['sunday']['from']);
+            $(sunday).find('.to').text(schedule['sunday']['to']);
+            if (!$(sunday).find('.from').text()) {
+                $(sunday).find('.from').css('height', '72px');
+                $(sunday).find('.to').css('height', '72px');
+            }
+        }
 
         $('.schedule-change').hover(function() {
             $(this).css({'color': 'black',

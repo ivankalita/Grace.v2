@@ -51,7 +51,7 @@
             
                 <div class="home-content__buttons">
                     <?php if(get_post_meta($post -> ID, 'btn_write', true)) {?>
-                        <a href="#request" class="btn-write btn--stroke"><?php echo get_post_meta($post -> ID, 'btn_write', true); ?></a>
+                        <a href="#request" class="btn-write data-scroll"><?php echo get_post_meta($post -> ID, 'btn_write', true); ?></a>
                     <?php }?>
                 </div>
                         
