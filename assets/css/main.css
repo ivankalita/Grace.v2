@@ -25,7 +25,7 @@ a {
     text-decoration: none !important;
     transition: all 0.5s ease-in-out;
 }
-a:hover {
+.nav__li a:hover {
   color: #AF2B2B !important;
 }
 .section-descr {
@@ -487,7 +487,7 @@ button::-moz-focus-inner {
   background-color: #F1F1F1;
 }
 .carousel-block {
-  width: 100% !important;
+  /* width: 100% !important; */
   height: 100%;
   overflow: hidden;
 }
@@ -512,6 +512,9 @@ button::-moz-focus-inner {
 
 /* Timeline - Events
 ************************/
+.events {
+  position: relative;
+}
 .timeline {
     position: relative;
     padding: 0;
@@ -527,24 +530,28 @@ button::-moz-focus-inner {
     margin-left: -1.5px;
     content: '';
     background-color: #e9ecef;
-  }
-
-.timeline-image-lastchild {
-  background-color: #6D6D6D;
-  display: inline-block;
-  padding: 10px 30px;
-  color: #ffffff;
-  border-radius: 33px;
 }
-.timeline-image-lastchild:hover {
-  background-color: #6D6D6D;
-  display: inline-block;
-  padding: 10px 30px;
-  color: #000000;
-  border-radius: 33px;
+.timeline__showmore {
+  font-size: 1.2rem;
+  position: absolute;
+  left: 45%;
+  bottom: 4%;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: .5s all linear;
+  color: #000000;
 }
-
+.timeline__showmore:hover {
+  color: #AF2B2B;
+}
+.icon-showmore {
+  font-size: 16px !important;
+  color: #000000;
+  transition: .5s all linear;
+}
+.icon-showmore:hover {
+  color: #AF2B2B;
+}
 .timeline > li {
     position: relative;
     min-height: 50px;
@@ -648,11 +655,12 @@ button::-moz-focus-inner {
     background-position: center;
     background-size: cover;
     position: relative;
+    transition: .5s box-shadow ease-in-out;
 }
-.schedule-section-title {
+.schedule-title {
     color: #AF2B2B;
 }
-.schedule-section-descr {
+.schedule-descr {
     color: #ffffff;
 }
 .schedule-change {
@@ -662,6 +670,10 @@ button::-moz-focus-inner {
   cursor: pointer;
   display: inline-block;
   transition: all .5s ease-in-out;
+}
+.schedule-change:hover {
+  color: #000000;
+  background-color: #ffffff7d;
 }
 .select-triangle {
   color: #ffffff;
@@ -708,9 +720,14 @@ button::-moz-focus-inner {
 }
 .wait__schedule {
   display: none;
-  position: relative;
+  position: absolute;
   left: 50%;
   color: #AF2B2B;
+  top: 40%;
+}
+.from,
+.to {
+  transition: 1s all ease-in-out;
 }
 table {
     width: 100%;
@@ -731,9 +748,11 @@ tr.dash {
     height: 40px !important;
 }
 
-/* Contacts
+/* Contacts & Request
 */
-
+form > div {
+  max-width: 60% !important;
+}
 section.contacts {
     background-color: #F1F1F1;
 }
@@ -883,7 +902,7 @@ Media
 
 @media (min-width: 992px) {
   .timeline > li {
-      min-height: 150px;
+      min-height: 180px;
       margin-bottom: 100px;
   }
   .timeline > li .timeline-panel {
@@ -925,6 +944,10 @@ Media
   .nav-link {
       font-size: 16px !important;
   }
+  .from,
+  .to {
+    height: 72px;
+  }
 }
 
 @media (min-width: 1400px) {
@@ -937,30 +960,6 @@ Media
 * responsive:
 * header
 * ------------------------------------------------------------------- */
-@media (max-width: 767px) {
-  .timeline > li .timeline-image {
-      width: 100px !important;
-      height: 100px !important;
-      border: 2px solid #e9ecef !important;
-      margin-left: -8px !important;
-      top: 15px;
-  }
-  .timeline:last-child .timeline-image {
-    bottom: 0;
-  }
-  .timeline li:first-child .timeline-image {
-    top: 0;
-  }
-  .carousel-block {
-    margin-left: 15px !important;
-  }
-}
-@media (max-width: 992px) {
-  .leader-description {
-    font-size: .8rem;
-  }
-}
-
 @media (max-width: 1200px) {
   .header-logo {
       left: 40px;
@@ -1007,15 +1006,65 @@ Media
   }
 }
 @media (max-width: 768px) {
+  .timeline > li .timeline-image {
+    width: 100px !important;
+    height: 100px !important;
+    border: 2px solid #e9ecef !important;
+    margin-left: -8px !important;
+    top: 15px;
+}
+  .timeline:last-child .timeline-image {
+    bottom: 0;
+  }
+  .timeline li:first-child .timeline-image {
+    top: 0;
+  }
+  .carousel-block {
+    margin-left: 15px !important;
+  }
+  .select-triangle {
+    font-size: 20px;
+    top: 2px;
+  }
+  .day-of-week {
+    font-size: 25px;
+  }
+
+  .wait__schedule {
+    top: 40%;
+  }
+  form > div {
+    max-width: 90% !important;
+  }
+  .social-contacts {
+    font-size: 2rem;
+  }
+  /* Font-sizes */
   .leader-title,
   .group-title,
-  .carousel-title {
+  .events-title,
+  .gallery-title,
+  .schedule-title,
+  .contacts-title {
     font-size: 1.6rem;
   }
-  .group-description {
-    font-size: 1.3rem !important;
+  .carousel-title,
+  .schedule-change {
+    font-size: 1.4rem;
   }
-  .groups-description p {
-    font-size: 1rem !important;
+  .contacts-descr h3, h4 {
+    font-size: 1.2rem !important;
+  }
+  .section-descr,
+  .timeline-heading h4,
+  .schedule-descr,
+  .schedule-change {
+    font-size: 1.1rem;
+  }
+  .groups-description p,
+  .leader-description,
+  .timeline-description p,
+  .schedule-choice {
+    font-size: .8rem;
   }
 }

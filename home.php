@@ -14,7 +14,7 @@ get_header();
         <div class="row justify-content-center">
             <h1 class="leader-title"><?php the_field('leader_title'); ?></h1>
         </div>
-        <div class="container mt-2 mt-md-5">
+        <div class="container mt-3 mt-md-5">
             <div class="row align-items-center">
                 <div class="col-12 col-md-6 photo-leader">
                 <img class="img-leader" src="<?php the_field('leader_photo'); ?>">
@@ -40,14 +40,17 @@ get_header();
 
     <section id="groups" class="container-fluid mt-5 groups target-section">
         <div class="row justify-content-center">
-            <h1 class="text-center group-title"><?php the_field('group_title'); ?></h1>
+            <div class="col-12">
+                <h1 class="text-center group-title"><?php the_field('group_title'); ?></h1>
+            </div>
         </div>
         <div class="row justify-content-center">
-            <h3 class="text-center section-descr group-description"><?php the_field('group_description'); ?></h3>
+            <div class="col-12">
+                <h3 class="text-center section-descr group-description"><?php the_field('group_description'); ?></h3>     
+            </div>
         </div>
-
-        <div class="carousel row mt-2 mt-md-5">
-            <div class="carousel-block container pt-3 pt-md-5 pb-3">
+        <div class="row carousel mt-2 mt-md-5">
+            <div class="container carousel-block pt-3 pt-md-5 pb-3 mx-sm-auto">
                 <?php $carousel = get_field('carousel_setting'); ?>
                 <div class="row carousel-items h-100">
                     <div class="col-12 col-md-6 pr-md-5 my-auto">
@@ -88,7 +91,6 @@ get_header();
                         </div>                    
                     </div>
                 </div>
-
                 <div class="row mt-2 mt-md-5">
                     <div class="col dots-block text-center">
                         <ion-icon class="dots-items active" name="radio-button-on"></ion-icon>
@@ -104,7 +106,7 @@ get_header();
 
     <section id="events" class="container-fluid mt-5 events target-section">
         <div class="row justify-content-center">
-            <h1 class="text-center"><?php the_field('events_title'); ?></h1>
+            <h1 class="text-center events-title"><?php the_field('events_title'); ?></h1>
         </div>
         <div class="row justify-content-center">
             <h3 class="text-center section-descr"><?php the_field('events_description'); ?></h3>
@@ -166,12 +168,14 @@ get_header();
                         var max_pages = '<?php echo $wp_query->max_num_pages; ?>';
                         </script>
                     <?php endif; wp_reset_postdata(); ?>
-                </ul> 
+                </ul>
             </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <div class="timeline-image-lastchild">ДАЛЕЕ</div>
-        </div>
+        
+            <div class="timeline__showmore">
+                показать ещё<i class="fas fa-angle-down icon-showmore pl-2"></i>
+            </div>
+        
         <div class="d-flex justify-content-center">
             <div class="spinner-grow wait__posts" role="status">
                 <span class="sr-only">Loading...</span>
@@ -183,24 +187,24 @@ get_header();
     <section id="gallery" class="container-fluid mt-5 gallery target-section">
         <div class="container">
             <div class="row justify-content-center">
-                <h1 class="text-center"><?php the_field('gallery_title'); ?></h1>
+                <h1 class="text-center gallery-title"><?php the_field('gallery_title'); ?></h1>
             </div>
             <div class="row justify-content-center mb-5">
                 <h3 class="text-center section-descr"><?php the_field('gallery_description'); ?></h3>
             </div>
-            <?php echo do_shortcode('[foogallery id="231"]'); ?>
+            
         </div>            
             
     </section>
 
 
-    <section id="schedule" class="schedule vh-100 pt-5 mt-5 target-section parallax-window" data-parallax="scroll" data-image-src="<?php the_field('schedule_image'); ?>">
-        <div class="container schedule-custom-height-one">
+    <section id="schedule" class="schedule vh-100 mt-5 target-section parallax-window" data-parallax="scroll" data-image-src="<?php the_field('schedule_image'); ?>">
+        <div class="container schedule-custom-height-one pt-5">
             <div class="row justify-content-center">
-                <h1 class="text-center schedule-section-title"><?php the_field('schedule_title'); ?></h1>
+                <h1 class="text-center schedule-title"><?php the_field('schedule_title'); ?></h1>
             </div>
             <div class="row justify-content-center mt-3">
-                <h3 class="text-center schedule-section-descr"><?php the_field('schedule_description'); ?></h3>
+                <h3 class="text-center schedule-descr"><?php the_field('schedule_description'); ?></h3>
             </div>
         </div>
         <div class="container h-25">
@@ -224,11 +228,14 @@ get_header();
                     </div>
                 </div>
             </div>
+            <div class="spinner-grow wait__schedule" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
         </div>
-        <div class="container-fluid h-50" style="color: white; font-size: 48px;">
-            <div class="row justify-content-center h-100 align-items-center">
+        <div class="container-fluid" style="color: white; font-size: 48px; position: absolute;">
+            <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 col-xl align-self-center">
-                    <div class="row text-center monday">
+                    <div class="row text-center monday day-of-week">
                         <div class="col-3 col-xl-12 day">ПН</div>
                         <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
                         <div class="col-1 col-xl-12">-</div>
@@ -236,7 +243,7 @@ get_header();
                     </div>
                 </div>
                 <div class="col-lg-12 col-xl align-self-center">
-                    <div class="row text-center tuesday">
+                    <div class="row text-center tuesday day-of-week">
                         <div class="col-3 col-xl-12 day">ВТ</div>
                         <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
                         <div class="col-1 col-xl-12">-</div>
@@ -244,7 +251,7 @@ get_header();
                     </div>
                 </div>
                 <div class="col-lg-12 col-xl align-self-center">
-                    <div class="row text-center wednesday">
+                    <div class="row text-center wednesday day-of-week">
                         <div class="col-3 col-xl-12 day">СР</div>
                         <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
                         <div class="col-1 col-xl-12">-</div>
@@ -252,7 +259,7 @@ get_header();
                     </div>
                 </div>
                 <div class="col-lg-12 col-xl align-self-center">
-                    <div class="row text-center thursday">
+                    <div class="row text-center thursday day-of-week">
                         <div class="col-3 col-xl-12 day">ЧТ</div>
                         <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
                         <div class="col-1 col-xl-12">-</div>
@@ -260,7 +267,7 @@ get_header();
                     </div>
                 </div>
                 <div class="col-lg-12 col-xl align-self-center">
-                    <div class="row text-center friday">
+                    <div class="row text-center friday day-of-week">
                         <div class="col-3 col-xl-12 day">ПТ</div>
                         <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
                         <div class="col-1 col-xl-12">-</div>
@@ -268,7 +275,7 @@ get_header();
                     </div>
                 </div>
                 <div class="col-lg-12 col-xl align-self-center">
-                    <div class="row text-center saturday">
+                    <div class="row text-center saturday day-of-week">
                         <div class="col-3 col-xl-12 day">СБ</div>
                         <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
                         <div class="col-1 col-xl-12">-</div>
@@ -276,7 +283,7 @@ get_header();
                     </div>
                 </div>
                 <div class="col-lg-12 col-xl align-self-center">
-                    <div class="row text-center sunday">
+                    <div class="row text-center sunday day-of-week">
                         <div class="col-3 col-xl-12 day">ВС</div>
                         <div class="col-4 col-xl-12 mt-xl-5 text-right text-xl-center from"></div>
                         <div class="col-1 col-xl-12">-</div>
@@ -286,9 +293,7 @@ get_header();
             </div>
         </div>
         
-        <div class="spinner-grow wait__schedule" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+       
     </section>
 
 
@@ -296,10 +301,10 @@ get_header();
         <div class="row">
             <div class="col-12 col-xl-6" id="request" >
                 <div class="row justify-content-center">
-                    <h1 class="text-center">ЗАПИСЬ НА ЗАНЯТИЯ</h1>
+                    <h1 class="text-center contacts-title">ЗАПИСЬ НА ЗАНЯТИЯ</h1>
                 </div>
                 <form class="row align-content-center h-100">
-                    <div class="container" style="max-width: 60%;">                        
+                    <div class="container">                        
                         <div class="row">
                             <input name="contactName" type="text" placeholder="Имя" minlength="2" required="" aria-required="true" class="form-input w-100">
                         </div>
@@ -343,35 +348,35 @@ get_header();
             </div>
             <div class="col-12 col-xl-6 mt-5 mt-xl-0" id="contacts">
                 <div class="row justify-content-center">
-                    <h1 class="text-center">КОНТАКТЫ</h1>
+                    <h1 class="text-center contacts-title">КОНТАКТЫ</h1>
                 </div>
                 <div class="row align-content-center h-100 text-center">
-                    <div class="container">
-                        <div class="row my-5 mt-xl-0 ">
-                            <div class="col-12 col-md text-left text-md-center">
+                    <div class="container contacts-descr">
+                        <div class="row">
+                            <div class="col-4 col-md text-left text-md-center">
                                 <h3>Телефон</h3>
                             </div>
-                            <div class="col-12 col-md">
+                            <div class="col-8 col-md">
                                 <h4>8(888)888-88-88</h4>
                             </div>
                         </div>
-                        <div class="row mt-5">
-                            <div class="col-12 col-md text-left text-md-center">
+                        <div class="row mt-2 mt-md-5">
+                            <div class="col-4 col-md text-left text-md-center">
                                 <h3>Почта</h3>
                             </div>
-                            <div class="col-12 col-md">
+                            <div class="col-8 col-md">
                                 <h4>mail@mail.ru</h4>
                             </div>
                         </div>
-                        <div class="row mt-5">
-                            <div class="col-12 col-md text-left text-md-center">
+                        <div class="row mt-2 mt-md-5">
+                            <div class="col-4 col-md text-left text-md-center">
                                 <h3>Адрес</h3>
                             </div>
-                            <div class="col-12 col-md">
+                            <div class="col-8 col-md">
                                 <h4>г. Орел, ул. Орел, д. 1</h4>
                             </div>
                         </div>
-                        <div class="row mt-5 text-center">
+                        <div class="row mt-4 mt-md-5 text-center">
                             <div class="col">
                                 <i class="fab fa-vk social-contacts"></i>
                             </div>

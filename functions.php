@@ -296,7 +296,7 @@ function add_my_class_to_nav_menu( $classes, $item ){
 		[4] => menu-item-284
 	)
 	*/
-	$classes[] = 'my__class';
+	$classes[] = 'nav__li';
 
 	return $classes;
 }

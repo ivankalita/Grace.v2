@@ -237,11 +237,15 @@ jQuery(function($){
         /*---------------------------------------------------- */ 
         function dropList(target, scheduleChoice, scheduleGroup, selectTriangle) {
             if ($(target).attr('data-collapse') == 'true') {
+                $('.schedule').css('box-shadow', 'inset 0px 0px 20px 1600px rgba(0,0,0,.8)');
+                $('.day').css('color', '#af2b2b6b');
                 $(scheduleGroup).css('opacity', 1).parent().css('z-index', 1);
                 $(scheduleChoice).removeClass('animated fadeOutUp').addClass('animated fadeInDown');
                 $(target).attr('data-collapse', 'false');
                 $(selectTriangle).css('transform', 'rotate(180deg)');
             } else {
+                $('.schedule').css('box-shadow', '');
+                $('.day').css('color', '#AF2B2B');
                 $(scheduleChoice).removeClass('animated fadeInDown').addClass('animated fadeOutUp');
                 $(target).attr('data-collapse', 'true');
                 $(selectTriangle).css('transform', 'rotate(0deg)');
@@ -306,57 +310,32 @@ jQuery(function($){
             saturday = $('.saturday'),
             sunday = $('.sunday');
 
-            $(monday).find('.from').text(schedule['monday']['from']);
+            $(monday).find('.from').text(schedule['monday']['from']).addClass('animated fadeIn');
             $(monday).find('.to').text(schedule['monday']['to']);
-            if (!$(monday).find('.from').text()) {
-                $(monday).find('.from').css('height', '72px');
-                $(monday).find('.to').css('height', '72px');
-            }
+
             $(tuesday).find('.from').text(schedule['tuesday']['from']);
             $(tuesday).find('.to').text(schedule['tuesday']['to']);
-            if (!$(tuesday).find('.from').text()) {
-                $(tuesday).find('.from').css('height', '72px');
-                $(tuesday).find('.to').css('height', '72px');
-            }
+
             $(wednesday).find('.from').text(schedule['wednesday']['from']);
             $(wednesday).find('.to').text(schedule['wednesday']['to']);
-            if (!$(wednesday).find('.from').text()) {
-                $(wednesday).find('.from').css('height', '72px');
-                $(wednesday).find('.to').css('height', '72px');
-            }
+
             $(thursday).find('.from').text(schedule['thursday']['from']);
             $(thursday).find('.to').text(schedule['thursday']['to']);
-            if (!$(thursday).find('.from').text()) {
-                $(thursday).find('.from').css('height', '72px');
-                $(thursday).find('.to').css('height', '72px');
-            }
+
             $(friday).find('.from').text(schedule['friday']['from']);
             $(friday).find('.to').text(schedule['friday']['to']);
-            if (!$(friday).find('.from').text()) {
-                $(friday).find('.from').css('height', '72px');
-                $(friday).find('.to').css('height', '72px');
-            }
+
             $(saturday).find('.from').text(schedule['saturday']['from']);
             $(saturday).find('.to').text(schedule['saturday']['to']);
-            if (!$(saturday).find('.from').text()) {
-                $(saturday).find('.from').css('height', '72px');
-                $(saturday).find('.to').css('height', '72px');
-            }
+
             $(sunday).find('.from').text(schedule['sunday']['from']);
             $(sunday).find('.to').text(schedule['sunday']['to']);
-            if (!$(sunday).find('.from').text()) {
-                $(sunday).find('.from').css('height', '72px');
-                $(sunday).find('.to').css('height', '72px');
-            }
+
         }
 
         $('.schedule-change').hover(function() {
-            $(this).css({'color': 'black',
-                        'background': '#ffffff7d'});
             $('.select-triangle').css('color', 'black');
         }, function() {
-            $(this).css({'color': 'white',
-                        'background': 'transparent'});
             $('.select-triangle').css('color', 'white');
         })
 
