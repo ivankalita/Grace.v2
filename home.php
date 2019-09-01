@@ -38,7 +38,7 @@ get_header();
     </section>
 
 
-    <section id="groups" class="container-fluid mt-5 groups target-section">
+    <section id="groups" class="container-fluid mt-5 groups target-section vh-xl-100">
         <div class="row justify-content-center">
             <div class="col-12">
                 <h1 class="text-center group-title"><?php the_field('group_title'); ?></h1>
@@ -172,15 +172,18 @@ get_header();
             </div>
         </div>
         
-            <div class="timeline__showmore">
+            <!-- <div class="timeline__showmore">
                 показать ещё<i class="fas fa-angle-down icon-showmore pl-2"></i>
-            </div>
-        
-        <div class="d-flex justify-content-center">
-            <div class="spinner-grow wait__posts" role="status">
-                <span class="sr-only">Loading...</span>
+            </div> -->
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="timeline__showmore">
+                    <span class="spinner-border spinner-border-sm wait__posts" role="status" aria-hidden="true"></span>
+                    <span class="button__text text-nowrap">показать ещё</span>          
+                </div>
             </div>
         </div>
+
     </section>
 
 
@@ -192,14 +195,14 @@ get_header();
             <div class="row justify-content-center mb-5">
                 <h3 class="text-center section-descr"><?php the_field('gallery_description'); ?></h3>
             </div>
-            
+            <?php echo do_shortcode('[rl_gallery id="300"]'); ?>
         </div>            
             
     </section>
 
-
-    <section id="schedule" class="schedule target-section parallax-window" data-parallax="scroll" data-image-src="<?php the_field('schedule_image'); ?>">
-        <div class="container">
+    <?php echo get_template_directory_uri() . '/assets/images/schedule.jpg'; ?>
+    <section id="schedule" class="schedule target-section parallax-window" data-parallax="scroll">
+        <div class="container pt-5">
             <div class="row justify-content-center">
                 <h1 class="text-center schedule-title"><?php the_field('schedule_title'); ?></h1>
             </div>
@@ -357,7 +360,7 @@ get_header();
                                 <h3>Телефон</h3>
                             </div>
                             <div class="col-8 col-md">
-                                <h4>8(888)888-88-88</h4>
+                                <h4><?php echo the_field('phone_footer'); ?></h4>
                             </div>
                         </div>
                         <div class="row mt-2 mt-md-5">
@@ -365,7 +368,7 @@ get_header();
                                 <h3>Почта</h3>
                             </div>
                             <div class="col-8 col-md">
-                                <h4>mail@mail.ru</h4>
+                                <h4><?php echo the_field('mail_footer'); ?></h4>
                             </div>
                         </div>
                         <div class="row mt-2 mt-md-5">
@@ -373,10 +376,22 @@ get_header();
                                 <h3>Адрес</h3>
                             </div>
                             <div class="col-8 col-md">
-                                <h4>г. Орел, ул. Орел, д. 1</h4>
+                                <h4><?php echo the_field('adress_footer'); ?></h4>
                             </div>
                         </div>
                         <div class="row mt-4 mt-md-5 text-center">
+                            <?php
+                                $socials = get_field('footer_social');
+                                if( $socials ): ?>
+                                    <?php foreach( $socials as $social ): ?>
+                                        <div class="col social-contacts">
+                                            <?php echo $social; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <!-- <div class="row mt-4 mt-md-5 text-center">
                             <div class="col">
                                 <i class="fab fa-vk social-contacts"></i>
                             </div>
@@ -384,12 +399,28 @@ get_header();
                                 <i class="fab fa-odnoklassniki social-contacts"></i>
                             </div>
                             <div class="col">
-                                <i class="fas fa-map-signs social-contacts"></i>
+                                <a class="cursor" href="#" data-toggle="modal" data-target="#modalRegular"><i class="fas fa-map-marker-alt social-contacts"></i></a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>  
                 </div>
+            </div>
+        </div>
 
+        <div class="modal fade" id="modalRegular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="width: auto;">
+                <div class="modal-content">
+                    <div class="modal-body mb-0 p-0 overflow-hidden">
+                        <div id="map-container-google-16" class="z-depth-1-half map-container-9" >
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2403.3390441028546!2d36.07069047210828!3d52.96031501125605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41321a74211a181b%3A0xac6a8617932c6904!2z0YPQuy4g0JPQsNCz0LDRgNC40L3QsCwgMjMsINCe0YDRkdC7LCDQntGA0LvQvtCy0YHQutCw0Y8g0L7QsdC7LiwgMzAyMDAx!5e0!3m2!1sru!2sru!4v1555260906557!5m2!1sru!2sru"
+                                    width="600" height="450" frameborder="0" style="border:0" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-outline-info btn-md" data-dismiss="modal">Закрыть<i class="fas fa-times ml-1"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

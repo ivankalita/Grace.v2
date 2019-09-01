@@ -67,7 +67,11 @@
                 if( $socials ): ?>
                 <ul class="home-social d-none d-xl-block">
                     <?php foreach( $socials as $social ): ?>
-                        <li><?php echo $social; ?></li>
+                        <li>
+                            <!-- <a href="https://vk.com/id152043235"> -->
+                            <?php echo $social; ?>
+                            <!-- </a> -->
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>

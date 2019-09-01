@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700i&display=swap&subset=cyrillic');
 @import url("iconic/css/iconmonstr-iconic-font.min.css");
 @import url("media.css");
 
@@ -225,6 +225,7 @@ a {
   color: #ffffff;
   font-size: 1rem;
   padding: 0 !important;
+  font-weight: 700;
 }
  .header-nav-wrap {
   position: absolute;
@@ -289,6 +290,7 @@ a {
   font-size: 6rem;
   line-height: 1.35;
   margin-top: 0;
+  font-style: italic;
 }
 
 .home-content__main {
@@ -347,7 +349,7 @@ a {
   position: absolute;
   bottom: 0;
   right: 40px;
-  width: 75px
+  width: 90px
 }
 
 .home-social::after {
@@ -355,10 +357,10 @@ a {
   content: "";
   height: 10rem;
   width: 1px;
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: #FFFFFF;
   position: absolute;
   bottom: 0;
-  right: 1rem;
+  right: 1.3rem;
 }
 
 .home-social a {
@@ -378,7 +380,7 @@ a {
   line-height: 3.6rem;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  font-size: 1.8rem;
+  font-size: 3.2rem;
   -webkit-transform: scale(0.7);
   -ms-transform: scale(0.7);
   transform: scale(0.7);
@@ -396,6 +398,9 @@ a {
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
+}
+.data-scroll:hover {
+  color: #AF2B2B;
 }
 /* button modifiers
  * ------------------------------------------------- */
@@ -487,7 +492,7 @@ button::-moz-focus-inner {
   background-color: #F1F1F1;
 }
 .carousel-block {
-  /* width: 100% !important; */
+  /* max-width: 88%; */
   height: 100%;
   overflow: hidden;
 }
@@ -533,25 +538,26 @@ button::-moz-focus-inner {
 }
 .timeline__showmore {
   font-size: 1.2rem;
-  position: absolute;
-  left: 45%;
-  bottom: 4%;
-  text-transform: uppercase;
+  padding: 10px 20px;
+  font-weight: 700;
+  border: 2px solid black;
   cursor: pointer;
   transition: .5s all linear;
   color: #000000;
 }
 .timeline__showmore:hover {
-  color: #AF2B2B;
+  color: #FFFFFF;
+  border-color: #000000;
+  background-color: #000000;
 }
-.icon-showmore {
-  font-size: 16px !important;
-  color: #000000;
-  transition: .5s all linear;
+.button__text {
+  text-transform: uppercase;
 }
-.icon-showmore:hover {
-  color: #AF2B2B;
+.wait__posts {
+  position: relative;
+  bottom: 4px;
 }
+
 .timeline > li {
     position: relative;
     min-height: 50px;
@@ -650,7 +656,7 @@ button::-moz-focus-inner {
     /* width: inherit; */
     height: auto;
     min-height: 768px;
-    background-color: #6D6D6D;
+    background-image: url("../images/schedule.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -925,7 +931,7 @@ Media
       display: block !important;
   }
   .timeline > li {
-      min-height: 170px;
+      min-height: 240px;
   }
   .timeline > li .timeline-panel {
       padding: 0 20px 0 100px;
@@ -937,6 +943,9 @@ Media
   }
   .timeline > li .timeline-image h4 {
       margin-top: 40px;
+  }
+  .carousel-block {
+    max-width: 88% !important;
   }
 }
 

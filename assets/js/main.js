@@ -213,7 +213,12 @@ jQuery(function($){
         }
         /****************************************************** */
         
-        
+        //* 
+        /*---------------------------------------------------- */ 
+
+
+        //* Schedule
+        /*---------------------------------------------------- */ 
         $('.schedule').on('click', function(e) {
             var target = getTarget(e),
                 scheduleChange = $('.schedule-change'),
@@ -227,15 +232,12 @@ jQuery(function($){
                 selectChoice(target, scheduleChange, scheduleChoice, scheduleGroup);
             }
         })
-
         function getTarget(e) {
             if (!e) {
                 e = window.event;
             }
             return e.target || e.srcElement;
         }
-        //* Анимация выпадающего списка
-        /*---------------------------------------------------- */ 
         function dropList(target, scheduleChoice, scheduleGroup, selectTriangle) {
             if ($(target).attr('data-collapse') == 'true') {
                 $('.schedule').css('box-shadow', 'inset 0px 0px 20px 1600px rgba(0,0,0,.8)');
@@ -253,7 +255,6 @@ jQuery(function($){
                 $(scheduleGroup).parent().css('z-index', -10);
             }
         }
-
         function selectChoice(target, scheduleChange, scheduleChoice, scheduleGroup) {
             var value = $(target).text();
 
@@ -263,6 +264,7 @@ jQuery(function($){
             $(scheduleChoice).removeClass('animated fadeInDown').addClass('animated fadeOutUp');
             $(scheduleChange).attr('data-collapse', 'true');
             $(scheduleGroup).parent().css('z-index', -10);
+            $('.day').css('color', '#AF2B2B');
             
         }
         function matchingLabels(value) {
@@ -302,7 +304,6 @@ jQuery(function($){
                 }
 			})
         }
-
         function pasteTimeInSchedule(schedule) {
             var monday = $('.monday'),
             tuesday = $('.tuesday'),
@@ -334,17 +335,19 @@ jQuery(function($){
             $(sunday).find('.to').text(schedule['sunday']['to']);
 
             // setTimeout(() => {
-                $('.schedule').css('box-shadow', '');
+            $('.schedule').css('box-shadow', '');
+            
             // }, 500);
         }
-
+        /****************************************************** */
+        
+        
         $('.schedule-change').hover(function() {
             $('.select-triangle').css('color', 'black');
         }, function() {
             $('.select-triangle').css('color', 'white');
         })
-
-
+        $('.schedule').parallax({imageSrc: 'http://wordpress/wp-content/themes/grace/assets/images/schedule.jpg'});
         /****************************************************** */
     })
 })
