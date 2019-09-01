@@ -223,6 +223,7 @@ jQuery(function($){
 
             if ($(target).hasClass('schedule-change') || $(target).hasClass('select-triangle')) dropList(target, scheduleChoice, scheduleGroup, selectTriangle);
             if ($(target).hasClass('schedule-choice')) {
+                
                 selectChoice(target, scheduleChange, scheduleChoice, scheduleGroup);
             }
         })
@@ -257,11 +258,12 @@ jQuery(function($){
             var value = $(target).text();
 
             getDayTime(matchingLabels(value.trim()));
-
+            
             $(scheduleChange).html(value + '<i class=\"fas fa-caret-down select-triangle\"></i>');
             $(scheduleChoice).removeClass('animated fadeInDown').addClass('animated fadeOutUp');
             $(scheduleChange).attr('data-collapse', 'true');
             $(scheduleGroup).parent().css('z-index', -10);
+            
         }
         function matchingLabels(value) {
             var valueLabel = {
@@ -331,6 +333,9 @@ jQuery(function($){
             $(sunday).find('.from').text(schedule['sunday']['from']);
             $(sunday).find('.to').text(schedule['sunday']['to']);
 
+            // setTimeout(() => {
+                $('.schedule').css('box-shadow', '');
+            // }, 500);
         }
 
         $('.schedule-change').hover(function() {

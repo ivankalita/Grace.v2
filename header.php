@@ -14,7 +14,7 @@
 
         <div class="header-logo">
             <a class="site-logo" href="<?php echo home_url(); ?>">
-                <img width="120" src="<?php echo get_option('logo'); ?>" alt="Логотип студии восточных танцев 'Грация'">
+                <img width="120" src="<?php echo get_field('logo'); ?>" alt="Логотип студии восточных танцев 'Грация'">
             </a>
         </div>
             

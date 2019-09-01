@@ -650,7 +650,7 @@ button::-moz-focus-inner {
     /* width: inherit; */
     height: auto;
     min-height: 768px;
-    /* background-image: url("../images/schedule.jpg"); */
+    background-color: #6D6D6D;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

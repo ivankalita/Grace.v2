@@ -198,8 +198,8 @@ get_header();
     </section>
 
 
-    <section id="schedule" class="schedule vh-100 mt-5 target-section parallax-window" data-parallax="scroll" data-image-src="<?php the_field('schedule_image'); ?>">
-        <div class="container schedule-custom-height-one pt-5">
+    <section id="schedule" class="schedule target-section parallax-window" data-parallax="scroll" data-image-src="<?php the_field('schedule_image'); ?>">
+        <div class="container">
             <div class="row justify-content-center">
                 <h1 class="text-center schedule-title"><?php the_field('schedule_title'); ?></h1>
             </div>
@@ -207,7 +207,7 @@ get_header();
                 <h3 class="text-center schedule-descr"><?php the_field('schedule_description'); ?></h3>
             </div>
         </div>
-        <div class="container h-25">
+        <div class="container">
             <div class="row mt-3 text-center">
                 <?php $groups = get_field_object('schedule_select'); ?>
                 <div class="col-12" style="z-index: 10">
@@ -232,7 +232,7 @@ get_header();
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <div class="container-fluid" style="color: white; font-size: 48px; position: absolute;">
+        <div class="container-fluid" style="color: white; font-size: 48px;">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 col-xl align-self-center">
                     <div class="row text-center monday day-of-week">
