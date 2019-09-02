@@ -20,8 +20,12 @@ add_action('wp_ajax_nopriv_daytime', 'true_get_time');
 add_filter('nav_menu_link_attributes', 'add_class_to_all_menu_anchors', 10 ); // хук на добавление класса к тегу <a> ссылки в меню
 add_filter( 'nav_menu_css_class', 'add_my_class_to_nav_menu', 10, 2 ); // Добавление custom class к тегу li меню
 
-
 add_theme_support( 'post-thumbnails' ); // Добавить постам миниатюру
+
+remove_action('wp_head', 'rsd_link');
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'wp_generator');
+show_admin_bar(false);
 
 
 function load_styles_scritps_fonts() {
