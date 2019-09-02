@@ -18,27 +18,75 @@ jQuery(function($){
 				'query': true_posts,
 				'page' : current_page
 			};
+		
 			$.ajax({
-				url:ajaxurl, // обработчик
-				data:data, // данные
-				type:'POST', // тип запроса
+				url: ajaxurl, // обработчик
+				data: data, // данные
+				type: 'POST', // тип запроса
 				success:function(data){
 					if( data ) {
-						var last_child = '';
-						$('.timeline li:last').after(data); // вставляем новые посты
+						
+						$('.timeline > li:last').after(data);
+						console.log($('.timeline').text());
+						// Добавление галереи поста
+						var index_item = $('.timeline-image');
+						index_item.on('click', function(e) {
+
+							var index = $(this).parent().index();
+							var body = $('.timeline').children().eq(index).find('.timeline-gallery');
+							var bodyHtml = $(body).html();
+							
+						
+							if (+bodyHtml || isNaN(+bodyHtml)) notsendAjax(index, body);
+							else sendAjax(index, body);     
+						
+							e.preventDefault();
+						})
+						/////////////////
+
 						$('.wait__posts').hide();
 						$('.button__text').text('показать ещё');
-						current_page++; // увеличиваем номер страницы на единицу
+						current_page++; 
 						if (current_page == max_pages) {
-							$(".timeline__showmore").remove(); // если последняя страница, удаляем кнопку
+							$(".timeline__showmore").remove(); 
 							$(".timeline-lastchild").remove();
 						}
 					} else {
-						$('.timeline__showmore').remove(); // если мы дошли до последней страницы постов, скроем кнопку
+						$('.timeline__showmore').remove();
 						$(".timeline-lastchild").remove();
 					}
+				},
+				error: function(e) {
+					console.log(e);
 				}
 			})
+
+			function sendAjax(index, body) {
+				console.log(index);
+				var data = {
+					'action': 'showgallerypost',
+					'index': index
+				};
+	
+				$.ajax({
+					url: ajaxurl, // обработчик
+					data: data, // данные
+					type: 'POST', // тип запроса
+					success: function(data) {
+	
+						$(body).append(data);
+						console.log('success');
+						$(body).lightGallery().find('a').first().trigger('click');
+						console.log('sendAjax');
+					}
+				})
+			}
+	
+			function notsendAjax(index,body) {
+				console.log(index);
+				$(body).lightGallery().children().first().trigger('click');
+				console.log('notsendAjax');
+			}
 		})
 	})
 	})

@@ -144,40 +144,59 @@ function validate_setting($plugin_options) {
 
 function true_load_posts(){
  
-	$args = unserialize( stripslashes( $_POST['query'] ) );
-	$args['paged'] = $_POST['page'] + 1; // следующая страница
-	$args['post_status'] = 'publish';
- 
-	// обычно лучше использовать WP_Query, но не здесь
-	query_posts( $args );
+	$args = array(
+		'numberposts' => -1,
+		'post_type' => 'post',
+		'suppress_filters' => true,
+	);
+
+	
+	$posts = get_posts($args);
+	$posts_per_page = get_option('posts_per_page');
+	$current_page = $_POST['page'];
+	$start_frame = $posts_per_page  * $current_page;
+	$end_frame = $posts_per_page;
+
+	$new_posts = array_slice( $posts, $start_frame, $end_frame);
+	// echo "<pre>"; print_r($new_posts[1]); echo "</pre>";
+	$current_page++; // следующая страница
+
+
 	// если посты есть
-	if( have_posts() ) :
- 
+	if ( $new_posts ) {
+
 		// запускаем цикл
-		while( have_posts() ): the_post(); ?>
- 
+		foreach ( $new_posts as $new_post) { 
+			?>
+			
 		<li>
 			<div class="timeline-image">
-				<img class="rounded-circle img-fluid" src="<?php the_post_thumbnail_url( $size ); ?>" alt="">
+				<img class="rounded-circle img-fluid" src="<?php echo get_the_post_thumbnail_url( $new_post->ID, $size ); ?>" alt="">
 			</div>
 			<div class="timeline-panel">
 				<div class="timeline-heading">
 					<h4>
-						<?php the_time('j F Y'); ?>
+						<?php print($new_post->post_date); ?>
 					</h4>
 					<h4 class="subheading">
-						<?php the_title(); ?>
+						<?php print($new_post->post_title); ?>
 					</h4>
 				</div>
 				<div class="timeline-body">
-					
+					<div class="timeline-description">
+						<?php   $content = $new_post->post_content;
+								$postOutput = preg_replace('/(<)([img])(\w+)([^>]*>)/', "", $content);
+								echo $postOutput;
+						?>
+					</div>
+					<div class="timeline-gallery"></div>
 				</div>
 			</div>
 		</li>
- 
-	<?php endwhile;
-		  endif;
-		  die();
+
+		<?php };
+		die;
+	}
 }
 
 function true_show_images() {
@@ -185,7 +204,7 @@ function true_show_images() {
 	$index = $_POST['index']; // принимаем индекс элемента массива, который отработал клик
 
 	$posts = get_posts( array(
-		'numberposts' => 0,
+		'numberposts' => -1,
 		'orderby'     => 'date',
 		'order'		  => 'DESC',
 		'post_type'   => 'post',

@@ -1,6 +1,5 @@
 jQuery(function($){
 	$(document).ready(function() {
-        console.log('showgallerypost');
 
         var index_item = $('.timeline-image');
 

@@ -2,7 +2,9 @@
 
 get_header();
 ?>
-
+    <script>
+        var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
+    </script>
     <div class="return-up">
         <a href="#header" class="data-scroll">
             <i class="im im-angle-up icon-up"></i>
@@ -123,9 +125,8 @@ get_header();
 
                     $posts = get_posts($args);
 
-                    foreach($posts as $post) { setup_postdata($post);
-                        
-
+                    foreach($posts as $post) {
+                        setup_postdata($post);
                 ?>
                     <li>
                         <div class="timeline-image">
@@ -155,14 +156,13 @@ get_header();
                     <?php };
 
                     wp_reset_postdata();
-
+                    
                     $published_posts = wp_count_posts()->publish;
                     $posts_per_page = get_option('posts_per_page');
                     $wp_query->max_num_pages = ceil($published_posts / $posts_per_page);
-
-                    if (  $wp_query->max_num_pages > 1 ) : ?>
+                
+                    if (  $wp_query->max_num_pages > 1 ) :  ?>
                     	<script>
-                        var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
                         var true_posts = '<?php echo serialize($wp_query->query_vars); ?>';
                         var current_page = <?php echo (get_query_var('paged')) ? get_query_var('paged') : 1; ?>;
                         var max_pages = '<?php echo $wp_query->max_num_pages; ?>';
@@ -186,7 +186,6 @@ get_header();
 
     </section>
 
-
     <section id="gallery" class="container-fluid mt-5 gallery target-section">
         <div class="container">
             <div class="row justify-content-center">
@@ -195,12 +194,12 @@ get_header();
             <div class="row justify-content-center mb-5">
                 <h3 class="text-center section-descr"><?php the_field('gallery_description'); ?></h3>
             </div>
-            <?php echo do_shortcode('[rl_gallery id="300"]'); ?>
+            
         </div>            
             
     </section>
 
-    <?php echo get_template_directory_uri() . '/assets/images/schedule.jpg'; ?>
+    
     <section id="schedule" class="schedule target-section parallax-window" data-parallax="scroll">
         <div class="container pt-5">
             <div class="row justify-content-center">
