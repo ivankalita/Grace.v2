@@ -25,12 +25,15 @@ jQuery(function($){
 				type: 'POST', // тип запроса
 				success:function(data){
 					if( data ) {
-						
+					
 						$('.timeline > li:last').after(data);
-						console.log($('.timeline').text());
+						$('.timeline:before').addClass('animated fadeIn');
+
+						
+
 						// Добавление галереи поста
 						var index_item = $('.timeline-image');
-						index_item.on('click', function(e) {
+						$(index_item).on('click', function(e) {
 
 							var index = $(this).parent().index();
 							var body = $('.timeline').children().eq(index).find('.timeline-gallery');
@@ -46,6 +49,7 @@ jQuery(function($){
 
 						$('.wait__posts').hide();
 						$('.button__text').text('показать ещё');
+						$('.timeline__showmore').css('background-color', '');
 						current_page++; 
 						if (current_page == max_pages) {
 							$(".timeline__showmore").remove(); 

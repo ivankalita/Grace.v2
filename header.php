@@ -7,15 +7,69 @@
     <title><?php bloginfo(name); ?></title>
     
     <?php wp_head() ?>
+    <style>
+    .loaderArea {
+        background: #353232;
+        overflow: hidden;
+        position: fixed;
+        left: 0;
+        top: 0;
+        right:0;
+        bottom:0;
+        z-index: 1000;
+        transition: 1.8s all linear;
+        transition-delay: .5s;
+    }
+    .loader {
+        position: fixed;
+        width: 3rem;
+        height: 3rem;
+        top: 50%;
+        left: 50%;
+        color: #AF2B2B;
+        transition: .8s all linear;
+        /* z-index: 500; */
+    }
+    .visible {
+        visibility: visible;
+        opacity: 1;
+    }
+    .hidden {
+        visibility: hidden;
+        opacity: 0;
+    }
+    </style>
 </head>
 <body>
+    <script>
+        document.addEventListener("DOMContentLoaded", NProgress.start());
+        window.onload = function() {
+            setTimeout(function() {
+                var loaderEl = document.querySelector(".loader");
+                var loaderAreaEl = document.querySelector(".loaderArea");
+
+                NProgress.done();
+                loaderEl.classList.add('hidden');
+                loaderEl.classList.remove('visible');
+                loaderAreaEl.style.background = 'transparent';
+                loaderAreaEl.remove();
+            }, 1000);
+        }
+    </script>
+
+    <div class="loaderArea">
+        <div class="spinner-grow loader visible" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    
+    </div>
     <?php if(is_front_page()) {?>
     
     <nav class="s-header">
 
         <div class="header-logo">
             <a class="site-logo" href="<?php echo home_url(); ?>">
-                <img width="120" src="<?php echo get_field('logo'); ?>" alt="Логотип студии восточных танцев 'Грация'">
+                <img src="<?php echo get_field('logo'); ?>" alt="Логотип студии восточных танцев 'Грация'">
             </a>
         </div>
             

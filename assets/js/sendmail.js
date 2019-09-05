@@ -76,9 +76,11 @@ jQuery(function($){
             if (nameVal && !(nameVal.indexOf(" ") + 1) && validName && validCenzName) {
                 trig_name = true;
                 $(this).removeClass('error');
+                $('#nameHelpBlock').fadeOut();
             } else {
                 trig_name = false;
                 $(this).addClass('error');
+                $('#nameHelpBlock').fadeIn();
             }
         })
         /* Валидация поля Фамилии
@@ -99,9 +101,11 @@ jQuery(function($){
             if (surnameVal && !(surnameVal.indexOf(" ") + 1) && validSurname && validCenzSurname) {
                 trig_surname = true;
                 $(this).removeClass('error');
+                $('#surnameHelpBlock').fadeOut();
             } else {
                 trig_surname = false;
                 $(this).addClass('error');
+                $('#surnameHelpBlock').fadeIn();
             }
         })
         /* Валидация поля Возраста
@@ -112,12 +116,14 @@ jQuery(function($){
             var age = $('[name="contactAge"]');
             var ageVal = $(age).val();
 
-            if (ageVal && (ageVal > 3 && ageVal < 160))  {
+            if (ageVal && (ageVal > 3 && ageVal <= 160))  {
                 trig_age = true;
                 $(age).removeClass('error');
+                $('#ageHelpBlock').fadeOut();
             } else {
                 trig_age = false;
                 $(age).addClass('error');
+                $('#ageHelpBlock').fadeIn();
             }
         }
         /* Валидация поля Почты
@@ -129,9 +135,11 @@ jQuery(function($){
             if (emailVal != undefined && emailVal && validEmail) {
                 trig_email = true;
                 $(this).removeClass('error');
+                $('#mailHelpBlock').fadeOut();
             } else {
                 trig_email = false;
                 $(this).addClass('error');
+                $('#mailHelpBlock').fadeIn();
             }
         })
         /* Валидация поля Телефон
@@ -165,10 +173,11 @@ jQuery(function($){
                 $('.waitsend').css('display', 'block');
                 sendAjaxForm(name, surname, age, email, phone, extraMsg);
             } else {
-            if (trig_name && trig_surname && trig_age && (trig_email || trig_phone) && Cookies.get('flag') == 'true') {
-                // $('#Request').modal('show');
-            }
-        }
+                $('#send').addClass('animated shake');
+                setTimeout(()=>{
+                    $('#send').removeClass('animated shake');
+                }, 1000);
+            }        
         e.preventDefault();    
         }); 
     });

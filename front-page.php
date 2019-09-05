@@ -5,6 +5,9 @@ get_header();
     <script>
         var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
     </script>
+
+
+
     <div class="return-up">
         <a href="#header" class="data-scroll">
             <i class="im im-angle-up icon-up"></i>
@@ -54,43 +57,55 @@ get_header();
         <div class="row carousel mt-2 mt-md-5">
             <div class="container carousel-block pt-3 pt-md-5 pb-3 mx-sm-auto">
                 <?php $carousel = get_field('carousel_setting'); ?>
-                <div class="row carousel-items h-100">
+                <div class="row carousel-items">
                     <div class="col-12 col-md-6 pr-md-5 my-auto">
                         <img  class="img-fluid" src="<?php echo $carousel["carousel_image1"]; ?>">
                     </div>
                     <div class="col-12 col-md-6 text-center text-md-left my-auto">
-                        <div class="row mt-2">
-                            <h1 class="carousel-title d-inline-flex d-md-block"><?php echo $carousel["carousel_title1"]; ?></h1>
+                        <div class="container-fluid">
+                            <div class="row mt-2">
+                                <h1 class="carousel-title d-inline-flex d-md-block"><?php echo $carousel["carousel_title1"]; ?></h1>
+                            </div>
                         </div>
-                        <div class="row groups-description">
-                            <?php echo $carousel["carousel_text1"]; ?>
-                        </div>                    
+                        <div class="container-fluid">
+                            <div class="row groups-description">
+                                <?php echo $carousel["carousel_text1"]; ?>
+                            </div>  
+                        </div>
                     </div>
                 </div>
-                <div class="row carousel-items h-100">
+                <div class="row carousel-items">
                     <div class="col-12 col-md-6 order-2 order-md-1 text-center text-md-right my-auto">
-                        <div class="row mt-2">
-                            <h1 class="carousel-title"><?php echo $carousel["carousel_title2"]; ?></h1>
+                        <div class="container-fluid">
+                            <div class="row mt-2">
+                                <h1 class="carousel-title"><?php echo $carousel["carousel_title2"]; ?></h1>
+                            </div>
                         </div>
-                        <div class="row groups-description">
-                            <?php echo $carousel["carousel_text2"]; ?>
-                        </div>                    
+                        <div class="container-fluid">
+                            <div class="row groups-description">
+                                <?php echo $carousel["carousel_text2"]; ?>
+                            </div>   
+                        </div>                 
                     </div>
                     <div class="col-12 col-md-6 order-1 order-md-2 pr-md-5 my-auto">
                         <img  class="img-fluid" src="<?php echo $carousel["carousel_image2"]; ?>">
                     </div>
                 </div>
-                <div class="row carousel-items h-100">
+                <div class="row carousel-items">
                     <div class="col-12 col-md-6 pr-md-5 my-auto">
                         <img  class="img-fluid" src="<?php echo $carousel["carousel_image3"]; ?>">
                     </div>
                     <div class="col-12 col-md-6 text-center text-md-left my-auto">
-                        <div class="row mt-2">
-                            <h1 class="carousel-title"><?php echo $carousel["carousel_title3"]; ?></h1>
+                        <div class="container-fluid">
+                            <div class="row mt-2">
+                                <h1 class="carousel-title"><?php echo $carousel["carousel_title3"]; ?></h1>
+                            </div>
                         </div>
-                        <div class="row groups-description">
-                            <?php echo $carousel["carousel_text3"]; ?>
-                        </div>                    
+                        <div class="container-fluid">
+                            <div class="row groups-description">
+                                <?php echo $carousel["carousel_text3"]; ?>
+                            </div>   
+                        </div>                 
                     </div>
                 </div>
                 <div class="row mt-2 mt-md-5">
@@ -131,6 +146,7 @@ get_header();
                     <li>
                         <div class="timeline-image">
                             <img class="rounded-circle img-fluid" src="<?php the_post_thumbnail_url( $size ); ?>" alt="">
+                            <i class="fas fa-camera-retro gallery__more"></i>
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -186,15 +202,21 @@ get_header();
 
     </section>
 
-    <section id="gallery" class="container-fluid mt-5 gallery target-section">
+    <section id="gallery" class="container-fluid my-5 gallery target-section">
         <div class="container">
             <div class="row justify-content-center">
                 <h1 class="text-center gallery-title"><?php the_field('gallery_title'); ?></h1>
             </div>
-            <div class="row justify-content-center mb-5">
+            <div class="row justify-content-center mb-3">
                 <h3 class="text-center section-descr"><?php the_field('gallery_description'); ?></h3>
             </div>
-            
+            <div class="row">
+                <div class="gallery__block">
+                <?php
+                    echo apply_filters('delete_wrap_filter', get_page(62)->post_content);
+                ?>
+                </div>
+            </div>
         </div>            
             
     </section>
@@ -294,59 +316,78 @@ get_header();
                 </div>
             </div>
         </div>
-        
-       
     </section>
 
 
     <section id="contacts" class="container-fluid contacts target-section py-5">
         <div class="row">
-            <div class="col-12 col-xl-6" id="request" >
-                <div class="row justify-content-center">
-                    <h1 class="text-center contacts-title">ЗАПИСЬ НА ЗАНЯТИЯ</h1>
+            <div class="col-12 col-xl-6" id="request">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <h1 class="text-center contacts-title">ЗАПИСЬ НА ЗАНЯТИЯ</h1>
+                    </div>
                 </div>
-                <form class="row align-content-center h-100">
-                    <div class="container">                        
-                        <div class="row">
-                            <input name="contactName" type="text" placeholder="Имя" minlength="2" required="" aria-required="true" class="form-input w-100">
-                        </div>
-                        <div class="row mt-3">
-                            <input name="contactSurname" type="text"placeholder="Фамилия" minlength="2" required="" aria-required="true" class="form-input w-100">
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-11 px-0 align-self-center">
-                                <input name="contactAge" type="text"placeholder="Укажите Ваш возраст" minlength="1" required="" aria-required="true" class="form-input w-100">
+                <div class="container-fluid mt-5">
+                    <form class="row align-content-center h-100">
+                        <div class="container">                        
+                            <div class="row position-relative">
+                                <input name="contactName" type="text" placeholder="Имя*" minlength="2" required="" aria-required="true" class="form-input w-100" aria-describedby="nameHelpBlock">
+                                <small id="nameHelpBlock" class="form-text">
+                                    буквы только кириллического алфавита
+                                </small>
                             </div>
-                            <div class="col-1 px-0">
-                                <div class="row">
-                                    <div class="col text-right">
-                                        <i class="im im-angle-up icon-count age-add"></i><br>
-                                        <i class="im im-angle-down icon-count age-sub"></i>
+                            <div class="row mt-4 position-relative">
+                                <input name="contactSurname" type="text"placeholder="Фамилия*" minlength="2" required="" aria-required="true" class="form-input w-100" aria-describedby="surnameHelpBlock">
+                                <small id="surnameHelpBlock" class="form-text">
+                                    буквы только кириллического алфавита
+                                </small>
+                            </div>
+                            <div class="row mt-4 position-relative">
+                                <div class="col-11 px-0 align-self-center">
+                                    <input name="contactAge" type="text"placeholder="Укажите Ваш возраст*" minlength="1" required="" aria-required="true" class="form-input w-100" aria-describedby="ageHelpBlock">
+                                    <small id="ageHelpBlock" class="form-text">
+                                        возраст от 4 до 160 лет
+                                    </small>
+                                </div>
+                                <div class="col-1 px-0">
+                                    <div class="row">
+                                        <div class="col text-right">
+                                            <i class="im im-angle-up icon-count age-add"></i><br>
+                                            <i class="im im-angle-down icon-count age-sub"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4 position-relative">
+                                <div class="col-11 px-0">
+                                    <input name="contactEmail" type="email" placeholder="Почта*" minlength="2" required="" aria-required="true" class="form-input w-100 temp-contact" aria-describedby="mailHelpBlock">
+                                    <small id="mailHelpBlock" class="form-text">
+                                        пример почтового ящика - mail@mail.ru
+                                    </small>
+                                </div>
+                                <div class="col-1 px-0 text-right">
+                                    <ion-icon name="refresh" class="icon-refresh"></ion-icon>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <textarea name="contactMassage" rows="5" cols="30" wrap="soft" placeholder="Дополнительные данные, которые Вы бы хотели указать" class="w-100"></textarea>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <small class="contact__comment text-muted">* - Поля обязательные для заполнения</small>
+                                </div>
+                            </div>
+                            <div class="row mt-3 justify-content-center">
+                                <div class="col px-0">
+                                    <input type="submit" id="send" value="ОТПРАВИТЬ" class="form-input w-100">
+                                    <div class="spinner-grow wait__send" role="status">
+                                        <span class="sr-only">Loading...</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-11 px-0">
-                                <input name="contactEmail" type="email" placeholder="Почта" minlength="2" required="" aria-required="true" class="form-input w-100 temp-contact">
-                            </div>
-                            <div class="col-1 px-0 text-right">
-                                <ion-icon name="refresh" class="icon-refresh"></ion-icon>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <textarea name="contactMassage" rows="5" cols="30" wrap="soft" placeholder="Дополнительные данные, которые Вы бы хотели указать" class="w-100"></textarea>
-                        </div>
-                        <div class="row mt-3 justify-content-center">
-                            <div class="col px-0">
-                                <input type="submit" id="send" value="ОТПРАВИТЬ" class="form-input w-100">
-                                <div class="spinner-grow wait__send" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
             <div class="col-12 col-xl-6 mt-5 mt-xl-0" id="contacts">
                 <div class="row justify-content-center">
@@ -389,18 +430,6 @@ get_header();
                                     <?php endforeach; ?>
                             <?php endif; ?>
                         </div>
-                        
-                        <!-- <div class="row mt-4 mt-md-5 text-center">
-                            <div class="col">
-                                <i class="fab fa-vk social-contacts"></i>
-                            </div>
-                            <div class="col">
-                                <i class="fab fa-odnoklassniki social-contacts"></i>
-                            </div>
-                            <div class="col">
-                                <a class="cursor" href="#" data-toggle="modal" data-target="#modalRegular"><i class="fas fa-map-marker-alt social-contacts"></i></a>
-                            </div>
-                        </div> -->
                     </div>  
                 </div>
             </div>

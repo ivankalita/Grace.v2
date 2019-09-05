@@ -1,7 +1,6 @@
 jQuery(function($){
-    
     $(document).ready(function() {
-
+        // NProgress.start();
         // *********** Добавление к якорям class = data-scroll **************** //
         var anchor = $('a.nav-link');
         anchor.addClass('data-scroll');
@@ -84,13 +83,13 @@ jQuery(function($){
         $(window).on('load resize', function () {
 
             if ($(document).width() < 1200) {
-                $('.home-content__buttons').css('top', '27rem');
-                $('.home-content__scroll').css('top', '31rem');
+                // $('.home-content__buttons').css('top', '27rem');
+                // $('.home-content__scroll').css('top', '31rem');
                 $('.header-nav-wrap').addClass('mobile');
             }
             else {
-                $('.home-content__buttons').css('top', '');
-                $('.home-content__scroll').css('top', '34rem');
+                // $('.home-content__buttons').css('top', '');
+                // $('.home-content__scroll').css('top', '34rem');
                 $('.header-nav-wrap').removeClass('mobile');
             }
         })
@@ -118,6 +117,16 @@ jQuery(function($){
         };
         ssMobileMenu();
 
+        /* Events hover
+        * ---------------------------------------------------- */ 
+        $('.timeline-image').hover(function() {
+            $(this).find('.gallery__more').addClass('current-more');
+            console.log(this);
+        }, function() {
+            $('.current-more').removeClass('current-more');
+        });
+        /* *****************************************************/ 
+
         /* Carousel Groups
         * ---------------------------------------------------- */ 
         var dots = $('.dots-items'),
@@ -142,45 +151,45 @@ jQuery(function($){
             slides[slideIndex - 1].style.display = 'flex';
             dots[slideIndex - 1].classList.add('active');
         }
-        function fromLeftToRight(prev, currnet) {
+        function fromLeftToRight(prev, current) {
             slides[prev - 1].classList.add('animated', 'slideOutLeft');
             setTimeout(()=> {
                 slides[prev - 1].style.display = 'none';
             }, 500);
             setTimeout(()=> {
-                slides[currnet - 1].classList.add('animated', 'slideInRight');
-                slides[currnet - 1].style.display = 'flex';
+                slides[current - 1].classList.add('animated', 'slideInRight');
+                slides[current - 1].style.display = 'flex';
             }, 500);
 
             setTimeout(()=> {
                 slides[prev - 1].classList.remove('animated', 'slideOutLeft');
             }, 500);
             setTimeout(()=> {
-                slides[currnet - 1].classList.remove('animated', 'slideInRight');
+                slides[current - 1].classList.remove('animated', 'slideInRight');
             }, 1000);
 
-            slideIndex = currnet;
-            uploadStatusSlider(currnet);
+            slideIndex = current;
+            uploadStatusSlider(current);
         }
-        function fromRightToLeft(prev, currnet) {
+        function fromRightToLeft(prev, current) {
             slides[prev - 1].classList.add('animated', 'slideOutRight');
             setTimeout(()=> {
                 slides[prev - 1].style.display = 'none';
             }, 500);
             setTimeout(()=> {
-                slides[currnet - 1].classList.add('animated', 'slideInLeft');
-                slides[currnet - 1].style.display = 'flex';
+                slides[current - 1].classList.add('animated', 'slideInLeft');
+                slides[current - 1].style.display = 'flex';
             }, 500);  
 
             setTimeout(()=> {
                 slides[prev - 1].classList.remove('animated', 'slideOutRight');
             }, 500);
             setTimeout(()=> {
-            slides[currnet - 1].classList.remove('animated', 'slideInLeft');
+            slides[current - 1].classList.remove('animated', 'slideInLeft');
             }, 1000); 
 
-            slideIndex = currnet;
-            uploadStatusSlider(currnet);
+            slideIndex = current;
+            uploadStatusSlider(current);
         }
         function uploadStatusSlider(n) {
             for (let i = 0; i < dots.length; i++) {
@@ -188,6 +197,7 @@ jQuery(function($){
             }
             dots[n - 1].classList.add('active');
         }
+
         dotsArea.onclick = function(e) {
             for (let i = 0; i < dots.length + 1; i++) {
                 if (e.target.classList.contains('dots-items') && e.target == dots[i - 1]) {
@@ -197,6 +207,34 @@ jQuery(function($){
             }
         }
         showSlides(slideIndex);
+
+        // Carousel`s Swipe 
+        var carouselBlock = $('.carousel-items');
+
+        $(carouselBlock).on('mousedown',function( event ) {
+            switch ( event.which ) {
+                case 1:
+                    var pointDown = event.pageX
+                    $(carouselBlock).on('mousemove', function(event) {
+                        if ( event.pageX - pointDown > 50 ) {
+                            if (slideIndex == 1) fromRightToLeft(slideIndex, 3);
+                            else if (slideIndex == 2) fromRightToLeft(slideIndex, 1);
+                            else if (slideIndex == 3) fromRightToLeft(slideIndex, 2);
+                            $(carouselBlock).off('mousemove');
+                        };
+                        if ( event.pageX - pointDown < -50 ) {
+                            if (slideIndex == 1) fromLeftToRight(slideIndex, 2);
+                            else if (slideIndex == 2) fromLeftToRight(slideIndex, 3);
+                            else if (slideIndex == 3) fromLeftToRight(slideIndex, 1);
+                            $(carouselBlock).off('mousemove');
+                        }
+                    })
+                break;
+            }
+        });
+        
+        ///////////////
+
         /****************************************************** */
 
         //* Set Cookies
@@ -313,31 +351,28 @@ jQuery(function($){
             saturday = $('.saturday'),
             sunday = $('.sunday');
 
-            $(monday).find('.from').text(schedule['monday']['from']).addClass('animated fadeIn');
-            $(monday).find('.to').text(schedule['monday']['to']);
+            $(monday).find('.from').text(schedule['monday']['from']).toggleClass('animated fadeIn');
+            $(monday).find('.to').text(schedule['monday']['to']).toggleClass('animated fadeIn');
 
-            $(tuesday).find('.from').text(schedule['tuesday']['from']);
-            $(tuesday).find('.to').text(schedule['tuesday']['to']);
+            $(tuesday).find('.from').text(schedule['tuesday']['from']).toggleClass('animated fadeIn');
+            $(tuesday).find('.to').text(schedule['tuesday']['to']).toggleClass('animated fadeIn');
 
-            $(wednesday).find('.from').text(schedule['wednesday']['from']);
-            $(wednesday).find('.to').text(schedule['wednesday']['to']);
+            $(wednesday).find('.from').text(schedule['wednesday']['from']).toggleClass('animated fadeIn');
+            $(wednesday).find('.to').text(schedule['wednesday']['to']).toggleClass('animated fadeIn');
 
-            $(thursday).find('.from').text(schedule['thursday']['from']);
-            $(thursday).find('.to').text(schedule['thursday']['to']);
+            $(thursday).find('.from').text(schedule['thursday']['from']).toggleClass('animated fadeIn');
+            $(thursday).find('.to').text(schedule['thursday']['to']).toggleClass('animated fadeIn');
 
-            $(friday).find('.from').text(schedule['friday']['from']);
-            $(friday).find('.to').text(schedule['friday']['to']);
+            $(friday).find('.from').text(schedule['friday']['from']).toggleClass('animated fadeIn');
+            $(friday).find('.to').text(schedule['friday']['to']).toggleClass('animated fadeIn');
 
-            $(saturday).find('.from').text(schedule['saturday']['from']);
-            $(saturday).find('.to').text(schedule['saturday']['to']);
+            $(saturday).find('.from').text(schedule['saturday']['from']).toggleClass('animated fadeIn');
+            $(saturday).find('.to').text(schedule['saturday']['to']).toggleClass('animated fadeIn');
 
-            $(sunday).find('.from').text(schedule['sunday']['from']);
-            $(sunday).find('.to').text(schedule['sunday']['to']);
+            $(sunday).find('.from').text(schedule['sunday']['from']).toggleClass('animated fadeIn');
+            $(sunday).find('.to').text(schedule['sunday']['to']).toggleClass('animated fadeIn');
 
-            // setTimeout(() => {
             $('.schedule').css('box-shadow', '');
-            
-            // }, 500);
         }
         /****************************************************** */
         
@@ -348,6 +383,20 @@ jQuery(function($){
             $('.select-triangle').css('color', 'white');
         })
         $('.schedule').parallax({imageSrc: 'http://wordpress/wp-content/themes/grace/assets/images/schedule.jpg'});
+        /****************************************************** */
+
+        //* Gallery
+        /*---------------------------------------------------- */ 
+        var galleryBlock = $('.gallery__block'); 
+        $(galleryBlock).lightGallery();
+        $(galleryBlock).find('img').after('<i class="fas fa-camera-retro gallery__more"></i>');
+        $(galleryBlock).find('a').hover(function() {
+            $(this).find('.gallery__more').addClass('current-more');
+            console.log(this);
+        }, function() {
+            $('.current-more').removeClass('current-more');
+        });
+
         /****************************************************** */
     })
 })
