@@ -20,17 +20,17 @@ jQuery(function($){
 			};
 		
 			$.ajax({
-				url: ajaxurl, // обработчик
-				data: data, // данные
-				type: 'POST', // тип запроса
+				url: ajaxurl,
+				data: data,
+				type: 'POST',
 				success:function(data){
 					if( data ) {
-						
+					
 						$('.timeline > li:last').after(data);
-						console.log($('.timeline').text());
-						// Добавление галереи поста
+						$('.timeline:before').addClass('animated fadeIn');
+
 						var index_item = $('.timeline-image');
-						index_item.on('click', function(e) {
+						$(index_item).on('click', function(e) {
 
 							var index = $(this).parent().index();
 							var body = $('.timeline').children().eq(index).find('.timeline-gallery');
@@ -42,10 +42,10 @@ jQuery(function($){
 						
 							e.preventDefault();
 						})
-						/////////////////
 
 						$('.wait__posts').hide();
 						$('.button__text').text('показать ещё');
+						$('.timeline__showmore').css('background-color', '');
 						current_page++; 
 						if (current_page == max_pages) {
 							$(".timeline__showmore").remove(); 
@@ -55,37 +55,29 @@ jQuery(function($){
 						$('.timeline__showmore').remove();
 						$(".timeline-lastchild").remove();
 					}
-				},
-				error: function(e) {
-					console.log(e);
 				}
 			})
 
 			function sendAjax(index, body) {
-				console.log(index);
 				var data = {
 					'action': 'showgallerypost',
 					'index': index
 				};
 	
 				$.ajax({
-					url: ajaxurl, // обработчик
-					data: data, // данные
-					type: 'POST', // тип запроса
+					url: ajaxurl,
+					data: data,
+					type: 'POST',
 					success: function(data) {
 	
 						$(body).append(data);
-						console.log('success');
 						$(body).lightGallery().find('a').first().trigger('click');
-						console.log('sendAjax');
 					}
 				})
 			}
 	
 			function notsendAjax(index,body) {
-				console.log(index);
 				$(body).lightGallery().children().first().trigger('click');
-				console.log('notsendAjax');
 			}
 		})
 	})
