@@ -29,16 +29,7 @@ show_admin_bar(false);
 
 function load_styles_scritps_fonts() {
     wp_enqueue_style('style', get_stylesheet_uri());
-	wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/main.css');
-	wp_enqueue_style('sandwich', get_template_directory_uri() . '/assets/css/sandwich.css');
 	wp_enqueue_style('lightgallery', get_template_directory_uri() . '/assets/css/lightgallery.css');
-	wp_enqueue_style('nprogress', get_template_directory_uri() . '/assets/css/nprogress.css');
-    wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/css/iconmonstr-iconic-font.css');
-    wp_enqueue_style('iconmonstr-iconic-font.min', get_template_directory_uri() . '/assets/css/iconic/css/iconmonstr-iconic-font.min.css');
-    wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/fonts/iconmonstr-iconic-font.min.eot');
-    wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/fonts/iconmonstr-iconic-font.min.ttf');
-    wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/fonts/iconmonstr-iconic-font.min.woff');
-	wp_enqueue_style('iconmonstr-iconic-font', get_template_directory_uri() . '/assets/css/iconic/fonts/iconmonstr-iconic-font.min.woff2');
 	wp_enqueue_style('lg', get_template_directory_uri() . '/assets/fonts/lg.eot');
 	wp_enqueue_style('lg', get_template_directory_uri() . '/assets/fonts/lg.svg');
 	wp_enqueue_style('lg', get_template_directory_uri() . '/assets/fonts/lg.ttf');
@@ -51,7 +42,7 @@ function load_styles_scritps_fonts() {
 	wp_deregister_script('jquery-core');
 	wp_deregister_script('jquery');
 	// регистрируем
-	wp_register_script( 'jquery-core', 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', false, null, true );
+	wp_register_script( 'jquery-core', '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', false, null, true );
 	wp_register_script( 'jquery', false, array('jquery-core'), null, true );
 	// подключаем
 	wp_enqueue_script( 'jquery' );
@@ -65,12 +56,9 @@ function load_styles_scritps_fonts() {
 	wp_enqueue_script('jquery.waypoints.min');
 	wp_register_script('waypoint', get_template_directory_uri() . '/assets/js/waypoint.js', array('jquery'));
 	wp_enqueue_script('waypoint');
-	wp_register_script('ionicons', '//unpkg.com/ionicons@4.5.10-0/dist/ionicons.js', false);
-	wp_enqueue_script('ionicons');
-	wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'nprogress'));
+	wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'nprogress', 'lightgallery.min'));
 	wp_enqueue_script('loadmore', get_template_directory_uri() . '/assets/js/loadmore.js', array('jquery'));
-	wp_enqueue_script('lightgallery-all.min', get_template_directory_uri() . '/assets/js/lightgallery-all.min.js', array('jquery'));
-	wp_enqueue_script('lg-fullscreen.min', get_template_directory_uri() . '/assets/js/lg-fullscreen.min.js', array('jquery'));
+	wp_enqueue_script('lightgallery.min', get_template_directory_uri() . '/assets/js/lightgallery-all.min.js', array('jquery'));
 	wp_enqueue_script('smooth-scroll.polyfills.min', get_template_directory_uri() . '/assets/js/smooth-scroll.polyfills.min.js');
 	wp_enqueue_script('showgallerypost', get_template_directory_uri() . '/assets/js/showgallerypost.js', array('jquery') );
 	wp_enqueue_script('masked.min', get_template_directory_uri() . '/assets/js/masked.min.js', array('jquery') );
@@ -164,6 +152,7 @@ function true_load_posts(){
 		<li class="animated fadeIn">
 			<div class="timeline-image">
 				<img class="rounded-circle img-fluid" src="<?php echo get_the_post_thumbnail_url( $new_post->ID, $size ); ?>" alt="">
+				<i class="fas fa-camera-retro gallery__more"></i>
 			</div>
 			<div class="timeline-panel">
 				<div class="timeline-heading">

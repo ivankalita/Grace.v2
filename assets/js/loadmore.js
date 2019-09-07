@@ -55,6 +55,15 @@ jQuery(function($){
 						$('.timeline__showmore').remove();
 						$(".timeline-lastchild").remove();
 					}
+					$('.timeline-image').off('mouseenter');
+					$('.timeline-image').off('mouseleave');
+
+					$('.timeline-image').on('mouseenter', function() {
+						$(this).find('.gallery__more').addClass('current-more');
+					})
+					$('.timeline-image').on('mouseleave', function() {
+						$('.current-more').removeClass('current-more');
+					});
 				}
 			})
 

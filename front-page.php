@@ -10,7 +10,7 @@ get_header();
 
     <div class="return-up">
         <a href="#header" class="data-scroll">
-            <i class="im im-angle-up icon-up"></i>
+            <i class="fas fa-chevron-up icon-up"></i>
         </a>    
     </div>
 
@@ -110,16 +110,14 @@ get_header();
                 </div>
                 <div class="row mt-2 mt-md-5">
                     <div class="col dots-block text-center">
-                        <ion-icon class="dots-items active" name="radio-button-on"></ion-icon>
-                        <ion-icon class="dots-items" name="radio-button-on"></ion-icon>
-                        <ion-icon class="dots-items" name="radio-button-on"></ion-icon>
+                        <i class="dots-items active fas fa-circle"></i>
+                        <i class="dots-items fas fa-circle"></i>
+                        <i class="dots-items fas fa-circle"></i>
                     </div>
                 </div>
             </div>
         </div>
-            
     </section>
-
 
     <section id="events" class="container-fluid mt-5 events target-section">
         <div class="row justify-content-center">
@@ -210,13 +208,10 @@ get_header();
             <div class="row justify-content-center mb-3">
                 <h3 class="text-center section-descr"><?php the_field('gallery_description'); ?></h3>
             </div>
-            <div class="row">
-                <div class="gallery__block">
+            <div class="gallery__block">
                 <?php
-                    // echo "<pre>". print_r(get_page(62)->post_content) . "</pre>";
                     echo apply_filters('delete_wrap_filter', get_page(62)->post_content);
                 ?>
-                </div>
             </div>
         </div>            
             
@@ -353,8 +348,10 @@ get_header();
                                 <div class="col-1 px-0">
                                     <div class="row">
                                         <div class="col text-right">
-                                            <i class="im im-angle-up icon-count age-add"></i><br>
-                                            <i class="im im-angle-down icon-count age-sub"></i>
+                                            <i class="fas fa-chevron-up icon-count age-add"></i><br>
+                                            <i class="fas fa-chevron-down icon-count age-sub"></i>
+                                            <!-- <i class="im im-angle-up icon-count age-add"></i><br>
+                                            <i class="im im-angle-down icon-count age-sub"></i> -->
                                         </div>
                                     </div>
                                 </div>
@@ -390,7 +387,7 @@ get_header();
                     </form>
                 </div>
             </div>
-            <div class="col-12 col-xl-6 mt-5 mt-xl-0" id="contacts">
+            <div class="col-12 col-xl-6 mt-5 mt-xl-0">
                 <div class="row justify-content-center">
                     <h1 class="text-center contacts-title">КОНТАКТЫ</h1>
                 </div>

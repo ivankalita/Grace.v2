@@ -17,7 +17,9 @@
     <meta itemprop="name" content="Грация"/>
     <meta itemprop="description" content="Студия восточного танца Грация"/>
     <meta itemprop="image" content="<?php echo get_field('logo'); ?>"/>
-    <?php wp_head() ?>
+    <?php
+        wp_head()
+    ?>
     <style>
     .loaderArea {
         background: #353232;
@@ -123,7 +125,7 @@
                         
                 <div class="home-content__scroll">
                     <a href="#leader" class="btn-next data-scroll">
-                        ДАЛЕЕ<i class="im im-angle-down align-bottom icon-next"></i>
+                        ДАЛЕЕ<i class="fas fa-chevron-down icon-next"></i>
                     </a>
                 </div>
             </div>

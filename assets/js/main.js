@@ -34,7 +34,7 @@ jQuery(function($){
                     $('nav').removeClass('sticky scrolling animated fadeOutUp');
                     $('.return-up').removeClass('animated fadeOutRight').css('display', 'none');
                 }, 500)
-        }}, {offset: '180px'})
+        }}, {offset: '25%'})
 
         var ssWaypoints = function() {
 
@@ -56,7 +56,7 @@ jQuery(function($){
     
                 },
     
-                offset: '120px'
+                offset: '25%'
     
             });
             
@@ -94,9 +94,10 @@ jQuery(function($){
         };
         ssMobileMenu();
 
-        $('.timeline-image').hover(function() {
+        $('.timeline-image').on('mouseenter', function() {
             $(this).find('.gallery__more').addClass('current-more');
-        }, function() {
+        })
+        $('.timeline-image').on('mouseleave', function() {
             $('.current-more').removeClass('current-more');
         });
 
