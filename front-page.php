@@ -25,14 +25,12 @@ get_header();
                 <img class="img-leader" src="<?php the_field('leader_photo'); ?>">
                     <div class="photo-leader-detail">
                         <p class="mb-0">
-                            Логвинова<br>
-                            Василинна<br>
-                            Игоревна
+                            <?php the_field('leader_name'); ?>
                         </p>
                     </div>
                 </div>
                 <div class="col col-12 col-md-6 mt-5 mt-md-0">
-                    <p class="text-center leader-description">
+                    <p class="text-left leader-description">
                     <?php if(get_post_meta($post -> ID, 'about_me', true)) {?>
                         <?php echo get_post_meta($post -> ID, 'about_me', true); ?>
                     <?php }?> 
@@ -152,7 +150,7 @@ get_header();
                                     <?php the_time('j F Y'); ?>
                                 </h4>
                                 <h4 class="subheading">
-                                    <?php the_title(); the_ID(); ?>
+                                    <?php the_title(); ?>
                                 </h4>
                             </div>
                             <div class="timeline-body">
@@ -218,7 +216,7 @@ get_header();
     </section>
 
     
-    <section id="schedule" class="schedule target-section parallax-window" data-parallax="scroll">
+    <section id="schedule" class="schedule" style="background-image: url(<?php the_field('schedule_image'); ?>)">
         <div class="container pt-5">
             <div class="row justify-content-center">
                 <h1 class="text-center schedule-title"><?php the_field('schedule_title'); ?></h1>
@@ -252,8 +250,8 @@ get_header();
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <div class="container-fluid" style="color: white; font-size: 48px;">
-            <div class="row justify-content-center align-items-center">
+        <div class="container-fluid mt-lg-5" style="color: white; font-size: 48px;">
+            <div class="row justify-content-center align-items-center pt-lg-5">
                 <div class="col-lg-12 col-xl align-self-center">
                     <div class="row text-center monday day-of-week">
                         <div class="col-3 col-xl-12 day">ПН</div>

@@ -220,7 +220,6 @@ jQuery(function($){
                 selectTriangle = $('.select-triangle'),
                 scheduleChoice = $('.schedule-choice');
                 scheduleGroup = $('.schedule-group');
-
             if ($(target).hasClass('schedule-change') || $(target).hasClass('select-triangle')) dropList(target, scheduleChoice, scheduleGroup, selectTriangle);
             if ($(target).hasClass('schedule-choice')) {
                 

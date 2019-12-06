@@ -112,9 +112,7 @@
         <div class="home-content">
             <div class="home-content__main">
                 <div class="home-content_banner d-none d-xl-block">
-                    <?php if(get_post_meta($post -> ID, 'header_banner', true)) {?>
-                        <h1 class="text-right"><?php echo get_post_meta($post -> ID, 'header_banner', true); ?></h1>
-                    <?php }?>
+                    <h1 class="text-right">Студия восточных танцев<br>"Грация"</h1>
                 </div>
             
                 <div class="home-content__buttons">

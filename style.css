@@ -523,6 +523,9 @@ a {
 	text-decoration: none !important;
 	transition: all 0.5s ease-in-out;
 }
+.nav__li {
+	letter-spacing: 2px;
+}
 .nav__li a:hover {
 color: #AF2B2B !important;
 }
@@ -790,12 +793,12 @@ padding-bottom: 37rem;
 position: relative;
 }
 
-.home-content_banner {
+.home-content_banner h1{
 color: #FFFFFF;
-font-size: 6rem;
-line-height: 1.35;
+font-size: 58px;
+line-height: 71px;
+letter-spacing: 5px;
 margin-top: 0;
-font-style: italic;
 }
 
 .home-content__main {
@@ -816,6 +819,8 @@ width: auto;
 border: 2px solid white;
 color: #FFFFFF;
 padding: 1em 2em;
+letter-spacing: 2px;
+font-weight: bold;
 -webkit-transition: all 0.5s ease-in-out;
 transition: all 0.5s ease-in-out;
 }
@@ -824,7 +829,7 @@ transition: all 0.5s ease-in-out;
 .home-content__buttons .btn-write:focus {
 background: #FFFFFF !important;
 color: #000000 !important;
-font-weight: bold;
+
 }
 
 .home-content__scroll {
@@ -978,7 +983,7 @@ margin-top: 10rem;
 .photo-leader-detail {
 	position: absolute;
 	right: 0;
-	bottom: 0;
+	bottom: -1px;
 	padding: 15px 30px;
 	display: inline-block;
 	background: #ffffff;
@@ -1061,6 +1066,7 @@ border-color: #000000;
 background-color: #000000;
 }
 .button__text {
+letter-spacing: 1px;
 text-transform: uppercase;
 }
 .wait__posts {
@@ -1116,7 +1122,6 @@ bottom: 4px;
 	color: white;
 	border: 7px solid #e9ecef;
 	border-radius: 100%;
-	background-color: #fed136;
 	cursor: pointer;
 	overflow: hidden;
 }
@@ -1163,6 +1168,7 @@ bottom: 4px;
 
 .timeline .timeline-heading h4.subheading {
 	text-transform: none;
+	overflow-wrap: break-word;
 }
 
 .timeline .timeline-body > p {
@@ -1220,8 +1226,8 @@ visibility: visible;
 .schedule {
 	/* width: inherit; */
 	height: auto;
-	min-height: 768px;
-	background-image: url("assets/images/schedule.jpg");
+	min-height: 100vh;
+	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -1229,6 +1235,7 @@ visibility: visible;
 	transition: .5s box-shadow ease-in-out;
 }
 .schedule-title {
+	letter-spacing: 5px;
 	color: #AF2B2B;
 }
 .schedule-descr {
@@ -1287,6 +1294,7 @@ cursor: pointer;
 color: #AF2B2B;
 }
 .day {
+letter-spacing: 4px;
 color: #AF2B2B;
 }
 .wait__schedule {
@@ -1454,7 +1462,7 @@ Media
 * make sure the menu is visible on larger screens
 * ------------------------------------------------------------------- */
 @media (min-width: 769px) {
-.timeline:last-child .timeline-image {
+.timeline:last-child.timeline-image {
 	bottom: 0;
 }
 .timeline li:first-child .timeline-image {
@@ -1639,6 +1647,9 @@ div.loader {
 	top: 46% ;
 	left: 44%;
 }
+.home-content__buttons .btn-write {
+    padding: .5em 1em;
+}
 .leader {
 	margin-top: 5rem;
 }
@@ -1727,15 +1738,19 @@ form > div {
 }
 .schedule-choice,
 .contacts-descr h3, h4 {
-	font-size: 1.2rem !important;
+	font-size: 1.2rem;
 }
 .section-descr,
-.timeline-heading h4,
 .schedule-descr,
-.schedule-change {
+.schedule-change{
 	font-size: 1.1rem;
 }
+.contacts-descr h4 {
+    font-size: 1rem;
+    overflow-wrap: break-word
+}
 .groups-description p,
+.timeline-heading h4,
 .leader-description,
 .timeline-description p,
 .copyright-hightlight h5,
